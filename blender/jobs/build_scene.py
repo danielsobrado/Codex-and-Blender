@@ -4,6 +4,7 @@ import bpy
 
 from core.context import JobContext
 from core.materials import create_principled_material
+from core.rendering import configure_render
 from core.scene_ops import (
     configure_transform,
     create_light,
@@ -66,3 +67,4 @@ def build_scene(context: JobContext) -> None:
     build_objects(context, collection)
     build_cameras(context, collection)
     build_lights(context, collection)
+    configure_render(context)

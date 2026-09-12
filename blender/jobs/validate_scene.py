@@ -6,6 +6,13 @@ import bpy
 
 from core.context import JobContext
 from core.external_files import missing_external_files
+from core.rendering import (
+    configured_render_state,
+    current_render_state,
+    render_setting_errors,
+)
+
+VISUAL_THRESHOLD_KEYS = ("ssim_min", "lpips_max", "semantic_similarity_min")
 
 
 def validate_scene(context: JobContext) -> None:
@@ -34,9 +41,13 @@ def validate_scene(context: JobContext) -> None:
             f"Missing external files: {len(missing)} exceeds configured maximum {max_missing}."
         )
 
+    errors.extend(render_setting_errors(context))
+
     visual = acceptance.get("visual", {})
-    if any(value is not None for value in visual.values()):
-        warnings.append("Visual thresholds are configured but are not evaluated by the structural validator.")
+    if any(visual.get(key) is not None for key in VISUAL_THRESHOLD_KEYS):
+        warnings.append(
+            "Legacy visual thresholds are configured in acceptance.yaml; visual_evaluator.py owns their evaluation."
+        )
 
     result = {
         "passed": not errors,
@@ -46,6 +57,10 @@ def validate_scene(context: JobContext) -> None:
             "required_objects": required_objects,
             "active_camera": bpy.context.scene.camera.name if bpy.context.scene.camera else None,
             "missing_external_files": missing,
+            "render_settings": {
+                "expected": configured_render_state(context),
+                "current": current_render_state(),
+            },
         },
     }
 

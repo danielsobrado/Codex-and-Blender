@@ -5,20 +5,9 @@ import logging
 import bpy
 
 from core.context import JobContext
+from core.rendering import configure_render
 
 LOGGER = logging.getLogger("render_scene")
-
-
-def configure_render(context: JobContext) -> None:
-    spec = context.section("render")
-    scene = bpy.context.scene
-
-    scene.render.engine = spec["engine"]
-    scene.render.resolution_x = int(spec["resolution_x"])
-    scene.render.resolution_y = int(spec["resolution_y"])
-    scene.render.resolution_percentage = int(spec["resolution_percentage"])
-    scene.render.image_settings.file_format = spec["image_format"]
-    scene.render.film_transparent = bool(spec["transparent"])
 
 
 def render_to(path, camera: bpy.types.Object) -> None:

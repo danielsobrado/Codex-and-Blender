@@ -12,5 +12,10 @@ protected_files:
   - scripts/visual_evaluator.py
   - scripts/reference_regression.py
   - scripts/iteration_controller.py
-  - blender/jobs/validate_scene.py
+  - blender/entrypoint.py
+  - blender/core/context.py
   - blender/core/external_files.py
+  - blender/core/rendering.py
+  - blender/jobs/render_scene.py
+  - blender/jobs/inspect_scene.py
+  - blender/jobs/validate_scene.py
