@@ -4,56 +4,81 @@ Research date: 2026-09-12.
 
 ## Executive conclusion
 
-The strongest current evidence supports a **code-first Blender workflow** rather than a GUI-first one.
+The strongest current evidence supports a **code-first Blender workflow rather than a GUI-first workflow**.
 
-OpenAI's architectural-visualization example shows GPT-6 Astra in Codex creating an editable Blender scene through `bpy`, running Blender scripts in background mode with `--python`, examining generated renders, correcting problems and iterating. Computer-use/UI interaction was used as a supplementary inspection mechanism, not as the durable representation of the work.
+OpenAI's published architectural-visualization example shows GPT-6 Astra in Codex creating an editable Blender scene through `bpy`, running Blender scripts in background mode, examining generated renders, correcting visual/geometry problems and iterating. Computer use was supplementary; the durable work was programmatic.
 
-The production implication is:
+Blender's official Lab MCP server complements that workflow with live inspection and interactive control, but MCP is not a replacement for reproducible source.
 
-**version-controlled scene specification + `bpy` code → Blender CLI → `.blend` + renders + manifest → structural/visual evaluation → source revision**.
+The recommended production architecture is therefore:
 
-MCP fits beside that loop as the live inspection/control plane.
+```text
+version-controlled scene specification + bpy
+        |
+        v
+Blender CLI clean build
+        |
+        +--> .blend
+        +--> multi-view renders
+        +--> exact scene manifest
+        +--> structural validation
+        |
+        v
+render sanity checks + GPT-6 Astra visual review
+        |
+        +--> pass
+        |
+        +--> fail -> Codex patches durable source -> rebuild
 
-## 1. What OpenAI actually demonstrated
+Blender MCP sits beside this loop for live inspection and experiments.
+```
 
-OpenAI's published architectural visualization project is the most important source because it describes the mechanism, not only the result.
+## 1. What OpenAI actually demonstrated with Blender
 
-Observed pattern:
+OpenAI's architectural-visualization project is the most important primary source because it describes the mechanism, not only the final images.
 
-- Astra authored Blender content using the Python API (`bpy`).
-- The scene included architecture, furniture, vegetation, materials, lights and cameras.
-- Blender's executable was used in background mode with Python scripts for camera/render work.
-- Preview renders were reviewed before committing to expensive final rendering.
-- Visual inspection found and corrected scene/render problems.
-- Computer use was also used to inspect Blender, but did not replace the programmatic workflow.
-- The project extended into Blender-to-Unreal transfer, reinforcing that the scene was treated as structured data rather than a one-off viewport artifact.
+The demonstrated pattern included:
 
-This is why this repository treats code/configuration as canonical.
+- Astra authoring Blender content through the Python API (`bpy`);
+- architecture, furniture, vegetation, materials, lights and cameras;
+- Blender's executable running scripts in background mode;
+- preview renders inspected before more expensive rendering;
+- visual feedback used to find and correct scene problems;
+- Blender UI/computer use used as an additional inspection mechanism;
+- structured Blender-to-Unreal transfer rather than a one-off viewport result.
+
+The practical conclusion is that Astra's Blender strength comes from the combination of **spatial reasoning + coding + visual feedback + iteration**, not from superior mouse automation alone.
 
 Primary source:
 https://developers.openai.com/blog/architectural-visualization-with-astra
 
-## 2. Why GPT-6 Astra is a good fit
+## 2. GPT-6 Astra evidence relevant to 3D/CAD work
 
-OpenAI documents GPT-6 Astra as supporting the capabilities relevant to this loop, including image input, computer use and MCP/tool use. Image input is enough for render critique; Blender itself remains responsible for image generation.
+OpenAI describes GPT-6 Astra as its most capable model for difficult end-to-end work and documents image input, software engineering, computer use and structured outputs among the capabilities relevant to this workflow.
 
-Primary source:
+Primary model source:
 https://developers.openai.com/api/docs/models/gpt-6-astra
 
-The important capability combination is not merely "3D knowledge". It is:
+OpenAI also reports a **95.9% BenchCAD score for GPT-6 Astra versus 83.3% for GPT-5.6 Sol** in its published launch results.
 
-- long-horizon coding;
+That number should not be misrepresented as a Blender benchmark. BenchCAD is evidence of substantially stronger CAD/spatial reconstruction capability, which is directionally relevant to procedural Blender work.
+
+Primary benchmark source:
+https://openai.com/index/gpt-6-astra/
+
+The capability combination that matters here is:
+
+- long-horizon code work;
 - spatial/visual reasoning;
-- tool use;
 - image critique;
-- iterative error correction;
-- enough context to keep a procedural scene coherent across many edits.
+- structured output;
+- tool use;
+- iterative correction;
+- sufficient context for a large procedural scene.
 
-## 3. Blender CLI + `bpy`
+## 3. Blender CLI + `bpy` is the reproducibility layer
 
-This is the reproducibility layer.
-
-Typical pattern:
+Typical shape:
 
 ```bash
 blender --background --factory-startup --python blender/entrypoint.py -- --action all --config output/_resolved_workflow.json
@@ -61,225 +86,370 @@ blender --background --factory-startup --python blender/entrypoint.py -- --actio
 
 Advantages:
 
-- deterministic, reviewable source;
+- deterministic/reviewable source;
 - Git diffs;
-- repeatable builds;
-- suitable for CI and batch work;
-- explicit configuration;
-- easy generation of machine-readable state;
-- no dependence on fragile UI coordinates.
+- repeatable clean builds;
+- batch and CI suitability;
+- explicit dimensions/settings;
+- machine-readable manifests;
+- no dependence on viewport coordinates;
+- easy reconstruction from scratch.
 
 Limitations:
 
-- some interactive Blender context/operators can be inconvenient headlessly;
-- artists may still need viewport inspection;
-- final rendering can be computationally expensive;
-- bit-for-bit render determinism across hardware/backends should not be assumed.
+- some Blender operators depend on interactive context and are awkward headlessly;
+- complex artistic decisions still benefit from viewport inspection;
+- final rendering can be expensive;
+- byte-identical renders should not be assumed across Blender versions, GPU backends or hardware.
+
+The correct target is **semantic reproducibility**, not blindly demanding identical PNG bytes on every machine.
 
 ## 4. Official Blender Lab MCP
 
-Blender's current official Lab integration has two runtime pieces:
+Blender's official Lab integration has two runtime components:
 
 ```text
-MCP client ⇄ MCP/stdio ⇄ blender-mcp ⇄ TCP ⇄ Blender add-on ⇄ bpy
+MCP client
+   |
+   | stdio/MCP
+   v
+blender-mcp server
+   |
+   | local TCP bridge
+   v
+Blender extension/add-on
+   |
+   v
+bpy / live Blender scene
 ```
 
-The MCP server is separate from Blender. The add-on runs inside Blender and bridges requests to Blender's Python environment.
+The server is separate from Blender. The extension runs inside Blender and provides access to the live Blender Python environment.
 
-The official implementation exposes capabilities such as:
+The researched official implementation exposes capabilities including:
 
 - scene/datablock summaries;
 - object detail summaries;
-- missing-file and linked-library inspection;
+- missing-file/linked-library inspection;
 - Blender Python API documentation lookup;
 - screenshots;
 - viewport navigation;
 - thumbnail/full viewport rendering;
 - Python execution in a running Blender instance;
-- CLI/background execution tools.
+- CLI/background execution helpers.
 
-The exact tool list is versioned implementation detail and should be discovered from the installed MCP server rather than permanently assumed.
+The exact tool names are implementation/version details. A production integration should discover the installed tool set instead of permanently assuming a copied list.
 
 Primary sources:
 
 - https://www.blender.org/lab/mcp-server/
 - https://github.com/bpype/blender_mcp
 
-At the time of this research, Blender's Lab page specifies Blender 5.1+ for this integration.
+At the research date, Blender's Lab documentation specifies Blender 5.1+ for the integration.
 
-## 5. Codex MCP integration
+## 5. Codex is now sufficient for both visual review and source correction
 
-Codex supports local STDIO MCP servers and project configuration. Relevant controls include server command/arguments, startup/tool timeouts, enable/disable behavior and tool allow/deny lists.
+Current Codex CLI documentation makes the hybrid loop simpler than requiring a custom OpenAI API client.
 
-Canonical registration shape:
+`codex exec` supports:
 
-```bash
-codex mcp add blender -- blender-mcp
-codex mcp list
+- non-interactive execution;
+- `--image` / `-i` to attach one or more images to the initial prompt;
+- `--output-schema` to require a JSON-schema-shaped final response;
+- `--output-last-message` to write the final response to a file;
+- `--sandbox read-only` for inspection/evaluation;
+- `--sandbox workspace-write` for repository-local corrections;
+- `--ephemeral` for runs that should not persist rollout/session files;
+- model override with `--model`;
+- configuration overrides such as model reasoning effort;
+- optional JSON event streams with `--json`.
+
+Primary command reference:
+https://learn.chatgpt.com/codex/developer-commands
+
+OpenAI's current ChatGPT/Codex guidance states that GPT-6 Astra in Codex requires **Codex CLI 0.153.0 or newer**.
+
+Primary availability source:
+https://help.openai.com/en/articles/20001275/
+
+This enables a clean two-agent boundary:
+
+```text
+Evaluator:
+  codex exec
+  + Astra
+  + render images
+  + read-only sandbox
+  + JSON schema
+
+Correction worker:
+  codex exec
+  + Astra
+  + visual_evaluation.json
+  + workspace-write sandbox
+  + source-only instructions
 ```
 
-Primary source:
-https://developers.openai.com/codex/extend/mcp
+That boundary is preferable to giving one model turn unrestricted responsibility for judging its own edits.
 
-Codex non-interactive mode is also important for automation. `codex exec` supports machine-readable event streams and structured outputs, which makes it suitable for a later CI/evaluation orchestrator.
-
-Primary source:
-https://developers.openai.com/codex/non-interactive-mode
-
-## 6. MCP versus CLI
+## 6. MCP versus CLI versus GUI/computer use
 
 They solve different problems.
 
 | Capability | CLI + bpy | MCP | GUI/computer use |
 |---|---:|---:|---:|
-| Clean deterministic rebuild | Excellent | Poor if used only as live mutation | Poor |
-| Git reviewability | Excellent | Only if mirrored into source | Poor |
+| Clean deterministic rebuild | Excellent | Weak if used only as live mutation | Weak |
+| Git reviewability | Excellent | Only when mirrored to source | Weak |
 | Batch rendering | Excellent | Good as wrapper | Weak |
 | Live scene inspection | Moderate | Excellent | Good |
 | Screenshots/viewport context | Moderate | Excellent | Excellent |
-| Fast experiment | Good | Excellent | Good |
+| Precise scripted transforms | Excellent | Excellent | Moderate |
+| Fast live experiments | Good | Excellent | Good |
 | CI suitability | Excellent | Moderate | Weak |
-| UI-only workflow | Weak | Moderate | Excellent |
+| UI-only features | Weak | Moderate | Excellent |
 
 Recommended priority:
 
-**CLI/`bpy` first → MCP second → GUI automation third**.
+**CLI/`bpy` first -> MCP second -> GUI automation third**.
 
-The best production solution is hybrid, not exclusive.
+The best solution is hybrid, but the layers must have clear ownership.
 
 ## 7. Why MCP should not be the source of truth
 
-A live scene mutation can produce an excellent result but still be operationally bad if nobody can reproduce it.
+A live scene mutation can look excellent and still be operationally bad if it cannot be reproduced.
 
 Bad loop:
 
 ```text
-render problem → live edit → looks better → done
+render problem -> live edit -> looks better -> done
 ```
 
 Production loop:
 
 ```text
 render problem
-→ gather structured + visual evidence
-→ experiment live if useful
-→ identify durable source change
-→ patch YAML/Python
-→ clean rebuild
-→ rerender
-→ accept only the rebuilt result
+-> collect exact + visual evidence
+-> experiment live if useful
+-> identify durable change
+-> patch YAML/Python
+-> clean rebuild
+-> rerender
+-> accept the rebuilt result only
 ```
 
-This avoids configuration drift between repository state and `.blend` state.
+This prevents repository/`.blend` drift.
 
-## 8. Visual evaluation
+## 8. Visual evaluation should use multiple evidence classes
 
-OpenAI's Astra example already demonstrates qualitative render critique. A production system should combine several evaluators instead of relying only on a model looking at RGB images.
+A model looking at RGB images alone should not answer questions that Blender can answer exactly.
 
-Recommended hierarchy:
+Recommended evidence hierarchy:
 
-1. **Blender structural assertions** for exact facts.
-2. **Project-specific deterministic image/geometry checks** where possible.
-3. **Perceptual metrics** for regression against stable golden views.
-4. **Semantic image metrics** for broad style/content correspondence.
-5. **GPT-6 visual critique** for high-level multi-constraint reasoning.
-6. **Human review** for final subjective decisions.
+1. **Blender structural assertions** — object existence, camera identity, transforms, dimensions, material links, external-file status.
+2. **Deterministic image checks** — missing renders, resolution, blank/near-black/near-white output, project-specific measurable defects.
+3. **Reference-image metrics** — SSIM/LPIPS-style regression only where approved references and calibrated thresholds exist.
+4. **Semantic/reference checks** — where broad correspondence matters more than pixels.
+5. **GPT-6 Astra visual critique** — composition, realism, style, cross-view consistency and high-level defects.
+6. **Human review** — genuinely subjective final decisions.
 
-Useful research references:
+Research references for future reference-image mode:
 
-- SSIM documentation: https://docs.pytorch.org/ignite/master/generated/ignite.metrics.SSIM.html
+- SSIM: https://docs.pytorch.org/ignite/master/generated/ignite.metrics.SSIM.html
 - LPIPS/deep perceptual similarity: https://arxiv.org/abs/1801.03924
 - CLIP: https://arxiv.org/abs/2103.00020
-- Vision Transformer: https://arxiv.org/abs/2010.11929
 
-No universal threshold should be copied into the project. Thresholds need calibration against approved and rejected renders from the target domain.
+No universal SSIM/LPIPS/semantic threshold should be copied into the project. Thresholds need calibration against approved/rejected renders from the target domain.
 
-## 9. Multi-view review
+## 9. Multi-view review is essential
 
-A single hero camera can hide broken geometry. The stronger loop evaluates several stable views per iteration.
+One attractive hero camera can hide serious geometry problems.
 
-Suggested roles:
+Useful stable roles include:
 
 - hero/presentation view;
 - front/side/rear diagnostic views;
-- detail views for high-risk geometry;
-- optional object-ID/depth/normal passes for automated checks.
+- detail cameras for risky geometry;
+- optional object-ID/depth/normal diagnostic passes.
 
-The starter scene already supports multiple configured cameras and renders review views.
+A view contract should identify the camera, role, whether it is required and the exact rendered path. The model should be told the attachment ordering explicitly.
 
-## 10. Machine-readable scene state
+This repository now generates an ordered `render_index.json` on the host before visual review.
 
-The agent should not reopen Blender simply to answer questions such as "does object X exist?".
+## 10. Machine-readable scene state prevents visual guessing
+
+The agent should not infer exact facts from pixels when the Blender scene can state them directly.
 
 A useful manifest contains:
 
 - scene name;
+- Blender version;
 - active camera;
-- objects and types;
+- object names/types;
 - transforms;
 - dimensions/bounds;
 - materials;
 - mesh counts;
+- collection ownership;
 - missing external files;
-- render engine;
-- managed collection identity.
+- render engine.
 
-The repository emits `output/scene_state.json` and a separate `output/validation.json`.
+This repository emits `output/scene_state.json` and a separate `output/validation.json`.
 
-This deliberately overlaps some MCP summaries. CLI validation proves the clean build independently; MCP inspects the interactive scene.
+The overlap with MCP is intentional: CLI validation proves a clean rebuild independently, while MCP inspects a live interactive scene.
 
-## 11. Community Blender MCP implementations
+## 11. Bounded self-correction is safer than an open-ended loop
 
-`ahujasid/blender-mcp` is a notable community project and useful secondary evidence for real-world adoption, Codex setup patterns and safety-oriented modes.
+An autonomous renderer/editor should have explicit stopping conditions.
+
+Recommended stops:
+
+- accepted visual/structural result;
+- structural build failure;
+- evaluator infrastructure failure;
+- correction-worker failure;
+- no durable source change;
+- attempted quality-gate modification;
+- iteration budget exhaustion.
+
+The correction worker should not be allowed to make the task pass by weakening the evaluator. Quality-gate files should therefore be protected outside the worker's discretion and verified after every correction turn.
+
+This repository implements byte-level protection/restoration for the configured quality-gate files.
+
+## 12. Best-result retention matters
+
+Autonomous visual iteration is not monotonic. A later change can make one view better and another worse.
+
+Each evaluated iteration should preserve:
+
+- renders;
+- render index;
+- scene state;
+- validation;
+- model evaluation;
+- source diff/status.
+
+The highest-scoring evaluated evidence should remain available even if the next iteration regresses.
+
+The current controller retains per-iteration snapshots and `output/best/` evidence.
+
+## 13. Asset handling for production scenes
+
+Real projects need more than generated primitives.
+
+Recommended asset policy:
+
+- track source/provenance/license metadata;
+- pin revisions for external asset packages;
+- distinguish linked versus owned/generated collections;
+- validate missing textures/libraries before expensive rendering;
+- keep machine-specific cache paths out of canonical configuration;
+- avoid letting the agent delete unrelated user collections when operating on an existing `.blend`.
+
+The managed-collection pattern in this repository is the initial ownership boundary. A full asset manifest remains roadmap work.
+
+## 14. Performance strategy
+
+Do not optimize final render quality before scene correctness.
+
+Recommended iteration strategy:
+
+```text
+cheap structural checks
+-> preview render(s)
+-> deterministic image sanity checks
+-> Astra review
+-> correction
+-> only then high-quality/final rendering
+```
+
+Preview and final profiles should ultimately be separate configuration. Incremental scene rebuilds should be added only if profiling shows that clean managed-collection rebuilds are too expensive.
+
+## 15. Community Blender MCP implementations
+
+`ahujasid/blender-mcp` is a notable community project and useful secondary evidence for adoption, setup patterns and alternative tool design.
 
 It must not be confused with Blender's official Lab MCP project.
 
 Community source:
 https://github.com/ahujasid/blender-mcp
 
-The default recommendation for this repository is to target the official Blender Lab integration unless a community implementation provides a specifically required capability.
+The default recommendation here remains the official Blender Lab integration unless a community implementation provides a specifically required capability.
 
-## 12. Security conclusion
+## 16. Security boundary
 
-Blender's official MCP documentation warns that model-driven Python execution is powerful and should be isolated appropriately. The core architectural point is that the Blender process itself is an execution boundary.
+Blender-side Python runs with the permissions of the Blender process. Model-generated Blender Python must therefore be treated as local code execution.
 
-Codex sandbox controls are valuable, but a separately running Blender process should not be assumed to inherit the same restrictions automatically.
+Codex sandbox controls are useful, but a separately running Blender process should not automatically be assumed to inherit the same restrictions.
+
+Practical implications:
+
+- keep source/assets versioned or backed up;
+- use managed ownership boundaries;
+- prefer structured/read-only MCP tools for inspection;
+- separate visual evaluation from writable correction turns;
+- protect quality-gate source from the correction worker;
+- avoid unrestricted execution modes when a workspace sandbox is sufficient.
 
 See `docs/SECURITY.md`.
 
 OpenAI security reference:
 https://developers.openai.com/codex/agent-approvals-security
 
-## 13. Reference architecture
+## 17. Reference architecture implemented by this repository
 
 ```text
 requirements / brief
         |
         v
-GPT-6 Astra / Codex
-        |
-        +------ MCP ------> interactive Blender
-        |                    | summaries/screenshots
-        |                    v
-        |<-------------------+
-        |
-        v
-Git-controlled YAML + bpy
-        |
-        v
-Blender CLI clean build
-        |
-        +--> scene.blend
-        +--> render views
-        +--> scene_state.json
-        +--> validation.json
-        |
-        v
-structural + visual evaluation
-        |
-        +--> pass → final render/export
-        |
-        +--> fail → patch source and repeat
+Git-controlled YAML + bpy <-------------------------+
+        |                                            |
+        v                                            |
+Blender CLI clean build                              |
+        |                                            |
+        +--> scene.blend                             |
+        +--> primary/review renders                  |
+        +--> scene_state.json                        |
+        +--> validation.json                         |
+        |                                            |
+        v                                            |
+deterministic render checks                          |
+        |                                            |
+        v                                            |
+Codex + GPT-6 Astra                                  |
+(read-only images + JSON schema)                     |
+        |                                            |
+        +--> accepted                                |
+        |                                            |
+        +--> defects -> Codex correction worker -----+
+                        (workspace-write)
+
+Optional side channel:
+Codex <-> Blender MCP <-> live Blender
+for inspection, screenshots and experiments.
 ```
 
-This repository implements the lower half of that loop now and documents the remaining autonomous evaluation work in `docs/ROADMAP.md`.
+## 18. What is implemented versus still open
+
+Implemented now:
+
+- deterministic headless scene construction;
+- multi-camera render generation;
+- exact scene-state export;
+- structural validation;
+- deterministic image heuristics;
+- Astra image review through Codex CLI;
+- strict visual-evaluation JSON schema;
+- bounded autonomous source-correction loop;
+- protected quality gates;
+- per-iteration/best evidence retention;
+- host CI/unit tests.
+
+Still open/high-value:
+
+- real Blender smoke CI with a pinned Blender runner;
+- calibrated reference-image regression mode;
+- two-clean-build reproducibility test;
+- live official-MCP smoke/inventory test;
+- production asset manifest/dependency validator;
+- richer run timing/observability.
+
+See `docs/ROADMAP.md` for the maintained status.
