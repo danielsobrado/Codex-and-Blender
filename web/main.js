@@ -23,4 +23,20 @@ document.querySelector('#reset').onclick=reference;
 document.querySelector('#alternate').onclick=()=>{camera.position.set(2,2.3,5);controls.target.set(-3,4.2,-8);controls.update();};
 document.querySelector('#wind').onclick=e=>{wind.value=1-wind.value;e.target.textContent='Wind: '+(wind.value?'on':'off');};
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
-let frames=0,last=performance.now();renderer.setAnimationLoop(now=>{time.value=now*.001;controls.update();renderer.render(scene,camera);frames++;if(now-last>1000){window.forestStats={fps:Math.round(frames*1000/(now-last)),calls:renderer.info.render.calls,triangles:renderer.info.render.triangles};document.querySelector('#status').textContent=`${window.forestStats.fps} fps · ${renderer.info.render.calls} draws`;last=now;frames=0;}});
+let frames=0,last=0;
+const status=document.querySelector('#status');
+renderer.setAnimationLoop(now=>{
+  if(!last) last=now;
+  time.value=now*.001;
+  controls.update();
+  renderer.render(scene,camera);
+  frames++;
+  const elapsed=now-last;
+  if(elapsed>=500){
+    const fps=Math.round(frames*1000/elapsed);
+    window.forestStats={fps,calls:renderer.info.render.calls,triangles:renderer.info.render.triangles};
+    status.textContent=`${fps} fps · ${renderer.info.render.calls} draws`;
+    last=now;
+    frames=0;
+  }
+});
