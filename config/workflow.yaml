@@ -10,9 +10,15 @@ paths:
   blend_file: output/scene.blend
   render_file: output/render.png
   render_dir: output/renders
+  render_index_file: output/render_index.json
   state_file: output/scene_state.json
   validation_file: output/validation.json
+  evaluation_file: output/visual_evaluation.json
+  run_report_file: output/run_report.json
+  iteration_dir: output/iterations
+  best_dir: output/best
   acceptance_file: config/acceptance.yaml
+  evaluator_file: config/evaluator.yaml
   resolved_config: output/_resolved_workflow.json
 
 scene:
@@ -38,17 +44,23 @@ scene:
 
 cameras:
   - name: HeroCamera
+    role: hero
     primary: true
+    required: true
     location: [5.5, -5.5, 4.0]
     target: [0.0, 0.0, 1.0]
     focal_length_mm: 50.0
   - name: FrontReviewCamera
+    role: front
     primary: false
+    required: true
     location: [0.0, -7.0, 2.2]
     target: [0.0, 0.0, 1.0]
     focal_length_mm: 55.0
   - name: SideReviewCamera
+    role: side
     primary: false
+    required: true
     location: [7.0, 0.0, 2.2]
     target: [0.0, 0.0, 1.0]
     focal_length_mm: 55.0
