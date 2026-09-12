@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import argparse
-import json
 import os
 import shutil
 import subprocess
@@ -24,31 +23,36 @@ def git_config(key: str) -> str:
     return subprocess.check_output(['git', 'config', key], cwd=ROOT, text=True).strip()
 
 
-def three_version() -> str:
-    package = json.loads((WEB / 'package.json').read_text(encoding='utf-8'))
-    return package['dependencies']['three'].lstrip('^~')
-
-
 def stage(destination: Path) -> None:
     if not FOREST_GLB.is_file():
         raise SystemExit(f'Missing {FOREST_GLB}. Build the forest scene first.')
-    version = three_version()
+    three_root = WEB / 'node_modules' / 'three'
+    if not (three_root / 'build' / 'three.module.js').is_file():
+        raise SystemExit('Missing web/node_modules/three. Run npm ci in web/.')
     html = (WEB / 'index.html').read_text(encoding='utf-8')
     html = html.replace(
         '"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"',
-        f'"three":"https://cdn.jsdelivr.net/npm/three@{version}/build/three.module.js",'
-        f'"three/addons/":"https://cdn.jsdelivr.net/npm/three@{version}/examples/jsm/"',
+        '"three":"./vendor/three.module.js","three/addons/":"./vendor/addons/"',
     )
     html = html.replace('src="/main.js"', 'src="./main.js"')
     js = (WEB / 'main.js').read_text(encoding='utf-8')
     js = js.replace(
-        "loadAsync('/assets/coastal_jungle.glb')",
-        "loadAsync(new URL('./assets/coastal_jungle.glb', import.meta.url).href)",
+        "loadForest('/assets/coastal_jungle.glb')",
+        "loadForest(new URL('./assets/coastal_jungle.glb', import.meta.url).href)",
     )
     (destination / 'index.html').write_text(html, encoding='utf-8')
     (destination / 'main.js').write_text(js, encoding='utf-8')
     shutil.copy2(WEB / 'sky.js', destination / 'sky.js')
     (destination / '.nojekyll').write_text('', encoding='utf-8')
+    addons = destination / 'vendor' / 'addons'
+    for folder in ('loaders', 'controls', 'utils'):
+        (addons / folder).mkdir(parents=True, exist_ok=True)
+    shutil.copy2(three_root / 'build' / 'three.module.js', destination / 'vendor' / 'three.module.js')
+    jsm = three_root / 'examples' / 'jsm'
+    shutil.copy2(jsm / 'loaders' / 'GLTFLoader.js', addons / 'loaders' / 'GLTFLoader.js')
+    shutil.copy2(jsm / 'controls' / 'OrbitControls.js', addons / 'controls' / 'OrbitControls.js')
+    shutil.copy2(jsm / 'utils' / 'BufferGeometryUtils.js', addons / 'utils' / 'BufferGeometryUtils.js')
+    shutil.copy2(jsm / 'utils' / 'SkeletonUtils.js', addons / 'utils' / 'SkeletonUtils.js')
     assets = destination / 'assets'
     assets.mkdir()
     shutil.copy2(FOREST_GLB, assets / 'coastal_jungle.glb')
@@ -66,7 +70,7 @@ def publish(staging: Path, push: bool) -> None:
         'GIT_COMMITTER_EMAIL': email,
     })
     run(['git', 'init', '-b', 'gh-pages'], staging, env)
-    run(['git', 'add', 'index.html', 'main.js', 'sky.js', '.nojekyll', 'assets/coastal_jungle.glb'], staging, env)
+    run(['git', 'add', '.'], staging, env)
     run(['git', 'commit', '-m', 'deploy: coastal jungle GitHub Pages demo'], staging, env)
     if not push:
         print(f'Staged {staging} (--no-push)')

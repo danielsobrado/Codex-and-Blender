@@ -14,11 +14,40 @@ function reference(){camera.position.set(0,2.5,12);controls.target.set(0,4.4,-4)
 scene.add(new THREE.HemisphereLight('#d5e9f3','#41452a',1.8));
 const sun=new THREE.DirectionalLight('#fff0c6',3);sun.position.set(-8,20,-12);sun.target.position.set(0,0,-3);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-25,right:25,top:25,bottom:-25,near:1,far:70});sun.shadow.normalBias=.035;scene.add(sun,sun.target);
 const wind={value:1},time={value:0};let model;
+const loaderUi=document.querySelector('#loader');
+const loaderFill=document.querySelector('#loader-fill');
+const loaderPct=document.querySelector('#loader-pct');
+function setLoadProgress(loaded,total){
+  if(!total){
+    loaderFill.classList.add('indeterminate');
+    loaderPct.textContent='Loading…';
+    return;
+  }
+  loaderFill.classList.remove('indeterminate');
+  const pct=Math.min(100,Math.round(100*loaded/total));
+  loaderFill.style.width=pct+'%';
+  loaderPct.textContent=pct+'%';
+}
+function hideLoader(){
+  setLoadProgress(1,1);
+  loaderUi.classList.add('done');
+  setTimeout(()=>loaderUi.remove(),400);
+}
+function loadForest(url){
+  return new Promise((resolve,reject)=>{
+    new GLTFLoader().load(url,resolve,(event)=>setLoadProgress(event.loaded,event.total),reject);
+  });
+}
 try {
- const gltf=await new GLTFLoader().loadAsync('/assets/coastal_jungle.glb');model=gltf.scene;
+ const gltf=await loadForest('/assets/coastal_jungle.glb');model=gltf.scene;
  model.traverse(o=>{if(!o.isMesh)return;o.receiveShadow=true;o.castShadow=true;const materials=Array.isArray(o.material)?o.material:[o.material];for(const m of materials){if(m.map){m.map.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());}if(m.name.includes('atlas')){m.alphaTest=.4;m.transparent=false;m.side=THREE.DoubleSide;m.depthWrite=true;}if(m.name.includes('grass')){o.castShadow=false;}if(m.name.includes('atlas')&&!m.userData.wind){m.userData.wind=true;m.onBeforeCompile=shader=>{shader.uniforms.forestTime=time;shader.uniforms.windStrength=wind;shader.vertexShader='uniform float forestTime; uniform float windStrength;\n'+shader.vertexShader;shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nvec3 wp=position;\n#ifdef USE_INSTANCING\nwp=(instanceMatrix*vec4(position,1.0)).xyz;\n#endif\ntransformed.x+=sin(forestTime*1.4+wp.x*.7+wp.z*.6)*0.035*windStrength*min(abs(position.y),1.0);');};}}});
- scene.add(model);renderer.shadowMap.needsUpdate=true;window.forestReady=true;
-} catch(e){document.querySelector('#status').textContent='Could not load forest: '+e.message;throw e;}
+ scene.add(model);renderer.shadowMap.needsUpdate=true;window.forestReady=true;hideLoader();
+} catch(e){
+  loaderFill.classList.remove('indeterminate');
+  loaderPct.textContent='Could not load forest';
+  document.querySelector('#status').textContent='Could not load forest: '+e.message;
+  throw e;
+}
 document.querySelector('#reset').onclick=reference;
 document.querySelector('#alternate').onclick=()=>{camera.position.set(2,2.3,5);controls.target.set(-3,4.2,-8);controls.update();};
 document.querySelector('#wind').onclick=e=>{wind.value=1-wind.value;e.target.textContent='Wind: '+(wind.value?'on':'off');};
