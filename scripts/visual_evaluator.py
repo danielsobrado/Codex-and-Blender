@@ -4,7 +4,6 @@ import argparse
 import json
 import logging
 import shutil
-import statistics
 import subprocess
 import sys
 import tempfile
@@ -48,6 +47,13 @@ def load_json(path: Path) -> dict[str, Any]:
 def resolve(value: str) -> Path:
     path = Path(value).expanduser()
     return path if path.is_absolute() else (ROOT / path).resolve()
+
+
+def display_path(path: Path) -> str:
+    try:
+        return str(path.relative_to(ROOT))
+    except ValueError:
+        return str(path)
 
 
 def build_render_index(workflow: dict[str, Any]) -> dict[str, Any]:
@@ -176,9 +182,9 @@ def build_model_prompt(
     )
     return (
         f"{prompt}\n\n"
-        "Exact scene evidence is available in these repository files:\n"
-        f"- {state_path.relative_to(ROOT)}\n"
-        f"- {validation_path.relative_to(ROOT)}\n\n"
+        "Exact scene evidence is available in these files:\n"
+        f"- {display_path(state_path)}\n"
+        f"- {display_path(validation_path)}\n\n"
         "The attached images are in this exact order:\n"
         f"{ordered_views}\n\n"
         "Read the exact scene evidence before reviewing the images. Return only the "
