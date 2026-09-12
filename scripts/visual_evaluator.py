@@ -18,6 +18,14 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_WORKFLOW = ROOT / "config" / "workflow.yaml"
 CODEX_EXECUTABLE = "codex"
 
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from scripts.reference_regression import (  # noqa: E402
+    ReferenceRegressionError,
+    evaluate_reference_regression,
+)
+
 
 class EvaluationError(RuntimeError):
     pass
@@ -316,6 +324,15 @@ def evaluate(workflow_path: Path, skip_model: bool = False) -> dict[str, Any]:
 
     render_index = build_render_index(workflow, acceptance)
     deterministic = deterministic_review(render_index, evaluator.get("deterministic", {}))
+    try:
+        reference_regression = evaluate_reference_regression(
+            render_index,
+            evaluator.get("reference_regression", {}),
+            root=ROOT,
+        )
+    except ReferenceRegressionError as exc:
+        raise EvaluationError(str(exc)) from exc
+
     model_config = evaluator.get("model_review", {})
     model_review: dict[str, Any] | None = None
 
@@ -326,7 +343,7 @@ def evaluate(workflow_path: Path, skip_model: bool = False) -> dict[str, Any]:
 
     enabled = configured_enabled and not skip_model
     required = configured_required and not skip_model
-    if deterministic["passed"] and enabled:
+    if deterministic["passed"] and reference_regression["passed"] and enabled:
         try:
             model_review = run_model_review(
                 model_config, render_index, state_path, validation_path
@@ -336,14 +353,17 @@ def evaluate(workflow_path: Path, skip_model: bool = False) -> dict[str, Any]:
                 raise
             LOGGER.exception("Optional model review failed.")
 
-    passed = deterministic["passed"] and (
-        model_review is None or bool(model_review.get("passed", False))
+    passed = (
+        deterministic["passed"]
+        and reference_regression["passed"]
+        and (model_review is None or bool(model_review.get("passed", False)))
     )
     result = {
         "version": 1,
         "passed": passed,
         "score": model_review.get("score") if model_review else None,
         "deterministic": deterministic,
+        "reference_regression": reference_regression,
         "model_review": model_review,
     }
 

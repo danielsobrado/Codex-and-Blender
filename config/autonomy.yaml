@@ -10,6 +10,7 @@ protected_files:
   - prompts/visual_review.md
   - scripts/blender_runner.py
   - scripts/visual_evaluator.py
+  - scripts/reference_regression.py
   - scripts/iteration_controller.py
   - blender/jobs/validate_scene.py
   - blender/core/external_files.py

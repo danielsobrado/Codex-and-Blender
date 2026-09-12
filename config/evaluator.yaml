@@ -7,6 +7,11 @@ deterministic:
   dark_threshold: 4
   bright_threshold: 251
 
+reference_regression:
+  enabled: false
+  mode: report_only
+  views: []
+
 model_review:
   enabled: true
   required: true
