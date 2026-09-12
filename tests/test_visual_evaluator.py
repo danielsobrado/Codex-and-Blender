@@ -14,16 +14,23 @@ from scripts.visual_evaluator import (
 
 
 class VisualEvaluatorTests(unittest.TestCase):
+    def workflow(self, root: Path, cameras: list[dict], include_reviews: bool = True) -> dict:
+        return {
+            "paths": {
+                "render_file": str(root / "hero.png"),
+                "render_dir": str(root / "reviews"),
+                "render_index_file": str(root / "render_index.json"),
+            },
+            "cameras": cameras,
+            "render": {"render_review_cameras": include_reviews},
+        }
+
     def test_render_index_preserves_camera_roles(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            workflow = {
-                "paths": {
-                    "render_file": str(root / "hero.png"),
-                    "render_dir": str(root / "reviews"),
-                    "render_index_file": str(root / "render_index.json"),
-                },
-                "cameras": [
+            workflow = self.workflow(
+                root,
+                [
                     {
                         "name": "HeroCamera",
                         "role": "hero",
@@ -37,8 +44,7 @@ class VisualEvaluatorTests(unittest.TestCase):
                         "required": True,
                     },
                 ],
-                "render": {"render_review_cameras": True},
-            }
+            )
 
             index = build_render_index(workflow)
 
@@ -48,21 +54,105 @@ class VisualEvaluatorTests(unittest.TestCase):
     def test_required_review_camera_cannot_be_disabled(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            workflow = {
-                "paths": {
-                    "render_file": str(root / "hero.png"),
-                    "render_dir": str(root / "reviews"),
-                    "render_index_file": str(root / "render_index.json"),
-                },
-                "cameras": [
+            workflow = self.workflow(
+                root,
+                [
                     {"name": "HeroCamera", "primary": True, "required": True},
                     {"name": "SideCamera", "primary": False, "required": True},
                 ],
-                "render": {"render_review_cameras": False},
-            }
+                include_reviews=False,
+            )
 
             with self.assertRaises(EvaluationError):
                 build_render_index(workflow)
+
+    def test_protected_required_view_cannot_be_downgraded(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            workflow = self.workflow(
+                root,
+                [
+                    {
+                        "name": "HeroCamera",
+                        "role": "hero",
+                        "primary": True,
+                        "required": True,
+                    },
+                    {
+                        "name": "SideCamera",
+                        "role": "side",
+                        "primary": False,
+                        "required": False,
+                    },
+                ],
+                include_reviews=False,
+            )
+            acceptance = {
+                "visual": {
+                    "required_views": [
+                        {"name": "SideCamera", "role": "side", "primary": False}
+                    ]
+                }
+            }
+
+            with self.assertRaises(EvaluationError):
+                build_render_index(workflow, acceptance)
+
+    def test_protected_required_view_must_exist(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            workflow = self.workflow(
+                root,
+                [
+                    {
+                        "name": "HeroCamera",
+                        "role": "hero",
+                        "primary": True,
+                        "required": True,
+                    }
+                ],
+            )
+            acceptance = {
+                "visual": {
+                    "required_views": [
+                        {"name": "SideCamera", "role": "side", "primary": False}
+                    ]
+                }
+            }
+
+            with self.assertRaises(EvaluationError):
+                build_render_index(workflow, acceptance)
+
+    def test_protected_required_view_role_cannot_change(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            workflow = self.workflow(
+                root,
+                [
+                    {
+                        "name": "HeroCamera",
+                        "role": "hero",
+                        "primary": True,
+                        "required": True,
+                    },
+                    {
+                        "name": "SideCamera",
+                        "role": "detail",
+                        "primary": False,
+                        "required": True,
+                    },
+                ],
+            )
+            acceptance = {
+                "visual": {
+                    "required_views": [
+                        {"name": "SideCamera", "role": "side", "primary": False}
+                    ]
+                }
+            }
+
+            with self.assertRaises(EvaluationError):
+                build_render_index(workflow, acceptance)
 
     def test_deterministic_review_accepts_non_flat_render(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

@@ -56,7 +56,28 @@ def display_path(path: Path) -> str:
         return str(path)
 
 
-def build_render_index(workflow: dict[str, Any]) -> dict[str, Any]:
+def required_view_policy(acceptance: dict[str, Any] | None) -> dict[str, dict[str, Any]]:
+    if acceptance is None:
+        return {}
+
+    raw = acceptance.get("visual", {}).get("required_views", [])
+    if not isinstance(raw, list):
+        raise EvaluationError("visual.required_views must be a list.")
+
+    policy: dict[str, dict[str, Any]] = {}
+    for spec in raw:
+        if not isinstance(spec, dict) or not spec.get("name"):
+            raise EvaluationError("Each required visual view must have a name.")
+        name = str(spec["name"])
+        if name in policy:
+            raise EvaluationError(f"Duplicate required visual view: {name}")
+        policy[name] = spec
+    return policy
+
+
+def build_render_index(
+    workflow: dict[str, Any], acceptance: dict[str, Any] | None = None
+) -> dict[str, Any]:
     paths = workflow["paths"]
     cameras = workflow.get("cameras", [])
     if not cameras:
@@ -66,25 +87,48 @@ def build_render_index(workflow: dict[str, Any]) -> dict[str, Any]:
     if len(primary_cameras) != 1:
         raise EvaluationError("Exactly one primary camera must be configured.")
 
+    policy = required_view_policy(acceptance)
+    camera_names = {str(camera.get("name")) for camera in cameras}
+    missing_policy_views = sorted(set(policy) - camera_names)
+    if missing_policy_views:
+        raise EvaluationError(
+            "Required visual cameras are missing: " + ", ".join(missing_policy_views)
+        )
+
     render_primary = resolve(paths["render_file"])
     render_dir = resolve(paths["render_dir"])
     include_reviews = bool(workflow.get("render", {}).get("render_review_cameras", True))
     views: list[dict[str, Any]] = []
 
     for camera in cameras:
+        name = str(camera["name"])
         is_primary = bool(camera.get("primary", False))
-        required = bool(camera.get("required", True))
+        policy_spec = policy.get(name)
+        required = policy_spec is not None or bool(camera.get("required", True))
+
+        if policy_spec is not None:
+            expected_role = policy_spec.get("role")
+            actual_role = camera.get("role", "unspecified")
+            if expected_role is not None and actual_role != expected_role:
+                raise EvaluationError(
+                    f"Required view {name} has role {actual_role!r}; expected {expected_role!r}."
+                )
+            if "primary" in policy_spec and is_primary != bool(policy_spec["primary"]):
+                raise EvaluationError(
+                    f"Required view {name} has unexpected primary-camera status."
+                )
+
         if not is_primary and not include_reviews:
             if required:
                 raise EvaluationError(
-                    f"Required review camera is disabled by render settings: {camera['name']}"
+                    f"Required review camera is disabled by render settings: {name}"
                 )
             continue
 
-        path = render_primary if is_primary else render_dir / f"{camera['name']}.png"
+        path = render_primary if is_primary else render_dir / f"{name}.png"
         views.append(
             {
-                "name": camera["name"],
+                "name": name,
                 "role": camera.get("role", "unspecified"),
                 "primary": is_primary,
                 "required": required,
@@ -261,6 +305,7 @@ def run_model_review(
 def evaluate(workflow_path: Path, skip_model: bool = False) -> dict[str, Any]:
     workflow = load_yaml(workflow_path)
     paths = workflow["paths"]
+    acceptance = load_yaml(resolve(paths["acceptance_file"]))
     evaluator = load_yaml(resolve(paths["evaluator_file"]))
     state_path = resolve(paths["state_file"])
     validation_path = resolve(paths["validation_file"])
@@ -269,7 +314,7 @@ def evaluate(workflow_path: Path, skip_model: bool = False) -> dict[str, Any]:
         raise EvaluationError("Structural validation must pass before visual evaluation.")
     load_json(state_path)
 
-    render_index = build_render_index(workflow)
+    render_index = build_render_index(workflow, acceptance)
     deterministic = deterministic_review(render_index, evaluator.get("deterministic", {}))
     model_config = evaluator.get("model_review", {})
     model_review: dict[str, Any] | None = None
