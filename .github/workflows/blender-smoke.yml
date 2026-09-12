@@ -38,6 +38,11 @@ jobs:
       - name: Install host dependencies
         run: pip install -r requirements.txt
 
+      - name: Install Blender runtime libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes libegl1 libgl1
+
       - name: Resolve pinned Blender toolchain
         run: python scripts/toolchain_env.py --github-env "$GITHUB_ENV"
 
