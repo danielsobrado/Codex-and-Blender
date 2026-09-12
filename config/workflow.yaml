@@ -19,6 +19,7 @@ paths:
   best_dir: output/best
   acceptance_file: config/acceptance.yaml
   evaluator_file: config/evaluator.yaml
+  autonomy_file: config/autonomy.yaml
   resolved_config: output/_resolved_workflow.json
 
 scene:
