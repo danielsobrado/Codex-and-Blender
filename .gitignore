@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.codex/config.toml
+output/*
+!output/.gitkeep

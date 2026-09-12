@@ -1,0 +1,21 @@
+# Copy to .codex/config.toml after installing Blender's official Lab MCP server.
+# Keep the project-local file uncommitted so local executable/environment changes stay local.
+
+[mcp_servers.blender]
+command = "blender-mcp"
+startup_timeout_sec = 20
+tool_timeout_sec = 180
+enabled = true
+required = false
+
+# Start inspection-first. Verify current tool names against the installed server
+# before enabling a project-specific allow-list.
+# enabled_tools = [
+#   "get_objects_summary",
+#   "get_object_detail_summary",
+#   "get_blendfile_summary_missing_files",
+#   "get_python_api_docs",
+#   "get_screenshot_of_window_as_image",
+#   "render_thumbnail_to_path",
+#   "render_viewport_to_path",
+# ]

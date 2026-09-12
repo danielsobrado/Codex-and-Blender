@@ -1,0 +1,77 @@
+blender:
+  executable_env: BLENDER_BIN
+  executable_default: blender
+  startup_file: null
+  python_entrypoint: blender/entrypoint.py
+  python_exit_code: 1
+
+paths:
+  output_dir: output
+  blend_file: output/scene.blend
+  render_file: output/render.png
+  render_dir: output/renders
+  state_file: output/scene_state.json
+  validation_file: output/validation.json
+  acceptance_file: config/acceptance.yaml
+  resolved_config: output/_resolved_workflow.json
+
+scene:
+  managed_collection: AGENT_GENERATED
+  world_color: [0.025, 0.025, 0.025, 1.0]
+  objects:
+    - name: Ground
+      type: cube
+      location: [0.0, 0.0, -0.1]
+      scale: [4.0, 4.0, 0.1]
+      material:
+        base_color: [0.18, 0.18, 0.18, 1.0]
+        roughness: 0.8
+        metallic: 0.0
+    - name: Hero
+      type: uv_sphere
+      location: [0.0, 0.0, 1.0]
+      scale: [1.0, 1.0, 1.0]
+      material:
+        base_color: [0.18, 0.42, 0.8, 1.0]
+        roughness: 0.28
+        metallic: 0.15
+
+cameras:
+  - name: HeroCamera
+    primary: true
+    location: [5.5, -5.5, 4.0]
+    target: [0.0, 0.0, 1.0]
+    focal_length_mm: 50.0
+  - name: FrontReviewCamera
+    primary: false
+    location: [0.0, -7.0, 2.2]
+    target: [0.0, 0.0, 1.0]
+    focal_length_mm: 55.0
+  - name: SideReviewCamera
+    primary: false
+    location: [7.0, 0.0, 2.2]
+    target: [0.0, 0.0, 1.0]
+    focal_length_mm: 55.0
+
+lights:
+  - name: Key
+    type: AREA
+    location: [4.0, -3.0, 6.0]
+    target: [0.0, 0.0, 1.0]
+    energy: 1000.0
+    size: 4.0
+  - name: Fill
+    type: AREA
+    location: [-4.0, -1.0, 3.0]
+    target: [0.0, 0.0, 1.0]
+    energy: 450.0
+    size: 3.0
+
+render:
+  engine: BLENDER_EEVEE_NEXT
+  resolution_x: 1024
+  resolution_y: 1024
+  resolution_percentage: 100
+  image_format: PNG
+  transparent: false
+  render_review_cameras: true
