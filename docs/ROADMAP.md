@@ -44,59 +44,74 @@ Acceptance:
 
 ### V1 Multi-view render contract — PARTIAL
 
-Current:
+Implemented:
 
 - multiple cameras can be configured;
-- review cameras render automatically.
+- cameras have named roles and required/optional semantics;
+- review cameras render automatically;
+- host evaluator emits `render_index.json` with ordered view metadata.
 
 Remaining:
 
-- support named camera roles and per-view acceptance requirements;
-- generate contact sheet/index metadata;
-- add optional normal/depth/object-ID diagnostic passes.
+- optional contact-sheet generation;
+- optional normal/depth/object-ID diagnostic passes.
 
-### V2 Visual evaluator — TODO
+### V2 Visual evaluator — PARTIAL
 
-Implement a host-side evaluator that combines:
+Implemented:
 
-- deterministic image heuristics;
-- optional SSIM/LPIPS-style regression metrics;
-- semantic comparison where appropriate;
-- GPT-6 Astra visual critique.
+- required-view existence checks;
+- image dimensions, luminance spread, dark-frame and bright-frame heuristics;
+- GPT-6 Astra review through Codex CLI image inputs;
+- read-only evaluator sandbox;
+- strict JSON-schema output;
+- view-specific evidence, severity and confidence;
+- deterministic failures kept separate from model critique;
+- project-configured thresholds rather than hidden constants.
 
-Acceptance:
+Remaining:
 
-- returns structured JSON;
-- separates exact failures from subjective critique;
-- every visual problem references evidence/view;
-- no uncalibrated universal thresholds.
+- optional reference-image regression mode;
+- calibrated SSIM/LPIPS-style metrics where a project has approved references;
+- optional semantic/reference comparison beyond the current Astra qualitative review.
 
-### V3 Iteration controller — TODO
+### V3 Iteration controller — DONE
 
-Build:
+Implemented loop:
 
 ```text
-build -> validate -> render -> evaluate -> patch source -> rebuild
+build -> validate -> render -> deterministic review -> Astra review
+      -> patch durable source -> rebuild
 ```
 
-Acceptance:
+Acceptance met:
 
-- configurable iteration budget;
-- hard stop on structural build failure;
-- best-known artifacts retained;
-- unresolved failures reported when budget is exhausted;
-- live MCP experiments never bypass durable source updates.
+- iteration budget comes from `config/acceptance.yaml`;
+- structural/build failure stops immediately;
+- evaluator infrastructure failure stops immediately;
+- every evaluated iteration is snapshotted;
+- best-scoring evidence is retained;
+- unresolved failures are reported when the budget is exhausted;
+- no-change detection prevents pointless retries;
+- quality-gate files are protected and restored if a correction worker modifies them;
+- correction workers cannot treat generated output as the durable fix;
+- MCP remains optional and cannot bypass source-controlled reconstruction.
 
 ## P1 — MCP integration
 
-### M1 Official Blender MCP installation guide/test — TODO
+### M1 Official Blender MCP installation guide/test — PARTIAL
 
-Acceptance:
+Implemented:
 
-- documented setup for official Blender Lab server/add-on;
-- connection smoke test;
-- tool discovery recorded from installed version;
-- read-only scene query demonstrated.
+- documented official Blender Lab server/add-on architecture;
+- documented Codex MCP registration;
+- environment check detects the optional `blender-mcp` command.
+
+Remaining:
+
+- automated connection smoke test;
+- record installed-version tool discovery;
+- demonstrate/read-test a live scene query.
 
 ### M2 MCP inspection adapter — TODO
 
@@ -128,13 +143,17 @@ Generic code execution remains an escape hatch, not the default.
 
 Current:
 
-- configuration tests included.
+- configuration tests;
+- render-index and deterministic visual-evaluator tests;
+- autonomous quality-gate restoration tests;
+- Python compilation in CI.
 
 Remaining:
 
-- path-resolution tests;
-- command-composition tests;
-- malformed-config cases.
+- path-resolution edge cases;
+- Blender command-composition tests;
+- malformed-config cases;
+- correction-worker subprocess tests with a fake executable.
 
 ### T2 Blender smoke CI — TODO
 
@@ -180,22 +199,41 @@ Do not sacrifice reproducibility prematurely.
 
 ## P2 — agent observability
 
-### O1 Structured run report — TODO
+### O1 Structured run report — PARTIAL
 
-Capture:
+Implemented:
+
+- source revision;
+- iteration number;
+- stop reason;
+- evaluator score;
+- snapshot paths;
+- best score.
+
+Remaining:
 
 - stage durations;
-- Blender version;
-- source revision;
-- render settings;
-- validation result;
-- evaluator result;
-- iteration number;
-- generated artifact paths.
+- Blender version in the top-level run report;
+- normalized render settings;
+- final validation/evaluator summaries in the top-level report.
 
-### O2 Codex non-interactive integration — TODO
+### O2 Codex non-interactive integration — PARTIAL
 
-Use `codex exec --json` and schema-constrained output for automated review/CI experiments.
+Implemented:
 
-Reference:
-https://developers.openai.com/codex/non-interactive-mode
+- `codex exec` for read-only visual evaluation;
+- image attachment through Codex CLI;
+- JSON-schema constrained evaluator output;
+- separate workspace-write correction worker;
+- ephemeral Codex sessions for loop turns.
+
+Remaining:
+
+- optional `--json` event capture for detailed CI/observability traces.
+
+## Next high-impact work
+
+1. T2 — real Blender smoke CI on a pinned Blender runner.
+2. V2 — approved-reference regression mode rather than universal similarity thresholds.
+3. T3 — reproducibility regression across two clean scene builds.
+4. M1 — live official-MCP smoke test and installed-tool inventory.
