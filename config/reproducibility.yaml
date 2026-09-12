@@ -1,0 +1,5 @@
+runs: 2
+numeric_tolerance: 1.0e-6
+max_reported_differences: 100
+output_file: output/reproducibility.json
+snapshot_dir: output/reproducibility

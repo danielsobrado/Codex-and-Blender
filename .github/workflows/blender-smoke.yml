@@ -7,6 +7,7 @@ on:
       - "config/**"
       - "scripts/**"
       - "tests/blender_smoke.py"
+      - "tests/test_reproducibility.py"
       - "requirements.txt"
       - ".github/workflows/blender-smoke.yml"
   pull_request:
@@ -15,6 +16,7 @@ on:
       - "config/**"
       - "scripts/**"
       - "tests/blender_smoke.py"
+      - "tests/test_reproducibility.py"
       - "requirements.txt"
       - ".github/workflows/blender-smoke.yml"
   workflow_dispatch:
@@ -89,6 +91,9 @@ jobs:
       - name: Verify smoke artifacts
         run: python tests/blender_smoke.py
 
+      - name: Run reproducibility regression
+        run: python scripts/reproducibility_check.py
+
       - name: Upload Blender smoke artifacts
         if: always()
         uses: actions/upload-artifact@v4
@@ -102,6 +107,8 @@ jobs:
             output/scene_state.json
             output/validation.json
             output/visual_evaluation.json
+            output/reproducibility.json
+            output/reproducibility/
             output/_resolved_workflow.json
           if-no-files-found: warn
           retention-days: 7
