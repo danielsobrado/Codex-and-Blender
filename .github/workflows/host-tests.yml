@@ -25,4 +25,4 @@ jobs:
           python-version: "3.11"
           cache: pip
       - run: pip install -r requirements.txt -r requirements-reference.txt
-      - run: python tests/reference_regression_test.py
+      - run: python -m unittest discover -s tests -p "reference_regression_test.py"
