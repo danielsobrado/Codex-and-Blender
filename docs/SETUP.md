@@ -1,8 +1,8 @@
 # Setup guide
 
-This guide separates the **core reproducible CLI workflow**, the **Astra visual/self-correction workflow**, and the **optional live MCP workflow**. Get the deterministic CLI path working first.
+This guide separates the **deterministic Blender workflow**, the **GPT-6 Astra self-correction workflow**, and the **optional live MCP workflow**. Prove the deterministic path first.
 
-## 1. Clone and create a Python environment
+## 1. Clone and install host dependencies
 
 ```bash
 git clone https://github.com/danielsobrado/Codex-and-Blender.git
@@ -10,63 +10,66 @@ cd Codex-and-Blender
 python -m venv .venv
 ```
 
-Activate the environment and install host dependencies:
+Activate the environment, then:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Host Python uses PyYAML for configuration and Pillow for deterministic render metrics. Blender-side scripts intentionally use only Blender/standard-library modules.
+Host Python uses PyYAML and Pillow. Blender-side scripts use Blender/standard-library modules only.
 
 ## 2. Install Blender
 
-For the researched current official Blender Lab MCP integration, use Blender 5.1 or newer.
+The repository's tested CI baseline is declared in `config/toolchain.yaml` and is currently Blender **5.2.1 LTS**.
 
-If `blender` is not on `PATH`, set `BLENDER_BIN`.
+The official Blender Lab MCP integration researched by this project requires Blender 5.1 or newer. For the most reproducible local behavior, start with the repository's pinned CI version.
 
-Windows PowerShell:
+If Blender is not on `PATH`, set `BLENDER_BIN`.
+
+Windows PowerShell example:
 
 ```powershell
-$env:BLENDER_BIN = "C:\Program Files\Blender Foundation\Blender 5.1\blender.exe"
+$env:BLENDER_BIN = "C:\Program Files\Blender Foundation\Blender 5.2\blender.exe"
 ```
 
-macOS:
+macOS example:
 
 ```bash
 export BLENDER_BIN="/Applications/Blender.app/Contents/MacOS/Blender"
 ```
 
-Linux usually needs no override when Blender is installed on `PATH`.
+On Ubuntu/headless Linux with Eevee, the CI runner installs the EGL/OpenGL runtime libraries:
+
+```bash
+sudo apt-get update
+sudo apt-get install --yes libegl1 libgl1
+```
 
 ## 3. Install/update Codex CLI
 
-The autonomous visual workflow requires a current Codex CLI with GPT-6 Astra support. The project environment check requires Codex CLI 0.153.0 or newer.
-
-Verify:
+The autonomous visual workflow requires a Codex CLI with GPT-6 Astra support. The project environment check requires Codex CLI 0.153.0 or newer.
 
 ```bash
 codex --version
 ```
 
-Use the same Codex authentication/account that has GPT-6 Astra available. The visual evaluator calls Codex directly, so this workflow does not add a separate OpenAI SDK/API integration.
+Use the Codex authentication/account that has GPT-6 Astra available. The evaluator calls Codex directly and does not require a separate OpenAI SDK integration.
 
-## 4. Verify the host environment
+## 4. Verify the environment
 
 ```bash
 python scripts/check_environment.py
 ```
 
-This validates Blender and the minimum Codex CLI version. `blender-mcp` is checked as an optional command.
+This validates Blender and the minimum Codex version. `blender-mcp` is optional.
 
 ## 5. Prove the deterministic Blender workflow
-
-Run:
 
 ```bash
 python scripts/blender_runner.py all
 ```
 
-Expected core artifacts:
+Expected artifacts include:
 
 ```text
 output/scene.blend
@@ -78,92 +81,83 @@ output/validation.json
 output/_resolved_workflow.json
 ```
 
-Then run:
-
-```bash
-python tests/blender_smoke.py
-```
-
-Structural validation must pass before visual automation or MCP adds value.
-
-## 6. Prove visual evaluation
-
-First test deterministic render checks without using Astra:
+Then run deterministic render evaluation and the smoke assertions:
 
 ```bash
 python scripts/visual_evaluator.py --skip-model
+python tests/blender_smoke.py
 ```
 
-This produces `output/render_index.json` and `output/visual_evaluation.json`.
+The structural validator and deterministic image evaluator must pass before model review adds value.
 
-Then run the full visual review:
+## 6. Prove clean-build reproducibility
+
+```bash
+python scripts/reproducibility_check.py
+```
+
+The default contract runs two independent clean builds, inspects and validates each one, then compares their normalized scene-state JSON with the tolerance from `config/reproducibility.yaml`.
+
+Outputs:
+
+```text
+output/reproducibility.json
+output/reproducibility/run_01/scene_state.json
+output/reproducibility/run_02/scene_state.json
+```
+
+Do not replace this with byte comparisons of `.blend` or rendered PNG files across different hardware/backends.
+
+## 7. Prove GPT-6 Astra visual evaluation
 
 ```bash
 python scripts/visual_evaluator.py
 ```
 
-Codex runs GPT-6 Astra with the rendered images attached and constrains the final result with `schemas/visual_evaluation.schema.json`.
+Codex runs GPT-6 Astra with the render images attached and constrains the final response with `schemas/visual_evaluation.schema.json`.
 
-If this step fails while Codex itself works, verify that your account/workspace can select GPT-6 Astra and that your Codex CLI is current.
+Required camera names/roles come from protected `config/acceptance.yaml`. Mutable workflow configuration cannot silently remove a required review view.
 
-## 7. Run the bounded autonomous loop
+## 8. Run bounded autonomous correction
 
-Start from a clean Git working tree:
+Start from a clean worktree:
 
 ```bash
 git status --short
 python scripts/iteration_controller.py
 ```
 
-The controller repeatedly rebuilds from durable source, evaluates the resulting views, and asks a separate Codex correction worker for the smallest justified source edit.
+Policy is split intentionally:
 
-Runtime policy is split intentionally:
-
-- `config/acceptance.yaml` — iteration budget and acceptance policy;
+- `config/acceptance.yaml` — structural/view requirements and iteration budget;
 - `config/evaluator.yaml` — deterministic/Astra evaluation settings;
-- `config/autonomy.yaml` — protected files and snapshot policy.
+- `config/autonomy.yaml` — protected files and snapshot behavior.
 
-Do not start with `--allow-dirty` unless you intentionally want the controller to operate on top of existing local source changes.
+The nested correction worker edits durable scene source; the parent process owns rebuild/render/evaluation. If the worker changes a protected quality-gate file, the parent restores it and stops.
 
-See `docs/AUTONOMOUS_LOOP.md` for stop conditions and evidence retention.
+See `docs/AUTONOMOUS_LOOP.md`.
 
-## 8. Install Blender's official Lab MCP server (optional)
-
-The official Blender Lab project contains both the MCP server and Blender extension/add-on.
+## 9. Install Blender's official Lab MCP server (optional)
 
 Primary references:
 
 - https://www.blender.org/lab/mcp-server/
 - https://github.com/bpype/blender_mcp
 
-The exact installation commands can change with the Lab project, so prefer the instructions from the installed/current repository revision. The researched installation pattern is:
-
-```bash
-git clone https://projects.blender.org/lab/blender_mcp.git
-cd blender_mcp
-python -m venv .venv
-```
-
-Activate that environment, then install the server package according to its current requirements/package metadata. The package provides the `blender-mcp` executable.
-
-The Blender extension can be built from the official repository and installed through Blender's extension/add-on mechanism. After installation, enable the MCP bridge server in Blender.
-
-Verify the server command:
+Prefer the installation instructions from the current Lab revision because packaging may change. After the Blender extension/bridge and `blender-mcp` executable are installed, verify:
 
 ```bash
 blender-mcp --help
 ```
 
-## 9. Register Blender MCP with Codex
-
-CLI registration:
+## 10. Register Blender MCP with Codex
 
 ```bash
 codex mcp add blender -- blender-mcp
 codex mcp list
 ```
 
-Or copy the repository template:
+Or copy:
 
 ```text
 .codex/config.toml.example -> .codex/config.toml
@@ -171,17 +165,7 @@ Or copy the repository template:
 
 The local config file is intentionally ignored by Git.
 
-## 10. Start MCP with inspection-only behavior
-
-Before allowing broad live edits, prove these capabilities from the installed server version:
-
-1. tool discovery works;
-2. Blender is connected;
-3. scene/object summaries work;
-4. missing-file inspection works;
-5. screenshots or viewport renders work.
-
-Only after that should you enable broader mutation tools in an appropriately isolated environment.
+Before enabling broad live edits, prove tool discovery, Blender connection, scene/object summaries, missing-file inspection and screenshot/render capture.
 
 ## 11. Existing `.blend` files
 
@@ -192,15 +176,32 @@ blender:
   startup_file: C:/path/to/source.blend
 ```
 
-The builder only replaces the configured managed collection. Unrelated objects/collections are preserved.
+The builder replaces only the configured managed collection. For a fully generated scene, leave `startup_file: null`; the runner uses Blender factory startup.
 
-For a fully generated scene, leave `startup_file: null`; the runner uses Blender factory startup.
+## 12. CI contract
 
-## 12. Troubleshooting
+`.github/workflows/blender-smoke.yml` is a real runtime test. It:
+
+1. resolves the pinned Blender toolchain from YAML;
+2. verifies the official Blender archive checksum;
+3. runs Blender on Ubuntu 24.04;
+4. builds and renders all required views;
+5. runs structural and deterministic visual validation;
+6. verifies generated artifacts and Blender version;
+7. runs the two-clean-build reproducibility regression;
+8. uploads `.blend`, PNG and JSON evidence.
+
+The public CI deliberately does not invoke authenticated Astra or a live MCP bridge.
+
+## 13. Troubleshooting
 
 ### Blender executable not found
 
 Set `BLENDER_BIN` or add Blender to `PATH`.
+
+### Linux Eevee fails to initialize EGL
+
+Install the EGL/OpenGL runtime packages shown above. Do not switch render engines merely to hide an environment dependency.
 
 ### Codex is installed but Astra evaluation fails
 
@@ -208,20 +209,16 @@ Update Codex CLI, verify model access for the authenticated account/workspace, t
 
 ### Autonomous loop refuses to start
 
-A dirty Git worktree is rejected by default. Review/commit/stash your changes first, or use `--allow-dirty` only when the overlap is intentional.
-
-### MCP command not found
-
-The MCP Python environment may not be activated or its executable may not be on `PATH`. Use an absolute command path in local `.codex/config.toml` if needed.
+A dirty Git worktree is rejected by default. Review/commit/stash changes first, or use `--allow-dirty` only when the overlap is intentional.
 
 ### MCP connects but Blender does not respond
 
-Check that the Blender MCP extension is enabled and its bridge server is running in the Blender instance you intend to control.
+Check that the Blender MCP extension is enabled and its bridge server is running in the intended Blender instance.
 
 ### Headless build works but live MCP scene differs
 
-That is configuration drift. Reopen the generated `output/scene.blend` or encode the live change in source and rebuild.
+That is configuration drift. Reopen the generated `.blend` or encode the live change in source and rebuild.
 
 ### Render regression across machines
 
-Do not assume byte-identical output across GPU/backend/version combinations. Pin Blender/render settings and compare structural manifests plus calibrated visual metrics.
+Pin Blender/render settings and compare structural state plus calibrated visual metrics. Do not assume byte-identical images across hardware/backend combinations.

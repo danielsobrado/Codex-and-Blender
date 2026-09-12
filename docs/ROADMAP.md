@@ -6,33 +6,26 @@ Status values: `TODO`, `PARTIAL`, `DONE`, `DEFERRED`.
 
 ### R1 Source-controlled scene construction — DONE
 
-Acceptance:
-
 - YAML contains configurable scene values.
-- `bpy` code performs durable construction.
+- `bpy` performs durable construction.
 - managed collection ownership is enforced.
-- clean factory startup is used for fully generated scenes.
+- factory startup is used for fully generated scenes.
 
 ### R2 Headless runner — DONE
 
-Acceptance:
-
 - build/render/inspect/validate/all actions exist;
-- host YAML resolves to Blender-readable JSON;
-- errors propagate through process exit status;
+- YAML resolves to Blender-readable JSON;
+- failures propagate through process exit status;
 - standalone post-build actions reopen the generated `.blend`.
 
 ### R3 Structural scene manifest — DONE
 
-Acceptance:
-
 - scene/object/camera/render state emitted as JSON;
-- transforms and object dimensions are present;
-- external-file status is represented.
+- transforms and dimensions included;
+- materials/mesh counts included;
+- external-file status represented.
 
 ### R4 Structural quality gate — DONE
-
-Acceptance:
 
 - required objects validated;
 - active camera validated;
@@ -44,132 +37,122 @@ Acceptance:
 
 ### V1 Multi-view render contract — PARTIAL
 
-Implemented:
+Done:
 
-- multiple cameras can be configured;
-- cameras have named roles and required/optional semantics;
-- review cameras render automatically;
-- host evaluator emits `render_index.json` with ordered view metadata.
+- multiple configured cameras;
+- named camera roles;
+- protected required-view policy in `acceptance.yaml`;
+- automatic review renders;
+- machine-readable render index.
 
 Remaining:
 
-- optional contact-sheet generation;
-- optional normal/depth/object-ID diagnostic passes.
+- optional normal/depth/object-ID diagnostic passes;
+- project-specific detail-view templates if real use cases require them.
 
 ### V2 Visual evaluator — PARTIAL
 
-Implemented:
+Done:
 
-- required-view existence checks;
-- image dimensions, luminance spread, dark-frame and bright-frame heuristics;
-- GPT-6 Astra review through Codex CLI image inputs;
-- read-only evaluator sandbox;
-- strict JSON-schema output;
-- view-specific evidence, severity and confidence;
-- deterministic failures kept separate from model critique;
-- project-configured thresholds rather than hidden constants.
+- deterministic image validity/brightness checks;
+- structured GPT-6 Astra multi-view critique;
+- schema-constrained JSON output;
+- every model problem references evidence/views;
+- required review coverage cannot be downgraded by mutable workflow config.
 
 Remaining:
 
-- optional reference-image regression mode;
-- calibrated SSIM/LPIPS-style metrics where a project has approved references;
-- optional semantic/reference comparison beyond the current Astra qualitative review.
+- approved-reference regression mode;
+- calibrated SSIM/LPIPS-style thresholds where a project has stable golden views;
+- optional semantic reference comparison where justified.
+
+Do not add universal perceptual thresholds without calibration data.
 
 ### V3 Iteration controller — DONE
 
-Implemented loop:
-
-```text
-build -> validate -> render -> deterministic review -> Astra review
-      -> patch durable source -> rebuild
-```
-
-Acceptance met:
-
-- iteration budget comes from `config/acceptance.yaml`;
-- structural/build failure stops immediately;
-- evaluator infrastructure failure stops immediately;
-- every evaluated iteration is snapshotted;
-- best-scoring evidence is retained;
-- unresolved failures are reported when the budget is exhausted;
-- no-change detection prevents pointless retries;
-- quality-gate files are protected and restored if a correction worker modifies them;
-- correction workers cannot treat generated output as the durable fix;
-- MCP remains optional and cannot bypass source-controlled reconstruction.
+- bounded iteration budget;
+- hard stop on build/structural failure;
+- iteration evidence snapshots;
+- best-known evaluated artifacts retained;
+- source correction through a separate Codex worker;
+- clean-worktree requirement by default;
+- quality-gate files restored and loop stopped if a correction worker modifies them;
+- gate implementation files are also protected;
+- live MCP experiments cannot bypass durable source updates.
 
 ## P1 — MCP integration
 
 ### M1 Official Blender MCP installation guide/test — PARTIAL
 
-Implemented:
+Done:
 
-- documented official Blender Lab server/add-on architecture;
-- documented Codex MCP registration;
-- environment check detects the optional `blender-mcp` command.
+- setup documented for the official Blender Lab server/add-on;
+- project-local Codex MCP template included.
 
 Remaining:
 
-- automated connection smoke test;
-- record installed-version tool discovery;
-- demonstrate/read-test a live scene query.
+- live connection smoke test on a workstation;
+- record actual tool discovery from the installed version;
+- demonstrate a read-only scene query and screenshot against the generated `.blend`.
 
 ### M2 MCP inspection adapter — TODO
 
-Add optional host helpers for:
+Add optional helpers only if they improve the real live workflow for:
 
 - scene summary;
 - object detail;
 - missing files;
 - screenshot/render capture.
 
-Keep the deterministic CLI workflow independent from MCP availability.
+The deterministic CLI path must remain independent from MCP availability.
 
 ### M3 Constrained project MCP tools — TODO
 
-Investigate a project-specific layer for safe/high-value operations:
-
-- set camera pose;
-- set object transform;
-- set material parameter;
-- trigger preview render;
-- get scene manifest;
-- validate scene.
-
-Generic code execution remains an escape hatch, not the default.
+Investigate project-specific high-value operations such as camera/object/material edits, preview rendering, manifest retrieval and validation. Generic Python execution remains an escape hatch, not the default.
 
 ## P1 — testing and CI
 
 ### T1 Host unit tests — PARTIAL
 
-Current:
+Current coverage includes:
 
-- configuration tests;
-- render-index and deterministic visual-evaluator tests;
-- autonomous quality-gate restoration tests;
-- Python compilation in CI.
+- configuration contracts;
+- visual render-index/required-view behavior;
+- deterministic render metrics;
+- protected-file restoration;
+- toolchain resolution;
+- reproducibility comparator/tolerance behavior.
 
 Remaining:
 
-- path-resolution edge cases;
-- Blender command-composition tests;
-- malformed-config cases;
-- correction-worker subprocess tests with a fake executable.
+- more malformed-config/path-resolution cases;
+- subprocess failure/timeout cases where useful.
 
-### T2 Blender smoke CI — TODO
+### T2 Blender smoke CI — DONE
 
-Acceptance:
+Proven in GitHub Actions with the pinned Blender toolchain:
 
-- pinned Blender version available on runner;
+- official Blender archive/download and SHA-256 verification;
+- Blender 5.2.1 LTS launches on Ubuntu 24.04;
 - clean scene builds;
-- `.blend`, render, state and validation artifacts produced;
-- validation passes;
-- artifacts uploaded for inspection.
+- Eevee renders hero/front/side views headlessly;
+- structural validation passes;
+- deterministic visual evaluation passes;
+- expected `.blend`, render, state and validation artifacts are produced;
+- artifacts are uploaded for inspection.
 
-### T3 Reproducibility regression — TODO
+The first runtime passes also found and fixed the Blender 5.2 Eevee enum change and missing Linux EGL dependency.
 
-Run two clean builds and compare normalized manifests with numeric tolerances.
+### T3 Reproducibility regression — DONE
 
-Do not require byte-identical PNG files across different render hardware.
+- two independent clean builds;
+- each build inspected and structurally validated;
+- normalized `scene_state.json` manifests compared recursively;
+- numeric tolerance configured in YAML;
+- exact difference paths emitted on failure;
+- reports/snapshots retained as artifacts;
+- enforced in the real Blender smoke workflow;
+- no requirement for byte-identical PNG or `.blend` output.
 
 ## P2 — production assets
 
@@ -183,57 +166,39 @@ Detect missing/moved images, linked libraries and expected asset IDs before expe
 
 ### A3 Cache strategy — TODO
 
-Add a content-addressed/local asset cache without making source configuration machine-specific.
+Add a content-addressed/local asset cache only when real production assets justify it.
 
 ## P2 — performance
 
 ### P1 Preview/final render profiles — TODO
 
-Separate preview quality from final output explicitly in YAML.
+Separate fast iterative/CI preview quality from final output explicitly in YAML. Current CI intentionally renders the normal sample profile and therefore proves the real render path, but it is slower than necessary for future complex scenes.
 
 ### P2 Incremental scene builds — TODO
 
-Only after profiling proves full managed-collection rebuilds are too expensive.
+Only after profiling proves full managed-collection rebuilds are too expensive. Do not sacrifice reproducibility prematurely.
 
-Do not sacrifice reproducibility prematurely.
-
-## P2 — agent observability
+## P2 — observability
 
 ### O1 Structured run report — PARTIAL
 
-Implemented:
+Current autonomous reports capture iterations, scores, stop reason and snapshots.
 
-- source revision;
-- iteration number;
-- stop reason;
-- evaluator score;
-- snapshot paths;
-- best score.
+Remaining useful fields:
 
-Remaining:
+- per-stage durations;
+- Blender/source revision in the run report;
+- render settings summary;
+- evaluator/model metadata;
+- artifact sizes/paths.
 
-- stage durations;
-- Blender version in the top-level run report;
-- normalized render settings;
-- final validation/evaluator summaries in the top-level report.
+### O2 Codex non-interactive integration — DONE
 
-### O2 Codex non-interactive integration — PARTIAL
-
-Implemented:
-
-- `codex exec` for read-only visual evaluation;
-- image attachment through Codex CLI;
-- JSON-schema constrained evaluator output;
-- separate workspace-write correction worker;
-- ephemeral Codex sessions for loop turns.
-
-Remaining:
-
-- optional `--json` event capture for detailed CI/observability traces.
+The visual evaluator and correction worker use `codex exec`; visual review uses attached images plus schema-constrained output, and the correction turn uses a separate writable sandbox.
 
 ## Next high-impact work
 
-1. T2 — real Blender smoke CI on a pinned Blender runner.
-2. V2 — approved-reference regression mode rather than universal similarity thresholds.
-3. T3 — reproducibility regression across two clean scene builds.
-4. M1 — live official-MCP smoke test and installed-tool inventory.
+1. **V2** — approved-reference visual regression with calibrated project-specific metrics.
+2. **M1** — real workstation smoke test of the official Blender MCP bridge and tool inventory.
+3. **P1 performance** — preview/final render profiles before production scenes make CI expensive.
+4. **A1/A2** — asset manifest/dependency validation when real external assets enter the workflow.
