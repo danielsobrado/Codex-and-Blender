@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "blender": {
+      "command": "${workspaceFolder}/.venv/Scripts/blender-mcp.exe"
+    }
+  }
+}

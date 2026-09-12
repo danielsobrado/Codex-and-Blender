@@ -53,7 +53,8 @@ class ConfigTests(unittest.TestCase):
     def test_evaluator_contract_exists(self) -> None:
         config = self.load("config/evaluator.yaml")
         model = config["model_review"]
-        self.assertEqual("gpt-6-astra", model["model"])
+        self.assertIn(model["provider"], {"codex", "grok"})
+        self.assertTrue(model.get("model"))
         self.assertTrue((ROOT / model["prompt_file"]).exists())
         self.assertTrue((ROOT / model["output_schema_file"]).exists())
 

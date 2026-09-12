@@ -19,13 +19,20 @@ def configure_world(context: JobContext) -> None:
     color = context.section("scene")["world_color"]
     world = bpy.context.scene.world or bpy.data.worlds.new("World")
     bpy.context.scene.world = world
-    world.color = color[:3]
+    world.use_nodes = True
+    background = world.node_tree.nodes.get("Background")
+    if background is None:
+        raise RuntimeError("World has no Background node.")
+    background.inputs["Color"].default_value = color
+    background.inputs["Strength"].default_value = float(
+        context.section("scene").get("world_strength", 1.0)
+    )
 
 
 def build_objects(context: JobContext, collection: bpy.types.Collection) -> None:
     for spec in context.section("scene")["objects"]:
-        obj = create_mesh_object(spec["type"], spec["name"])
-        configure_transform(obj, spec["location"], spec["scale"])
+        obj = create_mesh_object(spec)
+        configure_transform(obj, spec)
         move_to_collection(obj, collection)
 
         material = create_principled_material(f"{spec['name']}_Material", spec["material"])
@@ -60,8 +67,16 @@ def build_lights(context: JobContext, collection: bpy.types.Collection) -> None:
         create_light(spec, collection)
 
 
+def clear_factory_defaults(context: JobContext) -> None:
+    if context.section("blender").get("startup_file"):
+        return
+    for obj in list(bpy.data.objects):
+        bpy.data.objects.remove(obj, do_unlink=True)
+
+
 def build_scene(context: JobContext) -> None:
     scene_spec = context.section("scene")
+    clear_factory_defaults(context)
     collection = replace_collection(scene_spec["managed_collection"])
     configure_world(context)
     build_objects(context, collection)

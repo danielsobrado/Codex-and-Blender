@@ -38,7 +38,7 @@ jobs:
           cache: pip
 
       - name: Install host dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r requirements.txt -r requirements-reference.txt
 
       - name: Install Blender runtime libraries
         run: |

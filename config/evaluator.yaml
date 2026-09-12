@@ -15,7 +15,10 @@ reference_regression:
 model_review:
   enabled: true
   required: true
-  model: gpt-6-astra
-  reasoning_effort: high
+  # grok: Cursor/Codex console or a local CLI. codex: existing `codex exec` Astra path.
+  # Neither provider uses HTTP APIs or API keys from this repository.
+  provider: grok
+  model: grok-4.6
+  reasoning_effort: low
   prompt_file: prompts/visual_review.md
   output_schema_file: schemas/visual_evaluation.schema.json

@@ -216,7 +216,11 @@ def deterministic_review(
     return {"passed": not errors, "errors": errors, "views": views}
 
 
-def evaluate(workflow_path: Path, skip_model: bool = False) -> dict[str, Any]:
+def evaluate(
+    workflow_path: Path,
+    skip_model: bool = False,
+    model_review_json: Path | None = None,
+) -> dict[str, Any]:
     workflow = load_yaml(workflow_path)
     paths = workflow["paths"]
     acceptance = load_yaml(resolve(paths["acceptance_file"]))
@@ -257,6 +261,7 @@ def evaluate(workflow_path: Path, skip_model: bool = False) -> dict[str, Any]:
                 validation_path,
                 reference_regression,
                 root=ROOT,
+                review_json_path=model_review_json,
             )
         except ModelReviewError as exc:
             if required:
@@ -287,6 +292,11 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Evaluate Blender render evidence.")
     parser.add_argument("--config", type=Path, default=DEFAULT_WORKFLOW)
     parser.add_argument("--skip-model", action="store_true")
+    parser.add_argument(
+        "--model-review-json",
+        type=Path,
+        help="Schema-valid review JSON from a Codex/Cursor console session. No HTTP APIs.",
+    )
     return parser.parse_args()
 
 
@@ -294,7 +304,12 @@ def main() -> int:
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     args = parse_args()
     try:
-        result = evaluate(args.config.resolve(), skip_model=args.skip_model)
+        review_json = args.model_review_json.resolve() if args.model_review_json else None
+        result = evaluate(
+            args.config.resolve(),
+            skip_model=args.skip_model,
+            model_review_json=review_json,
+        )
     except (EvaluationError, KeyError, TypeError, ValueError) as exc:
         LOGGER.error("%s", exc)
         return 2

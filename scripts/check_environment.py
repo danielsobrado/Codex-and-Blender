@@ -6,9 +6,13 @@ import re
 import shutil
 import subprocess
 import sys
+from pathlib import Path
+
+import yaml
 
 LOGGER = logging.getLogger("environment_check")
 MIN_CODEX_VERSION = (0, 153, 0)
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def resolve_blender() -> str | None:
@@ -65,6 +69,15 @@ def check_codex() -> bool:
     return True
 
 
+def configured_review_provider() -> str:
+    evaluator_path = ROOT / "config" / "evaluator.yaml"
+    with evaluator_path.open("r", encoding="utf-8") as handle:
+        evaluator = yaml.safe_load(handle)
+    if not isinstance(evaluator, dict):
+        raise ValueError("config/evaluator.yaml must be a mapping.")
+    return str(evaluator.get("model_review", {}).get("provider", "codex"))
+
+
 def main() -> int:
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
@@ -87,9 +100,14 @@ def main() -> int:
     first_line = result.stdout.splitlines()[0] if result.stdout else "Blender detected"
     LOGGER.info("%s", first_line)
 
-    codex_ready = check_codex()
+    provider = configured_review_provider()
+    LOGGER.info("Configured model_review.provider=%s", provider)
     command_output("blender-mcp", ["--help"])
-    return 0 if codex_ready else 1
+    if provider == "codex":
+        return 0 if check_codex() else 1
+    LOGGER.info("Grok provider uses the Codex/Cursor console or a configured CLI; Codex is optional.")
+    check_codex()
+    return 0
 
 
 if __name__ == "__main__":

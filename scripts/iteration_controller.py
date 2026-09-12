@@ -220,14 +220,23 @@ def run_correction_worker(
     summary_path: Path,
     protected: list[Path],
 ) -> None:
-    if shutil.which(CODEX_EXECUTABLE) is None:
-        raise ControllerError("Codex CLI was not found on PATH.")
-
     evaluator = load_yaml(resolve(workflow["paths"]["evaluator_file"]))
     model = evaluator.get("model_review", {})
+    provider = str(model.get("provider", "codex"))
+    if shutil.which(str(model.get("cli_executable") or CODEX_EXECUTABLE)) is None and provider == "codex":
+        raise ControllerError("Codex CLI was not found on PATH.")
+    if provider == "grok" and not model.get("cli_executable"):
+        raise ControllerError(
+            "Grok correction runs in the Codex/Cursor console or a configured CLI. "
+            "HTTP APIs and API keys are not used."
+        )
+    if provider not in {"codex", "grok"}:
+        raise ControllerError(f"Unknown model_review.provider: {provider}")
+
     prompt = build_patch_prompt(evaluation_path, protected)
+    executable = str(model.get("cli_executable") or CODEX_EXECUTABLE)
     command = [
-        CODEX_EXECUTABLE,
+        executable,
         "exec",
         "--ephemeral",
         "--sandbox",

@@ -1,7 +1,7 @@
 structural:
   required_objects:
     - Ground
-    - Hero
+    - Rock
     - HeroCamera
     - FrontReviewCamera
     - SideReviewCamera
@@ -27,5 +27,5 @@ visual:
   semantic_similarity_min: null
 
 iteration:
-  max_iterations: 8
+  max_iterations: 3
   require_structural_pass: true

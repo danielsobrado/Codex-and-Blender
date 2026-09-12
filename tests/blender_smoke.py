@@ -37,8 +37,12 @@ def main() -> None:
 
     evaluation = load_json(Path("output/visual_evaluation.json"))
     if not evaluation.get("passed"):
-        errors = evaluation.get("deterministic", {}).get("errors", [])
-        raise SystemExit(f"Deterministic visual evaluation failed: {errors}")
+        deterministic = evaluation.get("deterministic", {}).get("errors", [])
+        reference = evaluation.get("reference_regression", {})
+        raise SystemExit(
+            "Visual evaluation failed: "
+            f"deterministic={deterministic}; reference_regression={reference}"
+        )
 
     state = load_json(Path("output/scene_state.json"))
     expected = expected_blender_version()
