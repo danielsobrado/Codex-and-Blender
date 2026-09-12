@@ -1,0 +1,20 @@
+deterministic:
+  min_width: 320
+  min_height: 320
+  min_luminance_stddev: 1.0
+  max_dark_fraction: 0.995
+  max_bright_fraction: 0.995
+  dark_threshold: 4
+  bright_threshold: 251
+
+model_review:
+  enabled: true
+  required: true
+  provider: openai
+  model: gpt-6-astra
+  reasoning_effort: high
+  image_detail: high
+  max_output_tokens: 6000
+  prompt_file: prompts/visual_review.md
+  output_schema_file: schemas/visual_evaluation.schema.json
+  store: false
