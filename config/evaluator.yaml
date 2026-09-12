@@ -10,11 +10,7 @@ deterministic:
 model_review:
   enabled: true
   required: true
-  provider: openai
   model: gpt-6-astra
   reasoning_effort: high
-  image_detail: high
-  max_output_tokens: 6000
   prompt_file: prompts/visual_review.md
   output_schema_file: schemas/visual_evaluation.schema.json
-  store: false
