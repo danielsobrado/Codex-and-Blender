@@ -3,10 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
-import shutil
-import subprocess
 import sys
-import tempfile
 from pathlib import Path
 from typing import Any
 
@@ -16,11 +13,11 @@ from PIL import Image, ImageStat
 LOGGER = logging.getLogger("visual_evaluator")
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_WORKFLOW = ROOT / "config" / "workflow.yaml"
-CODEX_EXECUTABLE = "codex"
 
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from scripts.model_review import ModelReviewError, run_model_review  # noqa: E402
 from scripts.reference_regression import (  # noqa: E402
     ReferenceRegressionError,
     evaluate_reference_regression,
@@ -55,13 +52,6 @@ def load_json(path: Path) -> dict[str, Any]:
 def resolve(value: str) -> Path:
     path = Path(value).expanduser()
     return path if path.is_absolute() else (ROOT / path).resolve()
-
-
-def display_path(path: Path) -> str:
-    try:
-        return str(path.relative_to(ROOT))
-    except ValueError:
-        return str(path)
 
 
 def required_view_policy(acceptance: dict[str, Any] | None) -> dict[str, dict[str, Any]]:
@@ -226,90 +216,6 @@ def deterministic_review(
     return {"passed": not errors, "errors": errors, "views": views}
 
 
-def build_model_prompt(
-    prompt_path: Path,
-    render_index: dict[str, Any],
-    state_path: Path,
-    validation_path: Path,
-) -> str:
-    prompt = prompt_path.read_text(encoding="utf-8").strip()
-    ordered_views = "\n".join(
-        f"{index + 1}. {view['name']} ({view['role']})"
-        for index, view in enumerate(render_index["views"])
-        if Path(view["path"]).exists()
-    )
-    return (
-        f"{prompt}\n\n"
-        "Exact scene evidence is available in these files:\n"
-        f"- {display_path(state_path)}\n"
-        f"- {display_path(validation_path)}\n\n"
-        "The attached images are in this exact order:\n"
-        f"{ordered_views}\n\n"
-        "Read the exact scene evidence before reviewing the images. Return only the "
-        "schema-constrained evaluation."
-    )
-
-
-def run_model_review(
-    config: dict[str, Any],
-    render_index: dict[str, Any],
-    state_path: Path,
-    validation_path: Path,
-) -> dict[str, Any]:
-    if shutil.which(CODEX_EXECUTABLE) is None:
-        raise EvaluationError("Codex CLI was not found on PATH.")
-
-    prompt_path = resolve(config["prompt_file"])
-    schema_path = resolve(config["output_schema_file"])
-    if not prompt_path.exists() or not schema_path.exists():
-        raise EvaluationError("Visual review prompt or output schema is missing.")
-
-    image_paths = [
-        Path(view["path"])
-        for view in render_index["views"]
-        if Path(view["path"]).exists()
-    ]
-    if not image_paths:
-        raise EvaluationError("No render images are available for model review.")
-
-    prompt = build_model_prompt(prompt_path, render_index, state_path, validation_path)
-    command = [
-        CODEX_EXECUTABLE,
-        "exec",
-        "--ephemeral",
-        "--sandbox",
-        "read-only",
-        "--model",
-        str(config.get("model", "gpt-6-astra")),
-        "--config",
-        f'model_reasoning_effort="{config.get("reasoning_effort", "high")}"',
-        "--output-schema",
-        str(schema_path),
-    ]
-    for image_path in image_paths:
-        command.extend(["--image", str(image_path)])
-
-    with tempfile.NamedTemporaryFile(
-        mode="w", suffix=".json", encoding="utf-8", delete=False
-    ) as handle:
-        result_path = Path(handle.name)
-
-    command.extend(["--output-last-message", str(result_path), "-"])
-    try:
-        subprocess.run(
-            command,
-            cwd=ROOT,
-            input=prompt,
-            text=True,
-            check=True,
-        )
-        return load_json(result_path)
-    except (OSError, subprocess.CalledProcessError) as exc:
-        raise EvaluationError("Codex visual review failed.") from exc
-    finally:
-        result_path.unlink(missing_ok=True)
-
-
 def evaluate(workflow_path: Path, skip_model: bool = False) -> dict[str, Any]:
     workflow = load_yaml(workflow_path)
     paths = workflow["paths"]
@@ -335,7 +241,6 @@ def evaluate(workflow_path: Path, skip_model: bool = False) -> dict[str, Any]:
 
     model_config = evaluator.get("model_review", {})
     model_review: dict[str, Any] | None = None
-
     configured_enabled = bool(model_config.get("enabled", True))
     configured_required = bool(model_config.get("required", True))
     if configured_required and not configured_enabled and not skip_model:
@@ -343,14 +248,19 @@ def evaluate(workflow_path: Path, skip_model: bool = False) -> dict[str, Any]:
 
     enabled = configured_enabled and not skip_model
     required = configured_required and not skip_model
-    if deterministic["passed"] and reference_regression["passed"] and enabled:
+    if deterministic["passed"] and enabled:
         try:
             model_review = run_model_review(
-                model_config, render_index, state_path, validation_path
+                model_config,
+                render_index,
+                state_path,
+                validation_path,
+                reference_regression,
+                root=ROOT,
             )
-        except EvaluationError:
+        except ModelReviewError as exc:
             if required:
-                raise
+                raise EvaluationError(str(exc)) from exc
             LOGGER.exception("Optional model review failed.")
 
     passed = (
