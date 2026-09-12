@@ -1,0 +1,102 @@
+name: blender-smoke
+
+on:
+  push:
+    paths:
+      - "blender/**"
+      - "config/**"
+      - "scripts/**"
+      - "tests/blender_smoke.py"
+      - "requirements.txt"
+      - ".github/workflows/blender-smoke.yml"
+  pull_request:
+    paths:
+      - "blender/**"
+      - "config/**"
+      - "scripts/**"
+      - "tests/blender_smoke.py"
+      - "requirements.txt"
+      - ".github/workflows/blender-smoke.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  blender-smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install host dependencies
+        run: pip install -r requirements.txt
+
+      - name: Resolve pinned Blender toolchain
+        run: python scripts/toolchain_env.py --github-env "$GITHUB_ENV"
+
+      - name: Cache Blender
+        uses: actions/cache@v4
+        with:
+          path: .cache/blender
+          key: blender-${{ runner.os }}-${{ hashFiles('config/toolchain.yaml') }}
+
+      - name: Install pinned Blender
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$BLENDER_CACHE_DIR"
+
+          if [[ ! -x "$BLENDER_BIN" ]]; then
+            archive_path="$RUNNER_TEMP/$BLENDER_ARCHIVE"
+            checksum_path="$RUNNER_TEMP/blender.sha256"
+            selected_checksum="$RUNNER_TEMP/blender-selected.sha256"
+
+            curl --fail --location --retry 3 --retry-delay 2 \
+              "$BLENDER_URL" --output "$archive_path"
+            curl --fail --location --retry 3 --retry-delay 2 \
+              "$BLENDER_SHA256_URL" --output "$checksum_path"
+
+            grep "  $BLENDER_ARCHIVE$" "$checksum_path" > "$selected_checksum"
+            test -s "$selected_checksum"
+            (
+              cd "$RUNNER_TEMP"
+              sha256sum --check "$(basename "$selected_checksum")"
+            )
+
+            tar -xf "$archive_path" -C "$BLENDER_CACHE_DIR"
+          fi
+
+          "$BLENDER_BIN" --version
+
+      - name: Run deterministic Blender pipeline
+        run: python scripts/blender_runner.py all
+
+      - name: Run deterministic visual evaluation
+        run: python scripts/visual_evaluator.py --skip-model
+
+      - name: Verify smoke artifacts
+        run: python tests/blender_smoke.py
+
+      - name: Upload Blender smoke artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: blender-smoke-${{ github.sha }}
+          path: |
+            output/scene.blend
+            output/render.png
+            output/renders/
+            output/render_index.json
+            output/scene_state.json
+            output/validation.json
+            output/visual_evaluation.json
+            output/_resolved_workflow.json
+          if-no-files-found: warn
+          retention-days: 7
