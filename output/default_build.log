@@ -1,0 +1,124 @@
+INFO Running Blender action 'all'.
+INFO Draco is available, use library at F:\Development\Codex-and-Blender\.cache\blender\blender-5.2.1-windows-x64\5.2\scripts\addons_core\io_scene_gltf2\bf_intern_draco_bridge.dll
+INFO MeshOptimizer is available, use library at F:\Development\Codex-and-Blender\.cache\blender\blender-5.2.1-windows-x64\5.2\scripts\addons_core\io_scene_gltf2\bf_intern_meshopt_bridge.dll
+19:24:21 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+19:24:21 | INFO: Extracting primitive: grass_short
+INFO Extracting primitive: grass_short
+19:24:21 | INFO: Primitives created: 3
+INFO Primitives created: 3
+19:24:21 | INFO: Finished glTF 2.0 export in 0.013505935668945312 s
+INFO Finished glTF 2.0 export in 0.013505935668945312 s
+
+19:24:21 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+19:24:21 | INFO: Extracting primitive: grass_tall
+INFO Extracting primitive: grass_tall
+19:24:21 | INFO: Primitives created: 3
+INFO Primitives created: 3
+19:24:21 | INFO: Finished glTF 2.0 export in 0.008564472198486328 s
+INFO Finished glTF 2.0 export in 0.008564472198486328 s
+
+19:24:21 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+19:24:21 | INFO: Extracting primitive: grass_dry
+INFO Extracting primitive: grass_dry
+19:24:21 | INFO: Primitives created: 2
+INFO Primitives created: 2
+19:24:21 | INFO: Finished glTF 2.0 export in 0.007497072219848633 s
+INFO Finished glTF 2.0 export in 0.007497072219848633 s
+
+19:24:21 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+19:24:21 | INFO: Extracting primitive: grass_wide
+INFO Extracting primitive: grass_wide
+19:24:21 | INFO: Primitives created: 3
+INFO Primitives created: 3
+19:24:21 | INFO: Finished glTF 2.0 export in 0.007835626602172852 s
+INFO Finished glTF 2.0 export in 0.007835626602172852 s
+
+19:24:21 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+19:24:21 | INFO: Extracting primitive: bush_low
+INFO Extracting primitive: bush_low
+19:24:21 | INFO: Primitives created: 4
+INFO Primitives created: 4
+19:24:21 | INFO: Finished glTF 2.0 export in 0.019321441650390625 s
+INFO Finished glTF 2.0 export in 0.019321441650390625 s
+
+19:24:21 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+19:24:21 | INFO: Extracting primitive: bush_round
+INFO Extracting primitive: bush_round
+19:24:21 | INFO: Primitives created: 4
+INFO Primitives created: 4
+19:24:21 | INFO: Finished glTF 2.0 export in 0.025124073028564453 s
+INFO Finished glTF 2.0 export in 0.025124073028564453 s
+
+19:24:22 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+19:24:22 | INFO: Extracting primitive: bush_tall
+INFO Extracting primitive: bush_tall
+19:24:22 | INFO: Primitives created: 4
+INFO Primitives created: 4
+19:24:22 | INFO: Finished glTF 2.0 export in 0.025451183319091797 s
+INFO Finished glTF 2.0 export in 0.025451183319091797 s
+
+19:24:22 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+19:24:22 | INFO: Extracting primitive: bush_sage
+INFO Extracting primitive: bush_sage
+19:24:22 | INFO: Primitives created: 3
+INFO Primitives created: 3
+19:24:22 | INFO: Finished glTF 2.0 export in 0.01999807357788086 s
+INFO Finished glTF 2.0 export in 0.01999807357788086 s
+
+19:24:22 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+19:24:22 | INFO: Extracting primitive: cactus_small
+INFO Extracting primitive: cactus_small
+19:24:22 | INFO: Primitives created: 4
+INFO Primitives created: 4
+19:24:22 | INFO: Finished glTF 2.0 export in 0.009927749633789062 s
+INFO Finished glTF 2.0 export in 0.009927749633789062 s
+
+19:24:22 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+19:24:22 | INFO: Extracting primitive: cactus_large
+INFO Extracting primitive: cactus_large
+19:24:22 | INFO: Primitives created: 4
+INFO Primitives created: 4
+19:24:22 | INFO: Finished glTF 2.0 export in 0.014330148696899414 s
+INFO Finished glTF 2.0 export in 0.014330148696899414 s
+
+19:24:22 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+19:24:22 | INFO: Extracting primitive: agave_green
+INFO Extracting primitive: agave_green
+19:24:22 | INFO: Primitives created: 2
+INFO Primitives created: 2
+19:24:22 | INFO: Finished glTF 2.0 export in 0.0066983699798583984 s
+INFO Finished glTF 2.0 export in 0.0066983699798583984 s
+
+19:24:22 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+19:24:22 | INFO: Extracting primitive: yucca_gold
+INFO Extracting primitive: yucca_gold
+19:24:22 | INFO: Primitives created: 3
+INFO Primitives created: 3
+19:24:22 | INFO: Finished glTF 2.0 export in 0.0077474117279052734 s
+INFO Finished glTF 2.0 export in 0.0077474117279052734 s
+INFO Saved blend file: F:\Development\Codex-and-Blender\output\vegetation_kit.blend
+00:02.922  render           | Saved: 'F:\Development\Codex-and-Blender\output\render.png'
+INFO Rendered F:\Development\Codex-and-Blender\output\render.png with HeroCamera.
+00:03.188  render           | Saved: 'F:\Development\Codex-and-Blender\output\renders\FrontReviewCamera.png'
+INFO Rendered F:\Development\Codex-and-Blender\output\renders\FrontReviewCamera.png with FrontReviewCamera.
+00:03.438  render           | Saved: 'F:\Development\Codex-and-Blender\output\renders\SideReviewCamera.png'
+INFO Rendered F:\Development\Codex-and-Blender\output\renders\SideReviewCamera.png with SideReviewCamera.
+INFO Saved blend file: F:\Development\Codex-and-Blender\output\vegetation_kit.blend
+
+Info: Saved as "vegetation_kit.blend"
+Info: Saved as "vegetation_kit.blend"
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 02:38:20)
+
+Blender quit

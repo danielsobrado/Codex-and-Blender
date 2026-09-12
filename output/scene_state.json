@@ -1,0 +1,1050 @@
+{
+  "scene": "Scene",
+  "blender_version": "5.2.1 LTS",
+  "render_engine": "BLENDER_EEVEE",
+  "active_camera": "HeroCamera",
+  "object_count": 30,
+  "objects": [
+    {
+      "name": "Fill",
+      "type": "LIGHT",
+      "location": [
+        4.5,
+        -2.0,
+        3.5
+      ],
+      "rotation_euler": [
+        1.086387,
+        0.0,
+        1.041207
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "FrontReviewCamera",
+      "type": "CAMERA",
+      "location": [
+        0.0,
+        -16.0,
+        11.0
+      ],
+      "rotation_euler": [
+        0.985684,
+        -0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "Ground",
+      "type": "MESH",
+      "location": [
+        0.0,
+        0.0,
+        -0.1
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        7.0,
+        5.0,
+        0.1
+      ],
+      "dimensions": [
+        14.0,
+        10.0,
+        0.2
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 8,
+        "edges": 12,
+        "polygons": 6,
+        "materials": [
+          "Ground_Material"
+        ]
+      }
+    },
+    {
+      "name": "HeroCamera",
+      "type": "CAMERA",
+      "location": [
+        8.0,
+        -13.0,
+        13.0
+      ],
+      "rotation_euler": [
+        0.878782,
+        -0.0,
+        0.551655
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "Key",
+      "type": "LIGHT",
+      "location": [
+        -3.0,
+        -4.0,
+        10.0
+      ],
+      "rotation_euler": [
+        0.553435,
+        0.0,
+        -0.657889
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "SideReviewCamera",
+      "type": "CAMERA",
+      "location": [
+        13.0,
+        0.0,
+        12.0
+      ],
+      "rotation_euler": [
+        0.842247,
+        0.0,
+        1.570796
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "agave_green",
+      "type": "MESH",
+      "location": [
+        1.35,
+        2.7,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.645517,
+        1.628339,
+        0.675851
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 1216,
+        "edges": 1216,
+        "polygons": 304,
+        "materials": [
+          "gold",
+          "straw",
+          "olive",
+          "leaf",
+          "dark_leaf",
+          "sage",
+          "bark",
+          "cactus",
+          "spine"
+        ]
+      }
+    },
+    {
+      "name": "agave_green_Label",
+      "type": "FONT",
+      "location": [
+        1.35,
+        1.73,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.74819,
+        0.0805,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "bush_low",
+      "type": "MESH",
+      "location": [
+        -4.05,
+        0.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.158801,
+        1.056579,
+        0.716769
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 28188,
+        "edges": 28188,
+        "polygons": 6966,
+        "materials": [
+          "gold",
+          "straw",
+          "olive",
+          "leaf",
+          "dark_leaf",
+          "sage",
+          "bark",
+          "cactus",
+          "spine"
+        ]
+      }
+    },
+    {
+      "name": "bush_low_Label",
+      "type": "FONT",
+      "location": [
+        -4.05,
+        -0.97,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.576725,
+        0.0805,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "bush_round",
+      "type": "MESH",
+      "location": [
+        -1.35,
+        0.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.732914,
+        1.727942,
+        1.336727
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 43848,
+        "edges": 43848,
+        "polygons": 10836,
+        "materials": [
+          "gold",
+          "straw",
+          "olive",
+          "leaf",
+          "dark_leaf",
+          "sage",
+          "bark",
+          "cactus",
+          "spine"
+        ]
+      }
+    },
+    {
+      "name": "bush_round_Label",
+      "type": "FONT",
+      "location": [
+        -1.35,
+        -0.97,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.722315,
+        0.0805,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "bush_sage",
+      "type": "MESH",
+      "location": [
+        4.05,
+        0.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.32931,
+        1.47002,
+        0.973299
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 34452,
+        "edges": 34452,
+        "polygons": 8514,
+        "materials": [
+          "gold",
+          "straw",
+          "olive",
+          "leaf",
+          "dark_leaf",
+          "sage",
+          "bark",
+          "cactus",
+          "spine"
+        ]
+      }
+    },
+    {
+      "name": "bush_sage_Label",
+      "type": "FONT",
+      "location": [
+        4.05,
+        -0.97,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.574655,
+        0.0805,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "bush_tall",
+      "type": "MESH",
+      "location": [
+        1.35,
+        0.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        2.425132,
+        2.109442,
+        1.944695
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 46980,
+        "edges": 46980,
+        "polygons": 11610,
+        "materials": [
+          "gold",
+          "straw",
+          "olive",
+          "leaf",
+          "dark_leaf",
+          "sage",
+          "bark",
+          "cactus",
+          "spine"
+        ]
+      }
+    },
+    {
+      "name": "bush_tall_Label",
+      "type": "FONT",
+      "location": [
+        1.35,
+        -0.97,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.56373,
+        0.0805,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "cactus_large",
+      "type": "MESH",
+      "location": [
+        -1.35,
+        2.7,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.266539,
+        1.377933,
+        1.954893
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 16842,
+        "edges": 16842,
+        "polygons": 4209,
+        "materials": [
+          "gold",
+          "straw",
+          "olive",
+          "leaf",
+          "dark_leaf",
+          "sage",
+          "bark",
+          "cactus",
+          "spine"
+        ]
+      }
+    },
+    {
+      "name": "cactus_large_Label",
+      "type": "FONT",
+      "location": [
+        -1.35,
+        1.73,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.811325,
+        0.0805,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "cactus_small",
+      "type": "MESH",
+      "location": [
+        -4.05,
+        2.7,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.427749,
+        0.438277,
+        0.713703
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 6642,
+        "edges": 6642,
+        "polygons": 1659,
+        "materials": [
+          "gold",
+          "straw",
+          "olive",
+          "leaf",
+          "dark_leaf",
+          "sage",
+          "bark",
+          "cactus",
+          "spine"
+        ]
+      }
+    },
+    {
+      "name": "cactus_small_Label",
+      "type": "FONT",
+      "location": [
+        -4.05,
+        1.73,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.800285,
+        0.0805,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "grass_dry",
+      "type": "MESH",
+      "location": [
+        1.35,
+        -2.7,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.42777,
+        1.647429,
+        0.498854
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 3200,
+        "edges": 3200,
+        "polygons": 800,
+        "materials": [
+          "gold",
+          "straw",
+          "olive",
+          "leaf",
+          "dark_leaf",
+          "sage",
+          "bark",
+          "cactus",
+          "spine"
+        ]
+      }
+    },
+    {
+      "name": "grass_dry_Label",
+      "type": "FONT",
+      "location": [
+        1.35,
+        -3.67,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.587995,
+        0.0805,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "grass_short",
+      "type": "MESH",
+      "location": [
+        -4.05,
+        -2.7,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.954272,
+        0.994854,
+        0.306778
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 3040,
+        "edges": 3040,
+        "polygons": 760,
+        "materials": [
+          "gold",
+          "straw",
+          "olive",
+          "leaf",
+          "dark_leaf",
+          "sage",
+          "bark",
+          "cactus",
+          "spine"
+        ]
+      }
+    },
+    {
+      "name": "grass_short_Label",
+      "type": "FONT",
+      "location": [
+        -4.05,
+        -3.67,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.73094,
+        0.0805,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "grass_tall",
+      "type": "MESH",
+      "location": [
+        -1.35,
+        -2.7,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.510656,
+        1.684186,
+        0.669174
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 3520,
+        "edges": 3520,
+        "polygons": 880,
+        "materials": [
+          "gold",
+          "straw",
+          "olive",
+          "leaf",
+          "dark_leaf",
+          "sage",
+          "bark",
+          "cactus",
+          "spine"
+        ]
+      }
+    },
+    {
+      "name": "grass_tall_Label",
+      "type": "FONT",
+      "location": [
+        -1.35,
+        -3.67,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.62054,
+        0.0805,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "grass_wide",
+      "type": "MESH",
+      "location": [
+        4.05,
+        -2.7,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.461655,
+        1.318236,
+        0.543638
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 2240,
+        "edges": 2240,
+        "polygons": 560,
+        "materials": [
+          "gold",
+          "straw",
+          "olive",
+          "leaf",
+          "dark_leaf",
+          "sage",
+          "bark",
+          "cactus",
+          "spine"
+        ]
+      }
+    },
+    {
+      "name": "grass_wide_Label",
+      "type": "FONT",
+      "location": [
+        4.05,
+        -3.67,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.65182,
+        0.0805,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "yucca_gold",
+      "type": "MESH",
+      "location": [
+        4.05,
+        2.7,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.76651,
+        2.053796,
+        0.843573
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 1760,
+        "edges": 1760,
+        "polygons": 440,
+        "materials": [
+          "gold",
+          "straw",
+          "olive",
+          "leaf",
+          "dark_leaf",
+          "sage",
+          "bark",
+          "cactus",
+          "spine"
+        ]
+      }
+    },
+    {
+      "name": "yucca_gold_Label",
+      "type": "FONT",
+      "location": [
+        4.05,
+        1.73,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.73945,
+        0.0805,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    }
+  ],
+  "missing_external_files": []
+}

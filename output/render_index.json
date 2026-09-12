@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "views": [
+    {
+      "name": "HeroCamera",
+      "role": "hero",
+      "primary": true,
+      "required": true,
+      "path": "F:\\Development\\Codex-and-Blender\\output\\render.png"
+    },
+    {
+      "name": "FrontReviewCamera",
+      "role": "front",
+      "primary": false,
+      "required": true,
+      "path": "F:\\Development\\Codex-and-Blender\\output\\renders\\FrontReviewCamera.png"
+    },
+    {
+      "name": "SideReviewCamera",
+      "role": "side",
+      "primary": false,
+      "required": true,
+      "path": "F:\\Development\\Codex-and-Blender\\output\\renders\\SideReviewCamera.png"
+    }
+  ]
+}

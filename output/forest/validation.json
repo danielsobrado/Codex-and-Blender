@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "checks": {
+    "required_objects": [
+      "ForestFloor",
+      "ForegroundPalm_0",
+      "ForegroundPalm_1",
+      "ForegroundPalm_2",
+      "HeroCamera",
+      "FrontReviewCamera",
+      "SideReviewCamera",
+      "Key",
+      "ForestPath"
+    ],
+    "active_camera": "HeroCamera",
+    "missing_external_files": [],
+    "render_settings": {
+      "expected": {
+        "engine": "BLENDER_EEVEE",
+        "resolution_x": 1600,
+        "resolution_y": 900,
+        "resolution_percentage": 100,
+        "image_format": "PNG",
+        "transparent": false,
+        "taa_render_samples": 48
+      },
+      "current": {
+        "engine": "BLENDER_EEVEE",
+        "resolution_x": 1600,
+        "resolution_y": 900,
+        "resolution_percentage": 100,
+        "image_format": "PNG",
+        "transparent": false,
+        "taa_render_samples": 48
+      }
+    }
+  }
+}

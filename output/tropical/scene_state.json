@@ -1,0 +1,1338 @@
+{
+  "scene": "Scene",
+  "blender_version": "5.2.1 LTS",
+  "render_engine": "BLENDER_EEVEE",
+  "active_camera": "HeroCamera",
+  "object_count": 38,
+  "objects": [
+    {
+      "name": "Fill",
+      "type": "LIGHT",
+      "location": [
+        8.0,
+        3.0,
+        10.0
+      ],
+      "rotation_euler": [
+        0.728652,
+        -0.0,
+        1.900421
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "FrontReviewCamera",
+      "type": "CAMERA",
+      "location": [
+        0.0,
+        -18.0,
+        15.0
+      ],
+      "rotation_euler": [
+        0.802346,
+        -0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "Ground",
+      "type": "MESH",
+      "location": [
+        0.0,
+        0.0,
+        -0.1
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        12.0,
+        9.0,
+        0.1
+      ],
+      "dimensions": [
+        24.0,
+        18.0,
+        0.2
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 8,
+        "edges": 12,
+        "polygons": 6,
+        "materials": [
+          "Ground_Material"
+        ]
+      }
+    },
+    {
+      "name": "HeroCamera",
+      "type": "CAMERA",
+      "location": [
+        17.0,
+        -28.0,
+        24.0
+      ],
+      "rotation_euler": [
+        0.991292,
+        -0.0,
+        0.530216
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "Key",
+      "type": "LIGHT",
+      "location": [
+        -5.0,
+        -5.0,
+        15.0
+      ],
+      "rotation_euler": [
+        0.499368,
+        -0.0,
+        -0.785398
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "SideReviewCamera",
+      "type": "CAMERA",
+      "location": [
+        17.0,
+        -19.0,
+        14.0
+      ],
+      "rotation_euler": [
+        1.212235,
+        -0.0,
+        0.607802
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "banana_understory",
+      "type": "MESH",
+      "location": [
+        6.0,
+        -1.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        3.520652,
+        3.428951,
+        1.834164
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 680,
+        "edges": 680,
+        "polygons": 160,
+        "materials": [
+          "grass_lime",
+          "grass_sunlit",
+          "stems",
+          "leaf_green",
+          "deep_green",
+          "leaf_jade",
+          "tropical_bark",
+          "young_leaf",
+          "palm_rings"
+        ]
+      }
+    },
+    {
+      "name": "banana_understory_Label",
+      "type": "FONT",
+      "location": [
+        6.0,
+        -1.97,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.7224,
+        0.112,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "broad_leaf_module",
+      "type": "MESH",
+      "location": [
+        2.0,
+        -7.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.957826,
+        0.5,
+        0.192078
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 32,
+        "edges": 32,
+        "polygons": 8,
+        "materials": [
+          "grass_lime",
+          "grass_sunlit",
+          "stems",
+          "leaf_green",
+          "deep_green",
+          "leaf_jade",
+          "tropical_bark",
+          "young_leaf",
+          "palm_rings"
+        ]
+      }
+    },
+    {
+      "name": "broad_leaf_module_Label",
+      "type": "FONT",
+      "location": [
+        2.0,
+        -7.97,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.60592,
+        0.112,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "elephant_ear",
+      "type": "MESH",
+      "location": [
+        2.0,
+        -1.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        2.205254,
+        2.211268,
+        0.992818
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 612,
+        "edges": 612,
+        "polygons": 144,
+        "materials": [
+          "grass_lime",
+          "grass_sunlit",
+          "stems",
+          "leaf_green",
+          "deep_green",
+          "leaf_jade",
+          "tropical_bark",
+          "young_leaf",
+          "palm_rings"
+        ]
+      }
+    },
+    {
+      "name": "elephant_ear_Label",
+      "type": "FONT",
+      "location": [
+        2.0,
+        -1.97,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.0808,
+        0.10976,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "fern_frond_module",
+      "type": "MESH",
+      "location": [
+        -2.0,
+        -7.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.209107,
+        0.545491,
+        0.232942
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 1880,
+        "edges": 1880,
+        "polygons": 460,
+        "materials": [
+          "grass_lime",
+          "grass_sunlit",
+          "stems",
+          "leaf_green",
+          "deep_green",
+          "leaf_jade",
+          "tropical_bark",
+          "young_leaf",
+          "palm_rings"
+        ]
+      }
+    },
+    {
+      "name": "fern_frond_module_Label",
+      "type": "FONT",
+      "location": [
+        -2.0,
+        -7.97,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.64544,
+        0.112,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "fern_large",
+      "type": "MESH",
+      "location": [
+        -2.0,
+        -1.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        2.328684,
+        2.264688,
+        0.29796
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 22560,
+        "edges": 22560,
+        "polygons": 5520,
+        "materials": [
+          "grass_lime",
+          "grass_sunlit",
+          "stems",
+          "leaf_green",
+          "deep_green",
+          "leaf_jade",
+          "tropical_bark",
+          "young_leaf",
+          "palm_rings"
+        ]
+      }
+    },
+    {
+      "name": "fern_large_Label",
+      "type": "FONT",
+      "location": [
+        -2.0,
+        -1.97,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.88448,
+        0.112,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "fern_small",
+      "type": "MESH",
+      "location": [
+        -6.0,
+        -1.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.329048,
+        1.383218,
+        0.178406
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 11844,
+        "edges": 11844,
+        "polygons": 2898,
+        "materials": [
+          "grass_lime",
+          "grass_sunlit",
+          "stems",
+          "leaf_green",
+          "deep_green",
+          "leaf_jade",
+          "tropical_bark",
+          "young_leaf",
+          "palm_rings"
+        ]
+      }
+    },
+    {
+      "name": "fern_small_Label",
+      "type": "FONT",
+      "location": [
+        -6.0,
+        -1.97,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.86912,
+        0.112,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "hanging_vine_cluster",
+      "type": "MESH",
+      "location": [
+        9.0,
+        3.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.755921,
+        0.290456,
+        3.205535
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 9672,
+        "edges": 9672,
+        "polygons": 2340,
+        "materials": [
+          "grass_lime",
+          "grass_sunlit",
+          "stems",
+          "leaf_green",
+          "deep_green",
+          "leaf_jade",
+          "tropical_bark",
+          "young_leaf",
+          "palm_rings"
+        ]
+      }
+    },
+    {
+      "name": "hanging_vine_cluster_Label",
+      "type": "FONT",
+      "location": [
+        9.0,
+        1.5,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.82016,
+        0.112,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "jungle_canopy_tree",
+      "type": "MESH",
+      "location": [
+        4.5,
+        5.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        5.695073,
+        6.177705,
+        7.541595
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 88416,
+        "edges": 88416,
+        "polygons": 21852,
+        "materials": [
+          "grass_lime",
+          "grass_sunlit",
+          "stems",
+          "leaf_green",
+          "deep_green",
+          "leaf_jade",
+          "tropical_bark",
+          "young_leaf",
+          "palm_rings"
+        ]
+      }
+    },
+    {
+      "name": "jungle_canopy_tree_Label",
+      "type": "FONT",
+      "location": [
+        4.5,
+        2.1,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.65744,
+        0.14736,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "jungle_grass_broad",
+      "type": "MESH",
+      "location": [
+        2.0,
+        -4.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        2.072338,
+        1.84319,
+        0.686301
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 2720,
+        "edges": 2720,
+        "polygons": 680,
+        "materials": [
+          "grass_lime",
+          "grass_sunlit",
+          "stems",
+          "leaf_green",
+          "deep_green",
+          "leaf_jade",
+          "tropical_bark",
+          "young_leaf",
+          "palm_rings"
+        ]
+      }
+    },
+    {
+      "name": "jungle_grass_broad_Label",
+      "type": "FONT",
+      "location": [
+        2.0,
+        -4.97,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.66,
+        0.14736,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "jungle_grass_short",
+      "type": "MESH",
+      "location": [
+        -6.0,
+        -4.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.154289,
+        1.210515,
+        0.383656
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 3520,
+        "edges": 3520,
+        "polygons": 880,
+        "materials": [
+          "grass_lime",
+          "grass_sunlit",
+          "stems",
+          "leaf_green",
+          "deep_green",
+          "leaf_jade",
+          "tropical_bark",
+          "young_leaf",
+          "palm_rings"
+        ]
+      }
+    },
+    {
+      "name": "jungle_grass_short_Label",
+      "type": "FONT",
+      "location": [
+        -6.0,
+        -4.97,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.6344,
+        0.14736,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "jungle_grass_tall",
+      "type": "MESH",
+      "location": [
+        -2.0,
+        -4.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        2.297536,
+        2.110237,
+        0.871092
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 4480,
+        "edges": 4480,
+        "polygons": 1120,
+        "materials": [
+          "grass_lime",
+          "grass_sunlit",
+          "stems",
+          "leaf_green",
+          "deep_green",
+          "leaf_jade",
+          "tropical_bark",
+          "young_leaf",
+          "palm_rings"
+        ]
+      }
+    },
+    {
+      "name": "jungle_grass_tall_Label",
+      "type": "FONT",
+      "location": [
+        -2.0,
+        -4.97,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.4808,
+        0.14736,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "jungle_groundcover",
+      "type": "MESH",
+      "location": [
+        6.0,
+        -4.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.895587,
+        0.802965,
+        0.344215
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 1224,
+        "edges": 1224,
+        "polygons": 288,
+        "materials": [
+          "grass_lime",
+          "grass_sunlit",
+          "stems",
+          "leaf_green",
+          "deep_green",
+          "leaf_jade",
+          "tropical_bark",
+          "young_leaf",
+          "palm_rings"
+        ]
+      }
+    },
+    {
+      "name": "jungle_groundcover_Label",
+      "type": "FONT",
+      "location": [
+        6.0,
+        -4.97,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.83264,
+        0.14736,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "palm_frond_module",
+      "type": "MESH",
+      "location": [
+        -7.0,
+        -7.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        2.521363,
+        1.394721,
+        0.412058
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 3008,
+        "edges": 3008,
+        "polygons": 736,
+        "materials": [
+          "grass_lime",
+          "grass_sunlit",
+          "stems",
+          "leaf_green",
+          "deep_green",
+          "leaf_jade",
+          "tropical_bark",
+          "young_leaf",
+          "palm_rings"
+        ]
+      }
+    },
+    {
+      "name": "palm_frond_module_Label",
+      "type": "FONT",
+      "location": [
+        -7.0,
+        -7.97,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.66144,
+        0.112,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "palm_tall",
+      "type": "MESH",
+      "location": [
+        -2.5,
+        4.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        5.842362,
+        5.910811,
+        7.663049
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 50304,
+        "edges": 50304,
+        "polygons": 12048,
+        "materials": [
+          "grass_lime",
+          "grass_sunlit",
+          "stems",
+          "leaf_green",
+          "deep_green",
+          "leaf_jade",
+          "tropical_bark",
+          "young_leaf",
+          "palm_rings"
+        ]
+      }
+    },
+    {
+      "name": "palm_tall_Label",
+      "type": "FONT",
+      "location": [
+        -2.5,
+        2.1,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.78352,
+        0.10976,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "palm_young",
+      "type": "MESH",
+      "location": [
+        -7.0,
+        4.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        3.557643,
+        3.314058,
+        2.116951
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 26832,
+        "edges": 26832,
+        "polygons": 6464,
+        "materials": [
+          "grass_lime",
+          "grass_sunlit",
+          "stems",
+          "leaf_green",
+          "deep_green",
+          "leaf_jade",
+          "tropical_bark",
+          "young_leaf",
+          "palm_rings"
+        ]
+      }
+    },
+    {
+      "name": "palm_young_Label",
+      "type": "FONT",
+      "location": [
+        -7.0,
+        2.1,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.9992,
+        0.112,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    },
+    {
+      "name": "vine_strand_module",
+      "type": "MESH",
+      "location": [
+        6.0,
+        -7.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.652538,
+        0.290472,
+        1.990993
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ],
+      "mesh": {
+        "vertices": 1240,
+        "edges": 1240,
+        "polygons": 300,
+        "materials": [
+          "grass_lime",
+          "grass_sunlit",
+          "stems",
+          "leaf_green",
+          "deep_green",
+          "leaf_jade",
+          "tropical_bark",
+          "young_leaf",
+          "palm_rings"
+        ]
+      }
+    },
+    {
+      "name": "vine_strand_module_Label",
+      "type": "FONT",
+      "location": [
+        6.0,
+        -7.97,
+        0.013
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.69248,
+        0.112,
+        0.0
+      ],
+      "visible_render": true,
+      "collections": [
+        "AGENT_GENERATED"
+      ]
+    }
+  ],
+  "missing_external_files": []
+}

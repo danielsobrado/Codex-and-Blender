@@ -1,0 +1,16 @@
+source_dir: assets/textures
+delivery_dir: output/textures
+size: 1024
+webp_quality: 88
+textures:
+  - {input: 'ChatGPT Image Sep 12, 2026, 02_59_15 PM.png', name: dry_grass_atlas, alpha: true}
+  - {input: 'ChatGPT Image Sep 12, 2026, 03_00_17 PM.png', name: shrub_leaf_atlas, alpha: true}
+  - {input: 'ChatGPT Image Sep 12, 2026, 03_02_11 PM.png', name: cactus_skin_basecolor, alpha: false}
+  - {input: 'ChatGPT Image Sep 12, 2026, 03_06_43 PM.png', name: agave_leaf, alpha: true}
+  - {input: 'ChatGPT Image Sep 12, 2026, 03_07_30 PM.png', name: jungle_grass_atlas, alpha: true}
+  - {input: 'ChatGPT Image Sep 12, 2026, 03_08_56 PM.png', name: palm_fern_atlas, alpha: true}
+  - {input: 'ChatGPT Image Sep 12, 2026, 03_17_15 PM.png', name: tropical_leaf_atlas, alpha: true}
+  - {input: 'ChatGPT Image Sep 12, 2026, 03_19_10 PM.png', name: palm_bark_basecolor, alpha: false}
+  - {input: 'ChatGPT Image Sep 12, 2026, 03_39_14 PM.png', upload_dir: assets/textures, name: jungle_path_basecolor, alpha: false, feather_edges: {margin: 0.035, width: 0.22, irregularity: 0.025}}
+  - {input: 'ChatGPT Image Sep 12, 2026, 03_39_19 PM.png', upload_dir: assets/textures, name: jungle_grass_reference_atlas, alpha: true}
+  - {input: 'ChatGPT Image Sep 12, 2026, 03_39_32 PM.png', upload_dir: assets/textures, name: jungle_ground_basecolor, alpha: false}

@@ -1,0 +1,160 @@
+INFO Running Blender action 'all'.
+INFO Draco is available, use library at F:\Development\Codex-and-Blender\.cache\blender\blender-5.2.1-windows-x64\5.2\scripts\addons_core\io_scene_gltf2\bf_intern_draco_bridge.dll
+INFO MeshOptimizer is available, use library at F:\Development\Codex-and-Blender\.cache\blender\blender-5.2.1-windows-x64\5.2\scripts\addons_core\io_scene_gltf2\bf_intern_meshopt_bridge.dll
+14:58:40 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+14:58:40 | INFO: Extracting primitive: jungle_grass_short
+INFO Extracting primitive: jungle_grass_short
+14:58:40 | INFO: Primitives created: 3
+INFO Primitives created: 3
+14:58:40 | INFO: Finished glTF 2.0 export in 0.01923203468322754 s
+INFO Finished glTF 2.0 export in 0.01923203468322754 s
+
+14:58:40 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+14:58:40 | INFO: Extracting primitive: jungle_grass_tall
+INFO Extracting primitive: jungle_grass_tall
+14:58:40 | INFO: Primitives created: 3
+INFO Primitives created: 3
+14:58:40 | INFO: Finished glTF 2.0 export in 0.009034156799316406 s
+INFO Finished glTF 2.0 export in 0.009034156799316406 s
+
+14:58:40 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+14:58:40 | INFO: Extracting primitive: jungle_grass_broad
+INFO Extracting primitive: jungle_grass_broad
+14:58:40 | INFO: Primitives created: 3
+INFO Primitives created: 3
+14:58:40 | INFO: Finished glTF 2.0 export in 0.0074918270111083984 s
+INFO Finished glTF 2.0 export in 0.0074918270111083984 s
+
+14:58:40 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+14:58:40 | INFO: Extracting primitive: jungle_groundcover
+INFO Extracting primitive: jungle_groundcover
+14:58:40 | INFO: Primitives created: 4
+INFO Primitives created: 4
+14:58:40 | INFO: Finished glTF 2.0 export in 0.00877523422241211 s
+INFO Finished glTF 2.0 export in 0.00877523422241211 s
+
+14:58:40 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+14:58:40 | INFO: Extracting primitive: fern_small
+INFO Extracting primitive: fern_small
+14:58:40 | INFO: Primitives created: 4
+INFO Primitives created: 4
+14:58:40 | INFO: Finished glTF 2.0 export in 0.011839866638183594 s
+INFO Finished glTF 2.0 export in 0.011839866638183594 s
+
+14:58:40 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+14:58:40 | INFO: Extracting primitive: fern_large
+INFO Extracting primitive: fern_large
+14:58:40 | INFO: Primitives created: 4
+INFO Primitives created: 4
+14:58:40 | INFO: Finished glTF 2.0 export in 0.016492605209350586 s
+INFO Finished glTF 2.0 export in 0.016492605209350586 s
+
+14:58:40 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+14:58:40 | INFO: Extracting primitive: elephant_ear
+INFO Extracting primitive: elephant_ear
+14:58:40 | INFO: Primitives created: 4
+INFO Primitives created: 4
+14:58:40 | INFO: Finished glTF 2.0 export in 0.007966756820678711 s
+INFO Finished glTF 2.0 export in 0.007966756820678711 s
+
+14:58:40 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+14:58:40 | INFO: Extracting primitive: banana_understory
+INFO Extracting primitive: banana_understory
+14:58:40 | INFO: Primitives created: 4
+INFO Primitives created: 4
+14:58:40 | INFO: Finished glTF 2.0 export in 0.00850677490234375 s
+INFO Finished glTF 2.0 export in 0.00850677490234375 s
+
+14:58:40 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+14:58:40 | INFO: Extracting primitive: palm_young
+INFO Extracting primitive: palm_young
+14:58:40 | INFO: Primitives created: 6
+INFO Primitives created: 6
+14:58:40 | INFO: Finished glTF 2.0 export in 0.01958632469177246 s
+INFO Finished glTF 2.0 export in 0.01958632469177246 s
+
+14:58:41 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+14:58:41 | INFO: Extracting primitive: palm_tall
+INFO Extracting primitive: palm_tall
+14:58:41 | INFO: Primitives created: 6
+INFO Primitives created: 6
+14:58:41 | INFO: Finished glTF 2.0 export in 0.028917551040649414 s
+INFO Finished glTF 2.0 export in 0.028917551040649414 s
+
+14:58:41 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+14:58:41 | INFO: Extracting primitive: jungle_canopy_tree
+INFO Extracting primitive: jungle_canopy_tree
+14:58:41 | INFO: Primitives created: 4
+INFO Primitives created: 4
+14:58:41 | INFO: Finished glTF 2.0 export in 0.038800954818725586 s
+INFO Finished glTF 2.0 export in 0.038800954818725586 s
+
+14:58:41 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+14:58:41 | INFO: Extracting primitive: hanging_vine_cluster
+INFO Extracting primitive: hanging_vine_cluster
+14:58:41 | INFO: Primitives created: 4
+INFO Primitives created: 4
+14:58:41 | INFO: Finished glTF 2.0 export in 0.011678457260131836 s
+INFO Finished glTF 2.0 export in 0.011678457260131836 s
+
+14:58:41 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+14:58:41 | INFO: Extracting primitive: palm_frond_module
+INFO Extracting primitive: palm_frond_module
+14:58:41 | INFO: Primitives created: 4
+INFO Primitives created: 4
+14:58:41 | INFO: Finished glTF 2.0 export in 0.009131669998168945 s
+INFO Finished glTF 2.0 export in 0.009131669998168945 s
+
+14:58:41 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+14:58:41 | INFO: Extracting primitive: fern_frond_module
+INFO Extracting primitive: fern_frond_module
+14:58:41 | INFO: Primitives created: 4
+INFO Primitives created: 4
+14:58:41 | INFO: Finished glTF 2.0 export in 0.008900642395019531 s
+INFO Finished glTF 2.0 export in 0.008900642395019531 s
+
+14:58:41 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+14:58:41 | INFO: Extracting primitive: broad_leaf_module
+INFO Extracting primitive: broad_leaf_module
+14:58:41 | INFO: Primitives created: 1
+INFO Primitives created: 1
+14:58:41 | INFO: Finished glTF 2.0 export in 0.0048029422760009766 s
+INFO Finished glTF 2.0 export in 0.0048029422760009766 s
+
+14:58:41 | INFO: Starting glTF 2.0 export
+INFO Starting glTF 2.0 export
+14:58:41 | INFO: Extracting primitive: vine_strand_module
+INFO Extracting primitive: vine_strand_module
+14:58:41 | INFO: Primitives created: 4
+INFO Primitives created: 4
+14:58:41 | INFO: Finished glTF 2.0 export in 0.00874185562133789 s
+INFO Finished glTF 2.0 export in 0.00874185562133789 s
+INFO Saved blend file: F:\Development\Codex-and-Blender\output\tropical\jungle_vegetation_kit.blend
+00:02.672  render           | Saved: 'F:\Development\Codex-and-Blender\output\tropical\render.png'
+INFO Rendered F:\Development\Codex-and-Blender\output\tropical\render.png with HeroCamera.
+00:03.016  render           | Saved: 'F:\Development\Codex-and-Blender\output\tropical\renders\FrontReviewCamera.png'
+INFO Rendered F:\Development\Codex-and-Blender\output\tropical\renders\FrontReviewCamera.png with FrontReviewCamera.
+00:03.297  render           | Saved: 'F:\Development\Codex-and-Blender\output\tropical\renders\SideReviewCamera.png'
+INFO Rendered F:\Development\Codex-and-Blender\output\tropical\renders\SideReviewCamera.png with SideReviewCamera.
+INFO Saved blend file: F:\Development\Codex-and-Blender\output\tropical\jungle_vegetation_kit.blend
+
+Info: Saved as "jungle_vegetation_kit.blend"
+Info: Saved as "jungle_vegetation_kit.blend"
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 02:38:20)
+
+Blender quit

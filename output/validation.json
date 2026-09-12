@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "checks": {
+    "required_objects": [
+      "Ground",
+      "HeroCamera",
+      "FrontReviewCamera",
+      "SideReviewCamera",
+      "Key",
+      "grass_short",
+      "grass_tall",
+      "grass_dry",
+      "grass_wide",
+      "bush_low",
+      "bush_round",
+      "bush_tall",
+      "bush_sage",
+      "cactus_small",
+      "cactus_large",
+      "agave_green",
+      "yucca_gold"
+    ],
+    "active_camera": "HeroCamera",
+    "missing_external_files": [],
+    "render_settings": {
+      "expected": {
+        "engine": "BLENDER_EEVEE",
+        "resolution_x": 1600,
+        "resolution_y": 1100,
+        "resolution_percentage": 100,
+        "image_format": "PNG",
+        "transparent": false,
+        "taa_render_samples": 32
+      },
+      "current": {
+        "engine": "BLENDER_EEVEE",
+        "resolution_x": 1600,
+        "resolution_y": 1100,
+        "resolution_percentage": 100,
+        "image_format": "PNG",
+        "transparent": false,
+        "taa_render_samples": 32
+      }
+    }
+  }
+}

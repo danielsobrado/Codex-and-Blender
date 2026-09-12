@@ -1,0 +1,125 @@
+{
+  "passed": true,
+  "assets": [
+    {
+      "name": "grass_short",
+      "passed": true,
+      "triangles": 1520,
+      "dimensions_m": [
+        0.9542719721794128,
+        0.994854211807251,
+        0.3067781925201416
+      ]
+    },
+    {
+      "name": "grass_tall",
+      "passed": true,
+      "triangles": 1760,
+      "dimensions_m": [
+        1.5106556415557861,
+        1.6841864585876465,
+        0.6691735982894897
+      ]
+    },
+    {
+      "name": "grass_dry",
+      "passed": true,
+      "triangles": 1600,
+      "dimensions_m": [
+        1.4277697801589966,
+        1.6474292278289795,
+        0.4988543391227722
+      ]
+    },
+    {
+      "name": "grass_wide",
+      "passed": true,
+      "triangles": 1120,
+      "dimensions_m": [
+        1.4616546630859375,
+        1.3182364702224731,
+        0.5436382293701172
+      ]
+    },
+    {
+      "name": "bush_low",
+      "passed": true,
+      "triangles": 14256,
+      "dimensions_m": [
+        1.1588006019592285,
+        1.0565786361694336,
+        0.7167685031890869
+      ]
+    },
+    {
+      "name": "bush_round",
+      "passed": true,
+      "triangles": 22176,
+      "dimensions_m": [
+        1.7329139709472656,
+        1.7279424667358398,
+        1.3367273807525635
+      ]
+    },
+    {
+      "name": "bush_tall",
+      "passed": true,
+      "triangles": 23760,
+      "dimensions_m": [
+        2.4251320362091064,
+        2.1094419956207275,
+        1.9446946382522583
+      ]
+    },
+    {
+      "name": "bush_sage",
+      "passed": true,
+      "triangles": 17424,
+      "dimensions_m": [
+        1.3293102979660034,
+        1.470019817352295,
+        0.9732985496520996
+      ]
+    },
+    {
+      "name": "cactus_small",
+      "passed": true,
+      "triangles": 3324,
+      "dimensions_m": [
+        0.4277490973472595,
+        0.4382774233818054,
+        0.7137025594711304
+      ]
+    },
+    {
+      "name": "cactus_large",
+      "passed": true,
+      "triangles": 8424,
+      "dimensions_m": [
+        1.2665393352508545,
+        1.3779327869415283,
+        1.9548927545547485
+      ]
+    },
+    {
+      "name": "agave_green",
+      "passed": true,
+      "triangles": 608,
+      "dimensions_m": [
+        1.6455168724060059,
+        1.6283390522003174,
+        0.675850510597229
+      ]
+    },
+    {
+      "name": "yucca_gold",
+      "passed": true,
+      "triangles": 880,
+      "dimensions_m": [
+        1.766510248184204,
+        2.053795576095581,
+        0.843572735786438
+      ]
+    }
+  ]
+}

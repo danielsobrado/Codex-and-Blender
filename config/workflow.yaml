@@ -4,10 +4,9 @@ blender:
   startup_file: null
   python_entrypoint: blender/entrypoint.py
   python_exit_code: 1
-
 paths:
   output_dir: output
-  blend_file: output/scene.blend
+  blend_file: output/vegetation_kit.blend
   render_file: output/render.png
   render_dir: output/renders
   render_index_file: output/render_index.json
@@ -17,92 +16,275 @@ paths:
   run_report_file: output/run_report.json
   iteration_dir: output/iterations
   best_dir: output/best
-  acceptance_file: config/acceptance.yaml
+  acceptance_file: config/vegetation_acceptance.yaml
   evaluator_file: config/evaluator.yaml
   autonomy_file: config/autonomy.yaml
   resolved_config: output/_resolved_workflow.json
-
 scene:
   managed_collection: AGENT_GENERATED
-  world_color: [0.42, 0.66, 0.95, 1.0]
-  world_strength: 1.25
+  world_color:
+  - 0.65
+  - 0.72
+  - 0.8
+  - 1
+  world_strength: 0.5
   objects:
-    - name: Ground
-      type: cube
-      location: [0.0, 0.0, -0.1]
-      scale: [8.0, 8.0, 0.1]
-      material:
-        base_color: [0.38, 0.58, 0.22, 1.0]
-        roughness: 0.94
-        metallic: 0.0
-    - name: Rock
-      type: rock
-      location: [0.35, 0.5, 1.0]
-      scale: [2.05, 1.75, 2.15]
-      rotation_euler: [0.03, 0.06, 0.12]
-      subdivisions: 3
-      voxel_size: 0.05
-      flatten: 0.94
-      sit_on_ground: true
-      ground_z: -0.42
-      lobes:
-        - radius: 1.0
-          location: [0.0, 0.0, 0.05]
-          scale: [1.22, 1.1, 1.18]
-        - radius: 0.9
-          location: [0.76, 0.2, 0.02]
-          scale: [1.04, 0.96, 1.08]
-      material:
-        base_color: [0.76, 0.74, 0.69, 1.0]
-        roughness: 0.86
-        metallic: 0.0
-        noise_scale: 5.5
-        noise_detail: 4.0
-        noise_strength: 0.14
-
+  - name: Ground
+    type: cube
+    location:
+    - 0.0
+    - 0.0
+    - -0.1
+    scale:
+    - 7
+    - 5
+    - 0.1
+    material:
+      base_color:
+      - 0.055
+      - 0.07
+      - 0.065
+      - 1
+      roughness: 0.94
+      metallic: 0.0
 cameras:
-  - name: HeroCamera
-    role: hero
-    primary: true
-    required: true
-    location: [-0.7, -4.7, 0.7]
-    target: [0.7, 0.5, 1.18]
-    focal_length_mm: 28.0
-  - name: FrontReviewCamera
-    role: front
-    primary: false
-    required: true
-    location: [0.35, -8.2, 1.55]
-    target: [0.35, 0.45, 1.15]
-    focal_length_mm: 40.0
-  - name: SideReviewCamera
-    role: side
-    primary: false
-    required: true
-    location: [7.4, 0.5, 1.55]
-    target: [0.35, 0.45, 1.15]
-    focal_length_mm: 40.0
-
+- name: HeroCamera
+  role: hero
+  primary: true
+  required: true
+  location:
+  - 8
+  - -13
+  - 13
+  target:
+  - 0
+  - 0
+  - 0.35
+  focal_length_mm: 44
+- name: FrontReviewCamera
+  role: front
+  primary: false
+  required: true
+  location:
+  - 0
+  - -16
+  - 11
+  target:
+  - 0
+  - 0
+  - 0.4
+  focal_length_mm: 43
+- name: SideReviewCamera
+  role: side
+  primary: false
+  required: true
+  location:
+  - 13
+  - 0
+  - 12
+  target:
+  - 0
+  - 0
+  - 0.4
+  focal_length_mm: 40
 lights:
-  - name: Key
-    type: AREA
-    location: [-5.0, -2.5, 7.5]
-    target: [0.4, 0.4, 1.0]
-    energy: 1800.0
-    size: 3.2
-  - name: Fill
-    type: AREA
-    location: [4.5, -2.0, 3.5]
-    target: [0.4, 0.4, 1.0]
-    energy: 280.0
-    size: 4.0
-
+- name: Key
+  type: AREA
+  location:
+  - -3
+  - -4
+  - 10
+  target:
+  - 0.4
+  - 0.4
+  - 1.0
+  energy: 2300
+  size: 7
+- name: Fill
+  type: AREA
+  location:
+  - 4.5
+  - -2.0
+  - 3.5
+  target:
+  - 0.4
+  - 0.4
+  - 1.0
+  energy: 280.0
+  size: 4.0
 render:
   engine: BLENDER_EEVEE
-  resolution_x: 512
-  resolution_y: 512
+  resolution_x: 1600
+  resolution_y: 1100
   resolution_percentage: 100
-  taa_render_samples: 16
+  taa_render_samples: 32
   image_format: PNG
   transparent: false
   render_review_cameras: true
+vegetation:
+  spacing: 2.7
+  palette:
+    gold:
+    - 0.42
+    - 0.34
+    - 0.07
+    straw:
+    - 0.62
+    - 0.49
+    - 0.14
+    olive:
+    - 0.21
+    - 0.25
+    - 0.045
+    leaf:
+    - 0.32
+    - 0.37
+    - 0.065
+    dark_leaf:
+    - 0.11
+    - 0.17
+    - 0.035
+    sage:
+    - 0.19
+    - 0.28
+    - 0.15
+    bark:
+    - 0.12
+    - 0.075
+    - 0.035
+    cactus:
+    - 0.105
+    - 0.2
+    - 0.1
+    spine:
+    - 0.62
+    - 0.58
+    - 0.36
+  assets:
+  - name: grass_short
+    kind: grass
+    height: 0.35
+    count: 95
+    radius: 0.3
+    width: 0.035
+    materials:
+    - 0
+    - 1
+    - 2
+    seed: 100
+  - name: grass_tall
+    kind: grass
+    height: 0.8
+    count: 110
+    radius: 0.32
+    width: 0.045
+    materials:
+    - 0
+    - 1
+    - 2
+    seed: 101
+  - name: grass_dry
+    kind: grass
+    height: 0.6
+    count: 100
+    radius: 0.38
+    width: 0.035
+    materials:
+    - 0
+    - 1
+    seed: 102
+  - name: grass_wide
+    kind: grass
+    height: 0.65
+    count: 70
+    radius: 0.35
+    width: 0.09
+    materials:
+    - 0
+    - 2
+    - 3
+    seed: 103
+  - name: bush_low
+    kind: bush
+    height: 0.75
+    count: 18
+    radius: 0.45
+    width: 0
+    materials:
+    - 2
+    - 3
+    - 4
+    seed: 104
+  - name: bush_round
+    kind: bush
+    height: 1.35
+    count: 28
+    radius: 0.6
+    width: 0
+    materials:
+    - 2
+    - 3
+    - 4
+    seed: 105
+  - name: bush_tall
+    kind: bush
+    height: 1.95
+    count: 30
+    radius: 0.66
+    width: 0
+    materials:
+    - 2
+    - 3
+    - 4
+    seed: 106
+  - name: bush_sage
+    kind: bush
+    height: 0.95
+    count: 22
+    radius: 0.55
+    width: 0
+    materials:
+    - 4
+    - 5
+    seed: 107
+  - name: cactus_small
+    kind: cactus
+    height: 0.8
+    count: 5
+    radius: 0
+    width: 0
+    materials:
+    - 5
+    - 7
+    seed: 108
+  - name: cactus_large
+    kind: cactus
+    height: 1.65
+    count: 9
+    radius: 0
+    width: 0
+    materials:
+    - 5
+    - 7
+    seed: 109
+  - name: agave_green
+    kind: rosette
+    height: 0.95
+    count: 38
+    radius: 0
+    width: 0.11
+    materials:
+    - 2
+    - 5
+    seed: 110
+  - name: yucca_gold
+    kind: rosette
+    height: 1.1
+    count: 55
+    radius: 0
+    width: 0.05
+    materials:
+    - 0
+    - 2
+    - 3
+    seed: 111

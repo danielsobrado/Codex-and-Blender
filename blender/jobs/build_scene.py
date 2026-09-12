@@ -80,6 +80,12 @@ def build_scene(context: JobContext) -> None:
     collection = replace_collection(scene_spec["managed_collection"])
     configure_world(context)
     build_objects(context, collection)
+    if "forest" in context.config:
+        from jobs.forest import build_forest
+        build_forest(context, collection)
+    if "vegetation" in context.config:
+        from jobs.vegetation import build_vegetation
+        build_vegetation(context, collection)
     build_cameras(context, collection)
     build_lights(context, collection)
     configure_render(context)

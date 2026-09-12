@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "passed": true,
+  "score": null,
+  "deterministic": {
+    "passed": true,
+    "errors": [],
+    "views": [
+      {
+        "name": "HeroCamera",
+        "role": "hero",
+        "primary": true,
+        "required": true,
+        "path": "F:\\Development\\Codex-and-Blender\\output\\render.png",
+        "metrics": {
+          "width": 512,
+          "height": 512,
+          "luminance_mean": 194.3434,
+          "luminance_stddev": 14.4334,
+          "dark_fraction": 0.0,
+          "bright_fraction": 0.0,
+          "file_bytes": 269503
+        }
+      },
+      {
+        "name": "FrontReviewCamera",
+        "role": "front",
+        "primary": false,
+        "required": true,
+        "path": "F:\\Development\\Codex-and-Blender\\output\\renders\\FrontReviewCamera.png",
+        "metrics": {
+          "width": 512,
+          "height": 512,
+          "luminance_mean": 195.3098,
+          "luminance_stddev": 12.6054,
+          "dark_fraction": 0.0,
+          "bright_fraction": 0.0,
+          "file_bytes": 269548
+        }
+      },
+      {
+        "name": "SideReviewCamera",
+        "role": "side",
+        "primary": false,
+        "required": true,
+        "path": "F:\\Development\\Codex-and-Blender\\output\\renders\\SideReviewCamera.png",
+        "metrics": {
+          "width": 512,
+          "height": 512,
+          "luminance_mean": 188.2397,
+          "luminance_stddev": 14.8201,
+          "dark_fraction": 0.0,
+          "bright_fraction": 0.0,
+          "file_bytes": 289885
+        }
+      }
+    ]
+  },
+  "reference_regression": {
+    "enabled": false,
+    "mode": "report_only",
+    "passed": true,
+    "thresholds_passed": null,
+    "views": []
+  },
+  "model_review": null
+}

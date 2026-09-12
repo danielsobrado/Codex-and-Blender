@@ -1,0 +1,31 @@
+structural:
+  required_objects:
+  - ForestFloor
+  - ForegroundPalm_0
+  - ForegroundPalm_1
+  - ForegroundPalm_2
+  - HeroCamera
+  - FrontReviewCamera
+  - SideReviewCamera
+  - Key
+  - ForestPath
+  require_active_camera: true
+  max_missing_external_files: 0
+  require_managed_collection: true
+visual:
+  required_views:
+  - name: HeroCamera
+    role: hero
+    primary: true
+  - name: FrontReviewCamera
+    role: front
+    primary: false
+  - name: SideReviewCamera
+    role: side
+    primary: false
+  ssim_min: null
+  lpips_max: null
+  semantic_similarity_min: null
+iteration:
+  max_iterations: 3
+  require_structural_pass: true

@@ -1,0 +1,108 @@
+blender:
+  executable_env: BLENDER_BIN
+  executable_default: blender
+  startup_file: null
+  python_entrypoint: blender/entrypoint.py
+  python_exit_code: 1
+
+paths:
+  output_dir: output
+  blend_file: output/scene.blend
+  render_file: output/render.png
+  render_dir: output/renders
+  render_index_file: output/render_index.json
+  state_file: output/scene_state.json
+  validation_file: output/validation.json
+  evaluation_file: output/visual_evaluation.json
+  run_report_file: output/run_report.json
+  iteration_dir: output/iterations
+  best_dir: output/best
+  acceptance_file: config/acceptance.yaml
+  evaluator_file: config/evaluator.yaml
+  autonomy_file: config/autonomy.yaml
+  resolved_config: output/_resolved_workflow.json
+
+scene:
+  managed_collection: AGENT_GENERATED
+  world_color: [0.42, 0.66, 0.95, 1.0]
+  world_strength: 1.25
+  objects:
+    - name: Ground
+      type: cube
+      location: [0.0, 0.0, -0.1]
+      scale: [8.0, 8.0, 0.1]
+      material:
+        base_color: [0.38, 0.58, 0.22, 1.0]
+        roughness: 0.94
+        metallic: 0.0
+    - name: Rock
+      type: rock
+      location: [0.35, 0.5, 1.0]
+      scale: [2.05, 1.75, 2.15]
+      rotation_euler: [0.03, 0.06, 0.12]
+      subdivisions: 3
+      voxel_size: 0.05
+      flatten: 0.94
+      sit_on_ground: true
+      ground_z: -0.42
+      lobes:
+        - radius: 1.0
+          location: [0.0, 0.0, 0.05]
+          scale: [1.22, 1.1, 1.18]
+        - radius: 0.9
+          location: [0.76, 0.2, 0.02]
+          scale: [1.04, 0.96, 1.08]
+      material:
+        base_color: [0.76, 0.74, 0.69, 1.0]
+        roughness: 0.86
+        metallic: 0.0
+        noise_scale: 5.5
+        noise_detail: 4.0
+        noise_strength: 0.14
+
+cameras:
+  - name: HeroCamera
+    role: hero
+    primary: true
+    required: true
+    location: [-0.7, -4.7, 0.7]
+    target: [0.7, 0.5, 1.18]
+    focal_length_mm: 28.0
+  - name: FrontReviewCamera
+    role: front
+    primary: false
+    required: true
+    location: [0.35, -8.2, 1.55]
+    target: [0.35, 0.45, 1.15]
+    focal_length_mm: 40.0
+  - name: SideReviewCamera
+    role: side
+    primary: false
+    required: true
+    location: [7.4, 0.5, 1.55]
+    target: [0.35, 0.45, 1.15]
+    focal_length_mm: 40.0
+
+lights:
+  - name: Key
+    type: AREA
+    location: [-5.0, -2.5, 7.5]
+    target: [0.4, 0.4, 1.0]
+    energy: 1800.0
+    size: 3.2
+  - name: Fill
+    type: AREA
+    location: [4.5, -2.0, 3.5]
+    target: [0.4, 0.4, 1.0]
+    energy: 280.0
+    size: 4.0
+
+render:
+  engine: BLENDER_EEVEE
+  resolution_x: 512
+  resolution_y: 512
+  resolution_percentage: 100
+  taa_render_samples: 16
+  image_format: PNG
+  transparent: false
+  render_review_cameras: true

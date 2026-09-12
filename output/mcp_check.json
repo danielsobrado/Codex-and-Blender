@@ -1,0 +1,171 @@
+{
+  "tools": [
+    "execute_blender_code",
+    "execute_blender_code_for_cli",
+    "get_blendfile_summary_datablocks",
+    "get_blendfile_summary_datablocks_for_cli",
+    "get_blendfile_summary_missing_files",
+    "get_blendfile_summary_missing_files_for_cli",
+    "get_blendfile_summary_of_linked_libraries",
+    "get_blendfile_summary_of_linked_libraries_for_cli",
+    "get_blendfile_summary_path_info",
+    "get_blendfile_summary_path_info_for_cli",
+    "get_blendfile_summary_usage_guess",
+    "get_blendfile_summary_usage_guess_for_cli",
+    "get_object_detail_summary",
+    "get_objects_summary",
+    "get_python_api_docs",
+    "get_screenshot_of_area_as_image",
+    "get_screenshot_of_window_as_image",
+    "get_screenshot_of_window_as_json",
+    "jump_to_tab_by_name",
+    "jump_to_tab_by_space_type",
+    "jump_to_view3d_object_by_name",
+    "jump_to_view3d_object_data_by_name",
+    "render_thumbnail_to_path",
+    "render_viewport_to_path",
+    "search_api_docs",
+    "search_manual_docs"
+  ],
+  "get_blendfile_summary_path_info": {
+    "meta": null,
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"status\": \"ok\",\n  \"result\": {\n    \"status\": \"ok\",\n    \"filepath\": \"F:\\\\Development\\\\Codex-and-Blender\\\\output\\\\scene.blend\",\n    \"is_saved\": true,\n    \"is_dirty\": true,\n    \"age_seconds\": 11561.1,\n    \"file_size_bytes\": 455608,\n    \"backups\": [\n      {\n        \"path\": \"F:\\\\Development\\\\Codex-and-Blender\\\\output\\\\scene.blend1\",\n        \"age_seconds\": 11562.7,\n        \"size_bytes\": 455514\n      }\n    ]\n  }\n}",
+        "annotations": null,
+        "meta": null
+      }
+    ],
+    "structuredContent": {
+      "status": "ok",
+      "result": {
+        "status": "ok",
+        "filepath": "F:\\Development\\Codex-and-Blender\\output\\scene.blend",
+        "is_saved": true,
+        "is_dirty": true,
+        "age_seconds": 11561.1,
+        "file_size_bytes": 455608,
+        "backups": [
+          {
+            "path": "F:\\Development\\Codex-and-Blender\\output\\scene.blend1",
+            "age_seconds": 11562.7,
+            "size_bytes": 455514
+          }
+        ]
+      }
+    },
+    "isError": false
+  },
+  "get_objects_summary": {
+    "meta": null,
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"status\": \"ok\",\n  \"result\": {\n    \"status\": \"ok\",\n    \"scene_name\": \"Scene\",\n    \"active_workspace\": \"Layout\",\n    \"active_object\": \"Fill\",\n    \"object_mode\": \"OBJECT\",\n    \"camera_object\": \"HeroCamera\",\n    \"collections\": [\n      {\n        \"name\": \"Scene Collection\",\n        \"exclude\": false,\n        \"hide_viewport\": false,\n        \"objects\": [\n          {\n            \"name\": \"Fill\",\n            \"type\": \"LIGHT\",\n            \"parent\": null,\n            \"data_name\": \"Fill_Data\",\n            \"selected\": false,\n            \"visible\": true,\n            \"hide_viewport\": false\n          },\n          {\n            \"name\": \"FrontReviewCamera\",\n            \"type\": \"CAMERA\",\n            \"parent\": null,\n            \"data_name\": \"FrontReviewCamera_Data\",\n            \"selected\": false,\n            \"visible\": true,\n            \"hide_viewport\": false\n          },\n          {\n            \"name\": \"Ground\",\n            \"type\": \"MESH\",\n            \"parent\": null,\n            \"data_name\": \"Cube.001\",\n            \"selected\": false,\n            \"visible\": true,\n            \"hide_viewport\": false\n          },\n          {\n            \"name\": \"HeroCamera\",\n            \"type\": \"CAMERA\",\n            \"parent\": null,\n            \"data_name\": \"HeroCamera_Data\",\n            \"selected\": false,\n            \"visible\": true,\n            \"hide_viewport\": false\n          },\n          {\n            \"name\": \"Key\",\n            \"type\": \"LIGHT\",\n            \"parent\": null,\n            \"data_name\": \"Key_Data\",\n            \"selected\": false,\n            \"visible\": true,\n            \"hide_viewport\": false\n          },\n          {\n            \"name\": \"Rock\",\n            \"type\": \"MESH\",\n            \"parent\": null,\n            \"data_name\": \"Icosphere\",\n            \"selected\": false,\n            \"visible\": true,\n            \"hide_viewport\": false\n          },\n          {\n            \"name\": \"SideReviewCamera\",\n            \"type\": \"CAMERA\",\n            \"parent\": null,\n            \"data_name\": \"SideReviewCamera_Data\",\n            \"selected\": false,\n            \"visible\": true,\n            \"hide_viewport\": false\n          }\n        ],\n        \"children\": [\n          {\n            \"name\": \"Collection\",\n            \"exclude\": false,\n            \"hide_viewport\": false,\n            \"objects\": [],\n            \"children\": []\n          },\n          {\n            \"name\": \"Collection 3\",\n            \"exclude\": false,\n            \"hide_viewport\": false,\n            \"objects\": [],\n            \"children\": []\n          }\n        ]\n      }\n    ]\n  }\n}",
+        "annotations": null,
+        "meta": null
+      }
+    ],
+    "structuredContent": {
+      "status": "ok",
+      "result": {
+        "status": "ok",
+        "scene_name": "Scene",
+        "active_workspace": "Layout",
+        "active_object": "Fill",
+        "object_mode": "OBJECT",
+        "camera_object": "HeroCamera",
+        "collections": [
+          {
+            "name": "Scene Collection",
+            "exclude": false,
+            "hide_viewport": false,
+            "objects": [
+              {
+                "name": "Fill",
+                "type": "LIGHT",
+                "parent": null,
+                "data_name": "Fill_Data",
+                "selected": false,
+                "visible": true,
+                "hide_viewport": false
+              },
+              {
+                "name": "FrontReviewCamera",
+                "type": "CAMERA",
+                "parent": null,
+                "data_name": "FrontReviewCamera_Data",
+                "selected": false,
+                "visible": true,
+                "hide_viewport": false
+              },
+              {
+                "name": "Ground",
+                "type": "MESH",
+                "parent": null,
+                "data_name": "Cube.001",
+                "selected": false,
+                "visible": true,
+                "hide_viewport": false
+              },
+              {
+                "name": "HeroCamera",
+                "type": "CAMERA",
+                "parent": null,
+                "data_name": "HeroCamera_Data",
+                "selected": false,
+                "visible": true,
+                "hide_viewport": false
+              },
+              {
+                "name": "Key",
+                "type": "LIGHT",
+                "parent": null,
+                "data_name": "Key_Data",
+                "selected": false,
+                "visible": true,
+                "hide_viewport": false
+              },
+              {
+                "name": "Rock",
+                "type": "MESH",
+                "parent": null,
+                "data_name": "Icosphere",
+                "selected": false,
+                "visible": true,
+                "hide_viewport": false
+              },
+              {
+                "name": "SideReviewCamera",
+                "type": "CAMERA",
+                "parent": null,
+                "data_name": "SideReviewCamera_Data",
+                "selected": false,
+                "visible": true,
+                "hide_viewport": false
+              }
+            ],
+            "children": [
+              {
+                "name": "Collection",
+                "exclude": false,
+                "hide_viewport": false,
+                "objects": [],
+                "children": []
+              },
+              {
+                "name": "Collection 3",
+                "exclude": false,
+                "hide_viewport": false,
+                "objects": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "isError": false
+  }
+}

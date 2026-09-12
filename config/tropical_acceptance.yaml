@@ -1,0 +1,43 @@
+structural:
+  required_objects:
+  - Ground
+  - HeroCamera
+  - FrontReviewCamera
+  - SideReviewCamera
+  - Key
+  - jungle_grass_short
+  - jungle_grass_tall
+  - jungle_grass_broad
+  - jungle_groundcover
+  - fern_small
+  - fern_large
+  - elephant_ear
+  - banana_understory
+  - palm_young
+  - palm_tall
+  - jungle_canopy_tree
+  - hanging_vine_cluster
+  - palm_frond_module
+  - fern_frond_module
+  - broad_leaf_module
+  - vine_strand_module
+  require_active_camera: true
+  max_missing_external_files: 0
+  require_managed_collection: true
+visual:
+  required_views:
+  - name: HeroCamera
+    role: hero
+    primary: true
+  - name: FrontReviewCamera
+    role: front
+    primary: false
+  - name: SideReviewCamera
+    role: side
+    primary: false
+  ssim_min: null
+  lpips_max: null
+  semantic_similarity_min: null
+iteration:
+  max_iterations: 3
+  require_structural_pass: true

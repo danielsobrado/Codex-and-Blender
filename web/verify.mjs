@@ -1,0 +1,11 @@
+import {chromium} from '@playwright/test';
+import {writeFile} from 'node:fs/promises';
+const browser=await chromium.launch({headless:true});
+const page=await browser.newPage({viewport:{width:1600,height:900}});const errors=[];
+page.on('pageerror',e=>errors.push(e.message));
+page.on('response',r=>{if(r.status()>=400&&!r.url().endsWith('favicon.ico'))errors.push(`${r.status()} ${r.url()}`);});
+await page.goto('http://127.0.0.1:4173');await page.waitForFunction(()=>window.forestReady,{timeout:120000});await page.waitForTimeout(5000);
+await page.screenshot({path:'../output/forest/threejs_preview.png'});
+await page.locator('#alternate').click();await page.waitForTimeout(2000);await page.screenshot({path:'../output/forest/threejs_interior.png'});
+await page.locator('#wind').click();if(await page.locator('#wind').textContent()!=='Wind: off')errors.push('Wind control failed');
+const stats=await page.evaluate(()=>window.forestStats);if(!stats||stats.calls>100)errors.push('Instancing draw-call budget exceeded');await writeFile('../output/forest/browser_validation.json',JSON.stringify({passed:errors.length===0,errors,stats},null,2));await browser.close();if(errors.length)throw Error(errors.join('\n'));console.log(stats);

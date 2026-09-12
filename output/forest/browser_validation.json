@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "errors": [],
+  "stats": {
+    "fps": 1,
+    "calls": 53,
+    "triangles": 3234840
+  }
+}

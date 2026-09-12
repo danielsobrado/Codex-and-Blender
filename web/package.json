@@ -1,0 +1,1 @@
+{"name":"coastal-jungle-preview","private":true,"type":"module","scripts":{"dev":"node server.mjs","test":"node verify.mjs"},"dependencies":{"three":"0.186.0"},"devDependencies":{"@playwright/test":"1.58.2"}}

@@ -1,0 +1,409 @@
+blender:
+  executable_env: BLENDER_BIN
+  executable_default: blender
+  startup_file: null
+  python_entrypoint: blender/entrypoint.py
+  python_exit_code: 1
+paths:
+  output_dir: output/tropical
+  blend_file: output/tropical/jungle_vegetation_kit.blend
+  render_file: output/tropical/render.png
+  render_dir: output/tropical/renders
+  render_index_file: output/tropical/render_index.json
+  state_file: output/tropical/scene_state.json
+  validation_file: output/tropical/validation.json
+  evaluation_file: output/tropical/visual_evaluation.json
+  run_report_file: output/tropical/run_report.json
+  iteration_dir: output/tropical/iterations
+  best_dir: output/tropical/best
+  acceptance_file: config/tropical_acceptance.yaml
+  evaluator_file: config/evaluator.yaml
+  autonomy_file: config/autonomy.yaml
+  resolved_config: output/tropical/_resolved_workflow.json
+scene:
+  managed_collection: AGENT_GENERATED
+  world_color:
+  - 0.65
+  - 0.72
+  - 0.8
+  - 1
+  world_strength: 0.5
+  objects:
+  - name: Ground
+    type: cube
+    location:
+    - 0.0
+    - 0.0
+    - -0.1
+    scale:
+    - 12
+    - 9
+    - 0.1
+    material:
+      base_color:
+      - 0.055
+      - 0.07
+      - 0.065
+      - 1
+      roughness: 0.94
+      metallic: 0.0
+cameras:
+- name: HeroCamera
+  role: hero
+  primary: true
+  required: true
+  location:
+  - 17
+  - -28
+  - 24
+  target:
+  - 0
+  - 1
+  - 2
+  focal_length_mm: 46
+- name: FrontReviewCamera
+  role: front
+  primary: false
+  required: true
+  location:
+  - 0
+  - -18
+  - 15
+  target:
+  - 0
+  - -3
+  - 0.5
+  focal_length_mm: 38
+- name: SideReviewCamera
+  role: side
+  primary: false
+  required: true
+  location:
+  - 17
+  - -19
+  - 14
+  target:
+  - 1
+  - 4
+  - 3.5
+  focal_length_mm: 45
+lights:
+- name: Key
+  type: AREA
+  location:
+  - -5
+  - -5
+  - 15
+  target:
+  - 0.4
+  - 0.4
+  - 1.0
+  energy: 4500
+  size: 9
+- name: Fill
+  type: AREA
+  location:
+  - 8
+  - 3
+  - 10
+  target:
+  - 0.4
+  - 0.4
+  - 1.0
+  energy: 2300
+  size: 8
+render:
+  engine: BLENDER_EEVEE
+  resolution_x: 1800
+  resolution_y: 1200
+  resolution_percentage: 100
+  taa_render_samples: 32
+  image_format: PNG
+  transparent: false
+  render_review_cameras: true
+vegetation:
+  spacing: 3
+  label_size: 0.16
+  palette:
+    grass_lime:
+    - 0.12
+    - 0.23
+    - 0.024
+    grass_sunlit:
+    - 0.24
+    - 0.34
+    - 0.05
+    stems:
+    - 0.045
+    - 0.14
+    - 0.022
+    leaf_green:
+    - 0.055
+    - 0.2
+    - 0.035
+    deep_green:
+    - 0.021
+    - 0.095
+    - 0.028
+    leaf_jade:
+    - 0.065
+    - 0.19
+    - 0.09
+    tropical_bark:
+    - 0.18
+    - 0.145
+    - 0.09
+    young_leaf:
+    - 0.18
+    - 0.28
+    - 0.045
+    palm_rings:
+    - 0.27
+    - 0.265
+    - 0.18
+  assets:
+  - name: jungle_grass_short
+    kind: grass
+    height: 0.45
+    count: 110
+    radius: 0.36
+    width: 0.035
+    materials:
+    - 0
+    - 1
+    - 2
+    seed: 201
+    display_location:
+    - -6
+    - -4
+    - 0
+  - name: jungle_grass_tall
+    kind: grass
+    height: 1.0
+    count: 140
+    radius: 0.42
+    width: 0.045
+    materials:
+    - 0
+    - 1
+    - 2
+    seed: 202
+    display_location:
+    - -2
+    - -4
+    - 0
+  - name: jungle_grass_broad
+    kind: grass
+    height: 0.8
+    count: 85
+    radius: 0.4
+    width: 0.085
+    materials:
+    - 0
+    - 1
+    - 3
+    seed: 203
+    display_location:
+    - 2
+    - -4
+    - 0
+  - name: jungle_groundcover
+    kind: broadleaf
+    height: 0.45
+    count: 18
+    leaf_width: 0.55
+    materials:
+    - 3
+    - 4
+    - 7
+    seed: 204
+    display_location:
+    - 6
+    - -4
+    - 0
+  - name: fern_small
+    kind: fern
+    height: 0.7
+    count: 9
+    pairs: 14
+    materials:
+    - 0
+    - 3
+    - 7
+    seed: 205
+    display_location:
+    - -6
+    - -1
+    - 0
+  - name: fern_large
+    kind: fern
+    height: 1.25
+    count: 12
+    pairs: 20
+    materials:
+    - 3
+    - 4
+    - 5
+    seed: 206
+    display_location:
+    - -2
+    - -1
+    - 0
+  - name: elephant_ear
+    kind: broadleaf
+    height: 1.5
+    count: 9
+    leaf_width: 0.65
+    materials:
+    - 3
+    - 4
+    - 5
+    seed: 207
+    display_location:
+    - 2
+    - -1
+    - 0
+  - name: banana_understory
+    kind: broadleaf
+    height: 2.4
+    count: 10
+    leaf_width: 0.3
+    materials:
+    - 3
+    - 5
+    - 7
+    seed: 208
+    display_location:
+    - 6
+    - -1
+    - 0
+  - name: palm_young
+    kind: palm
+    height: 1.8
+    trunk_radius: 0.12
+    lean: 0.08
+    segments: 14
+    count: 11
+    pairs: 24
+    crown_radius: 1.8
+    materials:
+    - 0
+    - 3
+    - 7
+    seed: 209
+    display_location:
+    - -7
+    - 4
+    - 0
+    label_offset: 1.9
+  - name: palm_tall
+    kind: palm
+    height: 7.0
+    trunk_radius: 0.24
+    lean: 0.6
+    segments: 36
+    count: 15
+    pairs: 32
+    crown_radius: 3.0
+    materials:
+    - 3
+    - 4
+    - 7
+    seed: 210
+    display_location:
+    - -2.5
+    - 4
+    - 0
+    label_offset: 1.9
+  - name: jungle_canopy_tree
+    kind: tree
+    height: 7.4
+    trunk_radius: 0.32
+    lean: 0.2
+    segments: 12
+    count: 30
+    twigs: 9
+    crown_radius: 2.5
+    materials:
+    - 3
+    - 4
+    - 5
+    seed: 211
+    display_location:
+    - 4.5
+    - 5
+    - 0
+    label_offset: 2.9
+  - name: hanging_vine_cluster
+    kind: vine
+    height: 3.2
+    count: 6
+    width: 0.22
+    segments: 26
+    materials:
+    - 3
+    - 4
+    - 5
+    seed: 212
+    display_location:
+    - 9
+    - 3
+    - 0
+    label_offset: 1.5
+  - name: palm_frond_module
+    kind: frond
+    height: 2.5
+    rise: 0.55
+    pairs: 32
+    leaflet_width: 0.27
+    materials:
+    - 3
+    - 4
+    - 7
+    seed: 213
+    display_location:
+    - -7
+    - -7
+    - 0
+  - name: fern_frond_module
+    kind: frond
+    height: 1.2
+    rise: 0.6
+    pairs: 20
+    leaflet_width: 0.22
+    materials:
+    - 3
+    - 5
+    - 7
+    seed: 214
+    display_location:
+    - -2
+    - -7
+    - 0
+  - name: broad_leaf_module
+    kind: leaf
+    height: 1.0
+    width: 0.5
+    materials:
+    - 3
+    - 5
+    seed: 215
+    display_location:
+    - 2
+    - -7
+    - 0
+  - name: vine_strand_module
+    kind: vine
+    height: 2.0
+    count: 1
+    width: 0.2
+    segments: 20
+    materials:
+    - 3
+    - 4
+    - 5
+    seed: 216
+    display_location:
+    - 6
+    - -7
+    - 0

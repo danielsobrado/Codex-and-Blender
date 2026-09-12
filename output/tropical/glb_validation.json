@@ -1,0 +1,165 @@
+{
+  "passed": true,
+  "assets": [
+    {
+      "name": "jungle_grass_short",
+      "passed": true,
+      "triangles": 1760,
+      "dimensions_m": [
+        1.1542885303497314,
+        1.210514783859253,
+        0.3836561143398285
+      ]
+    },
+    {
+      "name": "jungle_grass_tall",
+      "passed": true,
+      "triangles": 2240,
+      "dimensions_m": [
+        2.2975361347198486,
+        2.110236644744873,
+        0.8710921406745911
+      ]
+    },
+    {
+      "name": "jungle_grass_broad",
+      "passed": true,
+      "triangles": 1360,
+      "dimensions_m": [
+        2.072338104248047,
+        1.84319007396698,
+        0.6863014698028564
+      ]
+    },
+    {
+      "name": "jungle_groundcover",
+      "passed": true,
+      "triangles": 648,
+      "dimensions_m": [
+        0.8955873250961304,
+        0.802964985370636,
+        0.34421542286872864
+      ]
+    },
+    {
+      "name": "fern_small",
+      "passed": true,
+      "triangles": 6048,
+      "dimensions_m": [
+        1.3290475606918335,
+        1.3832182884216309,
+        0.17840556800365448
+      ]
+    },
+    {
+      "name": "fern_large",
+      "passed": true,
+      "triangles": 11520,
+      "dimensions_m": [
+        2.328683853149414,
+        2.2646877765655518,
+        0.2979598641395569
+      ]
+    },
+    {
+      "name": "elephant_ear",
+      "passed": true,
+      "triangles": 324,
+      "dimensions_m": [
+        2.205254077911377,
+        2.2112679481506348,
+        0.992817759513855
+      ]
+    },
+    {
+      "name": "banana_understory",
+      "passed": true,
+      "triangles": 360,
+      "dimensions_m": [
+        3.5206520557403564,
+        3.4289512634277344,
+        1.834163784980774
+      ]
+    },
+    {
+      "name": "palm_young",
+      "passed": true,
+      "triangles": 13904,
+      "dimensions_m": [
+        3.557643175125122,
+        3.314058303833008,
+        2.1169514656066895
+      ]
+    },
+    {
+      "name": "palm_tall",
+      "passed": true,
+      "triangles": 26208,
+      "dimensions_m": [
+        5.842362403869629,
+        5.910811424255371,
+        7.663049221038818
+      ]
+    },
+    {
+      "name": "jungle_canopy_tree",
+      "passed": true,
+      "triangles": 44712,
+      "dimensions_m": [
+        5.695073127746582,
+        6.17770528793335,
+        7.541594982147217
+      ]
+    },
+    {
+      "name": "hanging_vine_cluster",
+      "passed": true,
+      "triangles": 4992,
+      "dimensions_m": [
+        1.755920648574829,
+        0.29045623540878296,
+        3.205535411834717
+      ]
+    },
+    {
+      "name": "palm_frond_module",
+      "passed": true,
+      "triangles": 1536,
+      "dimensions_m": [
+        2.521362781524658,
+        1.3947205543518066,
+        0.4120575785636902
+      ]
+    },
+    {
+      "name": "fern_frond_module",
+      "passed": true,
+      "triangles": 960,
+      "dimensions_m": [
+        1.2091069221496582,
+        0.5454907417297363,
+        0.23294156789779663
+      ]
+    },
+    {
+      "name": "broad_leaf_module",
+      "passed": true,
+      "triangles": 16,
+      "dimensions_m": [
+        0.9578262567520142,
+        0.5,
+        0.19207830727100372
+      ]
+    },
+    {
+      "name": "vine_strand_module",
+      "passed": true,
+      "triangles": 640,
+      "dimensions_m": [
+        0.6525377631187439,
+        0.2904721200466156,
+        1.9909926652908325
+      ]
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "units": "meters",
+  "pivot": "ground center",
+  "materials": "embedded glTF PBR, double sided; no external textures",
+  "assets": [
+    {
+      "name": "grass_short",
+      "file": "grass_short.glb",
+      "dimensions_m": [
+        0.9542719721794128,
+        0.994854211807251,
+        0.3067781925201416
+      ],
+      "triangles": 1520,
+      "bytes": 109460,
+      "seed": 100
+    },
+    {
+      "name": "grass_tall",
+      "file": "grass_tall.glb",
+      "dimensions_m": [
+        1.5106556415557861,
+        1.6841864585876465,
+        0.6691735982894897
+      ],
+      "triangles": 1760,
+      "bytes": 126260,
+      "seed": 101
+    },
+    {
+      "name": "grass_dry",
+      "file": "grass_dry.glb",
+      "dimensions_m": [
+        1.4277697801589966,
+        1.6474292278289795,
+        0.4988543391227722
+      ],
+      "triangles": 1600,
+      "bytes": 114152,
+      "seed": 102
+    },
+    {
+      "name": "grass_wide",
+      "file": "grass_wide.glb",
+      "dimensions_m": [
+        1.4616546630859375,
+        1.3182364702224731,
+        0.5436382293701172
+      ],
+      "triangles": 1120,
+      "bytes": 81440,
+      "seed": 103
+    },
+    {
+      "name": "bush_low",
+      "file": "bush_low.glb",
+      "dimensions_m": [
+        1.1588006019592285,
+        1.0565786361694336,
+        0.7167685031890869
+      ],
+      "triangles": 14256,
+      "bytes": 991640,
+      "seed": 104
+    },
+    {
+      "name": "bush_round",
+      "file": "bush_round.glb",
+      "dimensions_m": [
+        1.7329139709472656,
+        1.7279424667358398,
+        1.3367273807525635
+      ],
+      "triangles": 22176,
+      "bytes": 1540300,
+      "seed": 105
+    },
+    {
+      "name": "bush_tall",
+      "file": "bush_tall.glb",
+      "dimensions_m": [
+        2.4251320362091064,
+        2.1094419956207275,
+        1.9446946382522583
+      ],
+      "triangles": 23760,
+      "bytes": 1650028,
+      "seed": 106
+    },
+    {
+      "name": "bush_sage",
+      "file": "bush_sage.glb",
+      "dimensions_m": [
+        1.3293102979660034,
+        1.470019817352295,
+        0.9732985496520996
+      ],
+      "triangles": 17424,
+      "bytes": 1210172,
+      "seed": 107
+    },
+    {
+      "name": "cactus_small",
+      "file": "cactus_small.glb",
+      "dimensions_m": [
+        0.4277490973472595,
+        0.4382774233818054,
+        0.7137025594711304
+      ],
+      "triangles": 3324,
+      "bytes": 236552,
+      "seed": 108
+    },
+    {
+      "name": "cactus_large",
+      "file": "cactus_large.glb",
+      "dimensions_m": [
+        1.2665393352508545,
+        1.3779327869415283,
+        1.9548927545547485
+      ],
+      "triangles": 8424,
+      "bytes": 577292,
+      "seed": 109
+    },
+    {
+      "name": "agave_green",
+      "file": "agave_green.glb",
+      "dimensions_m": [
+        1.6455168724060059,
+        1.6283390522003174,
+        0.675850510597229
+      ],
+      "triangles": 608,
+      "bytes": 44684,
+      "seed": 110
+    },
+    {
+      "name": "yucca_gold",
+      "file": "yucca_gold.glb",
+      "dimensions_m": [
+        1.766510248184204,
+        2.053795576095581,
+        0.843572735786438
+      ],
+      "triangles": 880,
+      "bytes": 64636,
+      "seed": 111
+    }
+  ]
+}
