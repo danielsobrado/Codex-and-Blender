@@ -26,6 +26,20 @@ For every meaningful scene change:
 
 Never claim completion solely because an interactive Blender viewport looks correct.
 
+## Autonomous correction worker mode
+
+When `scripts/iteration_controller.py` invokes Codex as a correction worker, the parent controller owns rebuild/render/evaluation. In that nested worker only:
+
+- read `output/visual_evaluation.json` and exact scene evidence before editing;
+- make the smallest justified durable source change;
+- do not invoke `scripts/iteration_controller.py` recursively;
+- do not edit generated `output/` artifacts;
+- do not edit files listed in `config/autonomy.yaml` under `protected_files`;
+- do not commit or push;
+- return control to the parent so it can rebuild from source and validate the result.
+
+The controller restores protected quality-gate files and stops if a worker attempts to modify them.
+
 ## Evidence hierarchy
 
 Use the cheapest reliable evidence source:
