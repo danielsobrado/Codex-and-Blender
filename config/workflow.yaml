@@ -81,7 +81,7 @@ lights:
     size: 3.0
 
 render:
-  engine: BLENDER_EEVEE_NEXT
+  engine: BLENDER_EEVEE
   resolution_x: 1024
   resolution_y: 1024
   resolution_percentage: 100
