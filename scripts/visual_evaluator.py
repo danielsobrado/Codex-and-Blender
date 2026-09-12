@@ -62,9 +62,9 @@ def build_render_index(workflow: dict[str, Any]) -> dict[str, Any]:
     if not cameras:
         raise EvaluationError("No cameras are configured.")
 
-    primary = next((camera for camera in cameras if camera.get("primary")), None)
-    if primary is None:
-        raise EvaluationError("No primary camera is configured.")
+    primary_cameras = [camera for camera in cameras if camera.get("primary", False)]
+    if len(primary_cameras) != 1:
+        raise EvaluationError("Exactly one primary camera must be configured.")
 
     render_primary = resolve(paths["render_file"])
     render_dir = resolve(paths["render_dir"])
@@ -73,15 +73,21 @@ def build_render_index(workflow: dict[str, Any]) -> dict[str, Any]:
 
     for camera in cameras:
         is_primary = bool(camera.get("primary", False))
+        required = bool(camera.get("required", True))
         if not is_primary and not include_reviews:
+            if required:
+                raise EvaluationError(
+                    f"Required review camera is disabled by render settings: {camera['name']}"
+                )
             continue
+
         path = render_primary if is_primary else render_dir / f"{camera['name']}.png"
         views.append(
             {
                 "name": camera["name"],
                 "role": camera.get("role", "unspecified"),
                 "primary": is_primary,
-                "required": bool(camera.get("required", True)),
+                "required": required,
                 "path": str(path),
             }
         )
@@ -268,8 +274,13 @@ def evaluate(workflow_path: Path, skip_model: bool = False) -> dict[str, Any]:
     model_config = evaluator.get("model_review", {})
     model_review: dict[str, Any] | None = None
 
-    enabled = bool(model_config.get("enabled", True)) and not skip_model
-    required = bool(model_config.get("required", True)) and not skip_model
+    configured_enabled = bool(model_config.get("enabled", True))
+    configured_required = bool(model_config.get("required", True))
+    if configured_required and not configured_enabled and not skip_model:
+        raise EvaluationError("Model review cannot be required while disabled.")
+
+    enabled = configured_enabled and not skip_model
+    required = configured_required and not skip_model
     if deterministic["passed"] and enabled:
         try:
             model_review = run_model_review(
