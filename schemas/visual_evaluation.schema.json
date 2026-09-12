@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "properties": {
+    "passed": {"type": "boolean"},
+    "score": {"type": "integer", "minimum": 0, "maximum": 100},
+    "summary": {"type": "string"},
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "view": {"type": "string"},
+          "category": {"type": "string", "enum": ["composition", "geometry", "materials", "lighting", "camera", "artifact", "consistency", "other"]},
+          "severity": {"type": "string", "enum": ["blocker", "major", "minor"]},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "description": {"type": "string"},
+          "evidence": {"type": "string"},
+          "source_hint": {"type": "string"}
+        },
+        "required": ["view", "category", "severity", "confidence", "description", "evidence", "source_hint"],
+        "additionalProperties": false
+      }
+    },
+    "strengths": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "view": {"type": "string"},
+          "description": {"type": "string"}
+        },
+        "required": ["view", "description"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["passed", "score", "summary", "issues", "strengths"],
+  "additionalProperties": false
+}
