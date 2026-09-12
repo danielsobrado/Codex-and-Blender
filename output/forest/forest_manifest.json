@@ -14,14 +14,13 @@
     "split_leaf": 80,
     "distant_understory": 460
   },
-  "glb_bytes": 6825672,
+  "glb_bytes": 6825736,
   "textures": [
     "jungle_grass_reference_atlas",
     "tropical_leaf_atlas",
     "palm_fern_atlas",
     "shrub_leaf_atlas",
     "palm_bark_basecolor",
-    "Living_stems",
     "canopy_branch_atlas",
     "jungle_ground_basecolor",
     "jungle_path_basecolor_edge"

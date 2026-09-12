@@ -1,418 +1,416 @@
 INFO Running Blender action 'all'.
-00:02.547  render           | Saved: 'F:\Development\Codex-and-Blender\output\textures\canopy_branch_atlas.png'
+00:01.797  render           | Saved: 'F:\Development\Codex-and-Blender\output\textures\canopy_branch_atlas.png'
 INFO Draco is available, use library at F:\Development\Codex-and-Blender\.cache\blender\blender-5.2.1-windows-x64\5.2\scripts\addons_core\io_scene_gltf2\bf_intern_draco_bridge.dll
 INFO MeshOptimizer is available, use library at F:\Development\Codex-and-Blender\.cache\blender\blender-5.2.1-windows-x64\5.2\scripts\addons_core\io_scene_gltf2\bf_intern_meshopt_bridge.dll
-20:03:19 | INFO: Starting glTF 2.0 export
+20:08:20 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:19 | INFO: Extracting primitive: grass
+20:08:20 | INFO: Extracting primitive: grass
 INFO Extracting primitive: grass
-20:03:19 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:21 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:19 | INFO: Primitives created: 1
+20:08:21 | INFO: Primitives created: 1
 INFO Primitives created: 1
-20:03:19 | INFO: Finished glTF 2.0 export in 0.2398827075958252 s
-INFO Finished glTF 2.0 export in 0.2398827075958252 s
+20:08:21 | INFO: Finished glTF 2.0 export in 0.2418367862701416 s
+INFO Finished glTF 2.0 export in 0.2418367862701416 s
 
-20:03:19 | INFO: Starting glTF 2.0 export
+20:08:21 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:19 | INFO: Extracting primitive: grass.001
+20:08:21 | INFO: Extracting primitive: grass.001
 INFO Extracting primitive: grass.001
-20:03:19 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:21 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:19 | INFO: Primitives created: 1
+20:08:21 | INFO: Primitives created: 1
 INFO Primitives created: 1
-20:03:19 | INFO: Finished glTF 2.0 export in 0.2191295623779297 s
-INFO Finished glTF 2.0 export in 0.2191295623779297 s
+20:08:21 | INFO: Finished glTF 2.0 export in 0.21532440185546875 s
+INFO Finished glTF 2.0 export in 0.21532440185546875 s
 
-20:03:19 | INFO: Starting glTF 2.0 export
+20:08:21 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:19 | INFO: Extracting primitive: grass.002
+20:08:21 | INFO: Extracting primitive: grass.002
 INFO Extracting primitive: grass.002
-20:03:19 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:21 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:19 | INFO: Primitives created: 1
+20:08:21 | INFO: Primitives created: 1
 INFO Primitives created: 1
-20:03:19 | INFO: Finished glTF 2.0 export in 0.22385239601135254 s
-INFO Finished glTF 2.0 export in 0.22385239601135254 s
+20:08:21 | INFO: Finished glTF 2.0 export in 0.2148740291595459 s
+INFO Finished glTF 2.0 export in 0.2148740291595459 s
 
-20:03:20 | INFO: Starting glTF 2.0 export
+20:08:21 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:20 | INFO: Extracting primitive: groundcover
+20:08:22 | INFO: Extracting primitive: groundcover
 INFO Extracting primitive: groundcover
-20:03:20 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:22 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:20 | INFO: Primitives created: 1
+20:08:22 | INFO: Primitives created: 1
 INFO Primitives created: 1
-20:03:20 | INFO: Finished glTF 2.0 export in 0.212266206741333 s
-INFO Finished glTF 2.0 export in 0.212266206741333 s
+20:08:22 | INFO: Finished glTF 2.0 export in 0.20689606666564941 s
+INFO Finished glTF 2.0 export in 0.20689606666564941 s
 
-20:03:20 | INFO: Starting glTF 2.0 export
+20:08:22 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:20 | INFO: Extracting primitive: groundcover.001
+20:08:22 | INFO: Extracting primitive: groundcover.001
 INFO Extracting primitive: groundcover.001
-20:03:21 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:22 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:21 | INFO: Primitives created: 1
+20:08:22 | INFO: Primitives created: 1
 INFO Primitives created: 1
-20:03:21 | INFO: Finished glTF 2.0 export in 0.20728588104248047 s
-INFO Finished glTF 2.0 export in 0.20728588104248047 s
+20:08:22 | INFO: Finished glTF 2.0 export in 0.2077949047088623 s
+INFO Finished glTF 2.0 export in 0.2077949047088623 s
 
-20:03:21 | INFO: Starting glTF 2.0 export
+20:08:23 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:21 | INFO: Extracting primitive: fern
+20:08:23 | INFO: Extracting primitive: fern
 INFO Extracting primitive: fern
-20:03:22 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:23 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:22 | INFO: Primitives created: 1
+20:08:23 | INFO: Primitives created: 1
 INFO Primitives created: 1
-20:03:22 | INFO: Finished glTF 2.0 export in 0.4583406448364258 s
-INFO Finished glTF 2.0 export in 0.4583406448364258 s
+20:08:23 | INFO: Finished glTF 2.0 export in 0.4537999629974365 s
+INFO Finished glTF 2.0 export in 0.4537999629974365 s
 
-20:03:22 | INFO: Starting glTF 2.0 export
+20:08:24 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:22 | INFO: Extracting primitive: fern.001
+20:08:24 | INFO: Extracting primitive: fern.001
 INFO Extracting primitive: fern.001
-20:03:23 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:24 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:23 | INFO: Primitives created: 1
+20:08:24 | INFO: Primitives created: 1
 INFO Primitives created: 1
-20:03:23 | INFO: Finished glTF 2.0 export in 0.4727482795715332 s
-INFO Finished glTF 2.0 export in 0.4727482795715332 s
+20:08:24 | INFO: Finished glTF 2.0 export in 0.4457831382751465 s
+INFO Finished glTF 2.0 export in 0.4457831382751465 s
 
-20:03:24 | INFO: Starting glTF 2.0 export
+20:08:25 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:24 | INFO: Extracting primitive: broadleaf
+20:08:25 | INFO: Extracting primitive: broadleaf
 INFO Extracting primitive: broadleaf
-20:03:24 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:25 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:24 | INFO: Primitives created: 2
+20:08:25 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:24 | INFO: Finished glTF 2.0 export in 0.3978133201599121 s
-INFO Finished glTF 2.0 export in 0.3978133201599121 s
+20:08:25 | INFO: Finished glTF 2.0 export in 0.3826725482940674 s
+INFO Finished glTF 2.0 export in 0.3826725482940674 s
 
-20:03:25 | INFO: Starting glTF 2.0 export
+20:08:26 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:25 | INFO: Extracting primitive: broadleaf.001
+20:08:26 | INFO: Extracting primitive: broadleaf.001
 INFO Extracting primitive: broadleaf.001
-20:03:25 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:26 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:25 | INFO: Primitives created: 2
+20:08:26 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:25 | INFO: Finished glTF 2.0 export in 0.40714359283447266 s
-INFO Finished glTF 2.0 export in 0.40714359283447266 s
+20:08:26 | INFO: Finished glTF 2.0 export in 0.40451478958129883 s
+INFO Finished glTF 2.0 export in 0.40451478958129883 s
 
-20:03:26 | INFO: Starting glTF 2.0 export
+20:08:27 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:26 | INFO: Extracting primitive: broadleaf.002
+20:08:27 | INFO: Extracting primitive: broadleaf.002
 INFO Extracting primitive: broadleaf.002
-20:03:26 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:27 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:26 | INFO: Primitives created: 2
+20:08:27 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:26 | INFO: Finished glTF 2.0 export in 0.38730549812316895 s
-INFO Finished glTF 2.0 export in 0.38730549812316895 s
+20:08:27 | INFO: Finished glTF 2.0 export in 0.3707091808319092 s
+INFO Finished glTF 2.0 export in 0.3707091808319092 s
 
-20:03:27 | INFO: Starting glTF 2.0 export
+20:08:28 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:27 | INFO: Extracting primitive: palm
+20:08:28 | INFO: Extracting primitive: palm
 INFO Extracting primitive: palm
-20:03:27 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:28 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:28 | INFO: Primitives created: 2
+20:08:28 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:28 | INFO: Finished glTF 2.0 export in 0.6521556377410889 s
-INFO Finished glTF 2.0 export in 0.6521556377410889 s
+20:08:28 | INFO: Finished glTF 2.0 export in 0.6435022354125977 s
+INFO Finished glTF 2.0 export in 0.6435022354125977 s
 
-20:03:28 | INFO: Starting glTF 2.0 export
+20:08:29 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:28 | INFO: Extracting primitive: palm.001
+20:08:29 | INFO: Extracting primitive: palm.001
 INFO Extracting primitive: palm.001
-20:03:29 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:29 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:29 | INFO: Primitives created: 2
+20:08:29 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:29 | INFO: Finished glTF 2.0 export in 0.7004818916320801 s
-INFO Finished glTF 2.0 export in 0.7004818916320801 s
+20:08:29 | INFO: Finished glTF 2.0 export in 0.637890100479126 s
+INFO Finished glTF 2.0 export in 0.637890100479126 s
 
-20:03:29 | INFO: Starting glTF 2.0 export
+20:08:30 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:30 | INFO: Extracting primitive: tree
+20:08:30 | INFO: Extracting primitive: tree
 INFO Extracting primitive: tree
-20:03:30 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:30 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:30 | INFO: Primitives created: 2
+20:08:30 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:30 | INFO: Finished glTF 2.0 export in 0.4641988277435303 s
-INFO Finished glTF 2.0 export in 0.4641988277435303 s
+20:08:30 | INFO: Finished glTF 2.0 export in 0.4532456398010254 s
+INFO Finished glTF 2.0 export in 0.4532456398010254 s
 
-20:03:31 | INFO: Starting glTF 2.0 export
+20:08:31 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:31 | INFO: Extracting primitive: tree.001
+20:08:31 | INFO: Extracting primitive: tree.001
 INFO Extracting primitive: tree.001
-20:03:31 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:31 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:31 | INFO: Primitives created: 2
+20:08:31 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:31 | INFO: Finished glTF 2.0 export in 0.4479694366455078 s
-INFO Finished glTF 2.0 export in 0.4479694366455078 s
+20:08:31 | INFO: Finished glTF 2.0 export in 0.432358980178833 s
+INFO Finished glTF 2.0 export in 0.432358980178833 s
 
-20:03:32 | INFO: Starting glTF 2.0 export
+20:08:32 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:32 | INFO: Extracting primitive: tree.002
+20:08:32 | INFO: Extracting primitive: tree.002
 INFO Extracting primitive: tree.002
-20:03:32 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:32 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:32 | INFO: Primitives created: 2
+20:08:32 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:32 | INFO: Finished glTF 2.0 export in 0.469252347946167 s
-INFO Finished glTF 2.0 export in 0.469252347946167 s
+20:08:32 | INFO: Finished glTF 2.0 export in 0.4384152889251709 s
+INFO Finished glTF 2.0 export in 0.4384152889251709 s
 
-20:03:33 | INFO: Starting glTF 2.0 export
+20:08:33 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:33 | INFO: Extracting primitive: shrub
+20:08:33 | INFO: Extracting primitive: shrub
 INFO Extracting primitive: shrub
-20:03:33 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:33 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:33 | INFO: Primitives created: 2
+20:08:33 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:33 | INFO: Finished glTF 2.0 export in 0.45815086364746094 s
-INFO Finished glTF 2.0 export in 0.45815086364746094 s
+20:08:33 | INFO: Finished glTF 2.0 export in 0.4441540241241455 s
+INFO Finished glTF 2.0 export in 0.4441540241241455 s
 
-20:03:34 | INFO: Starting glTF 2.0 export
+20:08:34 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:34 | INFO: Extracting primitive: shrub.001
+20:08:34 | INFO: Extracting primitive: shrub.001
 INFO Extracting primitive: shrub.001
-20:03:34 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:34 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:34 | INFO: Primitives created: 2
+20:08:34 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:34 | INFO: Finished glTF 2.0 export in 0.44454503059387207 s
-INFO Finished glTF 2.0 export in 0.44454503059387207 s
+20:08:34 | INFO: Finished glTF 2.0 export in 0.43917012214660645 s
+INFO Finished glTF 2.0 export in 0.43917012214660645 s
 
-20:03:35 | INFO: Starting glTF 2.0 export
+20:08:35 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:35 | INFO: Extracting primitive: vine
+20:08:35 | INFO: Extracting primitive: vine
 INFO Extracting primitive: vine
-20:03:35 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:35 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:35 | INFO: Primitives created: 2
+20:08:35 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:35 | INFO: Finished glTF 2.0 export in 0.4349555969238281 s
-INFO Finished glTF 2.0 export in 0.4349555969238281 s
+20:08:35 | INFO: Finished glTF 2.0 export in 0.4280083179473877 s
+INFO Finished glTF 2.0 export in 0.4280083179473877 s
 
-20:03:36 | INFO: Starting glTF 2.0 export
+20:08:36 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:36 | INFO: Extracting primitive: vine.001
+20:08:36 | INFO: Extracting primitive: vine.001
 INFO Extracting primitive: vine.001
-20:03:36 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:36 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:36 | INFO: Primitives created: 2
+20:08:36 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:36 | INFO: Finished glTF 2.0 export in 0.44098591804504395 s
-INFO Finished glTF 2.0 export in 0.44098591804504395 s
+20:08:36 | INFO: Finished glTF 2.0 export in 0.4537224769592285 s
+INFO Finished glTF 2.0 export in 0.4537224769592285 s
 
-20:03:37 | INFO: Starting glTF 2.0 export
+20:08:37 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:37 | INFO: Extracting primitive: climber
+20:08:37 | INFO: Extracting primitive: climber
 INFO Extracting primitive: climber
-20:03:38 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:37 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:38 | INFO: Primitives created: 2
+20:08:38 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:38 | INFO: Finished glTF 2.0 export in 0.5777475833892822 s
-INFO Finished glTF 2.0 export in 0.5777475833892822 s
+20:08:38 | INFO: Finished glTF 2.0 export in 0.5620341300964355 s
+INFO Finished glTF 2.0 export in 0.5620341300964355 s
 
-20:03:38 | INFO: Starting glTF 2.0 export
+20:08:38 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:38 | INFO: Extracting primitive: climber.001
+20:08:38 | INFO: Extracting primitive: climber.001
 INFO Extracting primitive: climber.001
-20:03:39 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:38 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:39 | INFO: Primitives created: 2
+20:08:39 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:39 | INFO: Finished glTF 2.0 export in 0.5835590362548828 s
-INFO Finished glTF 2.0 export in 0.5835590362548828 s
+20:08:39 | INFO: Finished glTF 2.0 export in 0.5572481155395508 s
+INFO Finished glTF 2.0 export in 0.5572481155395508 s
 
-20:03:40 | INFO: Starting glTF 2.0 export
+20:08:39 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:40 | INFO: Extracting primitive: background_tree
+20:08:39 | INFO: Extracting primitive: background_tree
 INFO Extracting primitive: background_tree
-20:03:40 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:40 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:40 | INFO: Primitives created: 2
+20:08:40 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:40 | INFO: Finished glTF 2.0 export in 0.43643975257873535 s
-INFO Finished glTF 2.0 export in 0.43643975257873535 s
+20:08:40 | INFO: Finished glTF 2.0 export in 0.44214916229248047 s
+INFO Finished glTF 2.0 export in 0.44214916229248047 s
 
-20:03:41 | INFO: Starting glTF 2.0 export
+20:08:40 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:41 | INFO: Extracting primitive: split_leaf
+20:08:40 | INFO: Extracting primitive: split_leaf
 INFO Extracting primitive: split_leaf
-20:03:41 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:41 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:41 | INFO: Primitives created: 2
+20:08:41 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:41 | INFO: Finished glTF 2.0 export in 0.3882484436035156 s
-INFO Finished glTF 2.0 export in 0.3882484436035156 s
+20:08:41 | INFO: Finished glTF 2.0 export in 0.38077211380004883 s
+INFO Finished glTF 2.0 export in 0.38077211380004883 s
 
-20:03:42 | INFO: Starting glTF 2.0 export
+20:08:41 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:42 | INFO: Extracting primitive: split_leaf.001
+20:08:41 | INFO: Extracting primitive: split_leaf.001
 INFO Extracting primitive: split_leaf.001
-20:03:42 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:42 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:42 | INFO: Primitives created: 2
+20:08:42 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:42 | INFO: Finished glTF 2.0 export in 0.372267484664917 s
-INFO Finished glTF 2.0 export in 0.372267484664917 s
+20:08:42 | INFO: Finished glTF 2.0 export in 0.37498021125793457 s
+INFO Finished glTF 2.0 export in 0.37498021125793457 s
 
-20:03:43 | INFO: Starting glTF 2.0 export
+20:08:42 | INFO: Starting glTF 2.0 export
 INFO Starting glTF 2.0 export
-20:03:43 | INFO: Extracting primitive: background_tree
+20:08:42 | INFO: Extracting primitive: background_tree
 INFO Extracting primitive: background_tree
-20:03:43 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:43 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:43 | INFO: Primitives created: 2
+20:08:43 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:43 | INFO: Extracting primitive: broadleaf
+20:08:43 | INFO: Extracting primitive: broadleaf
 INFO Extracting primitive: broadleaf
-20:03:43 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:43 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:43 | INFO: Primitives created: 2
+20:08:43 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:43 | INFO: Extracting primitive: broadleaf.001
+20:08:43 | INFO: Extracting primitive: broadleaf.001
 INFO Extracting primitive: broadleaf.001
-20:03:43 | INFO: Primitives created: 2
+20:08:43 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:43 | INFO: Extracting primitive: broadleaf.002
+20:08:43 | INFO: Extracting primitive: broadleaf.002
 INFO Extracting primitive: broadleaf.002
-20:03:43 | INFO: Primitives created: 2
+20:08:43 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:43 | INFO: Extracting primitive: climber
+20:08:43 | INFO: Extracting primitive: climber
 INFO Extracting primitive: climber
-20:03:43 | INFO: Primitives created: 2
+20:08:43 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:43 | INFO: Extracting primitive: climber.001
+20:08:43 | INFO: Extracting primitive: climber.001
 INFO Extracting primitive: climber.001
-20:03:43 | INFO: Primitives created: 2
+20:08:43 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:43 | INFO: Extracting primitive: fern
+20:08:43 | INFO: Extracting primitive: fern
 INFO Extracting primitive: fern
-20:03:44 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:43 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:44 | INFO: Primitives created: 1
+20:08:43 | INFO: Primitives created: 1
 INFO Primitives created: 1
-20:03:44 | INFO: Extracting primitive: fern.001
+20:08:43 | INFO: Extracting primitive: fern.001
 INFO Extracting primitive: fern.001
-20:03:44 | INFO: Primitives created: 1
+20:08:43 | INFO: Primitives created: 1
 INFO Primitives created: 1
-20:03:44 | INFO: Extracting primitive: palm.002
+20:08:43 | INFO: Extracting primitive: palm.002
 INFO Extracting primitive: palm.002
-20:03:44 | INFO: Primitives created: 2
+20:08:43 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:44 | INFO: Extracting primitive: palm.003
+20:08:43 | INFO: Extracting primitive: palm.003
 INFO Extracting primitive: palm.003
-20:03:44 | INFO: Primitives created: 2
+20:08:43 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:44 | INFO: Extracting primitive: palm.004
+20:08:43 | INFO: Extracting primitive: palm.004
 INFO Extracting primitive: palm.004
-20:03:44 | INFO: Primitives created: 2
+20:08:43 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:44 | INFO: Extracting primitive: palm.005
+20:08:43 | INFO: Extracting primitive: palm.005
 INFO Extracting primitive: palm.005
-20:03:44 | INFO: Primitives created: 2
+20:08:43 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:44 | INFO: Extracting primitive: ForestFloor
+20:08:43 | INFO: Extracting primitive: ForestFloor
 INFO Extracting primitive: ForestFloor
-20:03:44 | INFO: Primitives created: 1
+20:08:44 | INFO: Primitives created: 1
 INFO Primitives created: 1
-20:03:44 | INFO: Extracting primitive: ForestPath
+20:08:44 | INFO: Extracting primitive: ForestPath
 INFO Extracting primitive: ForestPath
-20:03:44 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:44 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:44 | INFO: Primitives created: 1
+20:08:44 | INFO: Primitives created: 1
 INFO Primitives created: 1
-20:03:44 | INFO: Extracting primitive: grass
+20:08:44 | INFO: Extracting primitive: grass
 INFO Extracting primitive: grass
-20:03:44 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:44 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:44 | INFO: Primitives created: 1
+20:08:44 | INFO: Primitives created: 1
 INFO Primitives created: 1
-20:03:45 | INFO: Extracting primitive: grass.001
+20:08:44 | INFO: Extracting primitive: grass.001
 INFO Extracting primitive: grass.001
-20:03:45 | INFO: Primitives created: 1
+20:08:44 | INFO: Primitives created: 1
 INFO Primitives created: 1
-20:03:45 | INFO: Extracting primitive: grass.002
+20:08:44 | INFO: Extracting primitive: grass.002
 INFO Extracting primitive: grass.002
-20:03:45 | INFO: Primitives created: 1
+20:08:44 | INFO: Primitives created: 1
 INFO Primitives created: 1
-20:03:45 | INFO: Extracting primitive: groundcover
+20:08:44 | INFO: Extracting primitive: groundcover
 INFO Extracting primitive: groundcover
-20:03:45 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+20:08:44 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
 WARNING More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-20:03:45 | INFO: Primitives created: 1
+20:08:44 | INFO: Primitives created: 1
 INFO Primitives created: 1
-20:03:45 | INFO: Extracting primitive: groundcover.001
+20:08:45 | INFO: Extracting primitive: groundcover.001
 INFO Extracting primitive: groundcover.001
-20:03:45 | INFO: Primitives created: 1
+20:08:45 | INFO: Primitives created: 1
 INFO Primitives created: 1
-20:03:45 | INFO: Extracting primitive: palm
+20:08:45 | INFO: Extracting primitive: palm
 INFO Extracting primitive: palm
-20:03:45 | INFO: Primitives created: 2
+20:08:45 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:45 | INFO: Extracting primitive: palm.001
+20:08:45 | INFO: Extracting primitive: palm.001
 INFO Extracting primitive: palm.001
-20:03:45 | INFO: Primitives created: 2
+20:08:45 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:45 | INFO: Extracting primitive: shrub
+20:08:45 | INFO: Extracting primitive: shrub
 INFO Extracting primitive: shrub
-20:03:45 | INFO: Primitives created: 2
+20:08:45 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:45 | INFO: Extracting primitive: shrub.001
+20:08:45 | INFO: Extracting primitive: shrub.001
 INFO Extracting primitive: shrub.001
-20:03:45 | INFO: Primitives created: 2
+20:08:45 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:45 | INFO: Extracting primitive: split_leaf
+20:08:45 | INFO: Extracting primitive: split_leaf
 INFO Extracting primitive: split_leaf
-20:03:45 | INFO: Primitives created: 2
+20:08:45 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:45 | INFO: Extracting primitive: split_leaf.001
+20:08:45 | INFO: Extracting primitive: split_leaf.001
 INFO Extracting primitive: split_leaf.001
-20:03:45 | INFO: Primitives created: 2
+20:08:45 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:45 | INFO: Extracting primitive: tree
+20:08:45 | INFO: Extracting primitive: tree
 INFO Extracting primitive: tree
-20:03:45 | INFO: Primitives created: 2
+20:08:45 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:45 | INFO: Extracting primitive: tree.001
+20:08:45 | INFO: Extracting primitive: tree.001
 INFO Extracting primitive: tree.001
-20:03:45 | INFO: Primitives created: 2
+20:08:45 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:45 | INFO: Extracting primitive: tree.002
+20:08:45 | INFO: Extracting primitive: tree.002
 INFO Extracting primitive: tree.002
-20:03:45 | INFO: Primitives created: 2
+20:08:45 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:45 | INFO: Extracting primitive: vine
+20:08:45 | INFO: Extracting primitive: vine
 INFO Extracting primitive: vine
-20:03:45 | INFO: Primitives created: 2
+20:08:45 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:45 | INFO: Extracting primitive: vine.001
+20:08:45 | INFO: Extracting primitive: vine.001
 INFO Extracting primitive: vine.001
-20:03:45 | INFO: Primitives created: 2
+20:08:45 | INFO: Primitives created: 2
 INFO Primitives created: 2
-20:03:47 | INFO: Finished glTF 2.0 export in 3.8866512775421143 s
-INFO Finished glTF 2.0 export in 3.8866512775421143 s
+20:08:46 | INFO: Finished glTF 2.0 export in 3.8588247299194336 s
+INFO Finished glTF 2.0 export in 3.8588247299194336 s
 INFO Saved blend file: F:\Development\Codex-and-Blender\output\forest\coastal_jungle.blend
-00:46.922  render           | Saved: 'F:\Development\Codex-and-Blender\output\forest\render.png'
-INFO Rendered F:\Development\Codex-and-Blender\output\forest\render.png with HeroCamera.
-00:54.438  render           | Saved: 'F:\Development\Codex-and-Blender\output\forest\renders\FrontReviewCamera.png'
-INFO Rendered F:\Development\Codex-and-Blender\output\forest\renders\FrontReviewCamera.png with FrontReviewCamera.
-01:04.656  render           | Saved: 'F:\Development\Codex-and-Blender\output\forest\renders\SideReviewCamera.png'
-INFO Rendered F:\Development\Codex-and-Blender\output\forest\renders\SideReviewCamera.png with SideReviewCamera.
-INFO Saved blend file: F:\Development\Codex-and-Blender\output\forest\coastal_jungle.blend
-
-Info: Saved as "coastal_jungle.blend"
-Info: Saved as "coastal_jungle.blend"
+Error   : EXCEPTION_ACCESS_VIOLATION
+Address : 0x00007FFBEC0934AA
+Module  : nvoglv64.dll
+Thread  : 00008ed0
 Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 02:38:20)
-
-Blender quit
+Writing: F:\drusniel-cache\tmp\coastal_jungle.crash.txt
+Error loading symbols F:\Development\Codex-and-Blender\.cache\blender\blender-5.2.1-windows-x64\blender.pdb
+	error:0x00000002
+	size = 88977408
+	base=0x00007FF69D650000
+ERROR Blender action 'all' failed with exit code 3221225477.

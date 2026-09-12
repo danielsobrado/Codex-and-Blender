@@ -113,12 +113,13 @@ def material(root,name,alpha,tint=None):
     tex.image.pack()
     links.new(tex.outputs['Color'],p.inputs['Base Color'])
     if tint:
-        multiply=nodes.new('ShaderNodeMixRGB')
+        multiply=nodes.new('ShaderNodeMix')
+        multiply.data_type='RGBA'
         multiply.blend_type='MULTIPLY'
         multiply.inputs[0].default_value=1
-        multiply.inputs[2].default_value=(*tint,1)
-        links.new(tex.outputs['Color'],multiply.inputs[1])
-        links.new(multiply.outputs[0],p.inputs['Base Color'])
+        multiply.inputs[7].default_value=(*tint,1)
+        links.new(tex.outputs['Color'],multiply.inputs[6])
+        links.new(multiply.outputs[2],p.inputs['Base Color'])
     if alpha=='blend':
         links.new(tex.outputs['Alpha'],p.inputs['Alpha'])
         mat.surface_render_method='BLENDED'
@@ -278,4 +279,7 @@ def build_forest(context,collection):
     destination=context.path('output_dir')/'coastal_jungle.glb'
     destination.parent.mkdir(parents=True,exist_ok=True)
     bpy.ops.export_scene.gltf(filepath=str(destination),export_format='GLB',use_selection=True,export_gpu_instances=True,export_yup=True,export_image_format='WEBP',export_image_quality=88)
-    (destination.parent/'forest_manifest.json').write_text(json.dumps({'seed':spec['seed'],'instances':counts,'glb_bytes':destination.stat().st_size,'textures':[m.name for m in mats]+[soil.name,path_material.name],'units':'meters'},indent=2))
+    from jobs.forest_atlas import export_baked_texture
+    export_baked_texture(destination,root,spec['canopy_atlas'])
+    textures=[m.name for m in mats if any(n.type=='TEX_IMAGE' for n in m.node_tree.nodes)]+[soil.name,path_material.name]
+    (destination.parent/'forest_manifest.json').write_text(json.dumps({'seed':spec['seed'],'instances':counts,'glb_bytes':destination.stat().st_size,'textures':textures,'units':'meters'},indent=2))

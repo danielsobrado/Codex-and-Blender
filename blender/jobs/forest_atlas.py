@@ -1,6 +1,9 @@
 """Bake reusable small-leaf sprays from the supplied leaf atlas in Blender."""
 import math
 import random
+import hashlib
+import json
+import struct
 import bpy
 from mathutils import Vector
 
@@ -94,3 +97,21 @@ def bake_canopy_atlas(root, spec):
         bpy.data.scenes.remove(scene)
         for mat in created_materials:
             bpy.data.materials.remove(mat)
+
+
+def export_baked_texture(glb_path, root, spec):
+    data = glb_path.read_bytes()
+    json_length = struct.unpack_from('<I', data, 12)[0]
+    document = json.loads(data[20:20 + json_length])
+    image = next(i for i in document['images'] if i['name'] == 'canopy_branch_atlas')
+    assert image['mimeType'] == 'image/webp'
+    view = document['bufferViews'][image['bufferView']]
+    start = 28 + json_length + view.get('byteOffset', 0)
+    texture = data[start:start + view['byteLength']]
+    destination = root / 'output/textures/canopy_branch_atlas.webp'
+    destination.write_bytes(texture)
+    report = {'method': 'Blender orthographic emission bake of supplied leaf texture',
+              'source': 'assets/textures/shrub_leaf_atlas.png', 'settings': spec,
+              'source_sha256': hashlib.sha256((root / 'assets/textures/shrub_leaf_atlas.png').read_bytes()).hexdigest(),
+              'webp_bytes': len(texture), 'webp_sha256': hashlib.sha256(texture).hexdigest()}
+    (root / 'output/textures/canopy_branch_atlas.json').write_text(json.dumps(report, indent=2))
