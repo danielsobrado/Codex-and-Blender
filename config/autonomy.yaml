@@ -1,0 +1,9 @@
+require_clean_worktree_on_start: true
+retain_blend_in_snapshots: false
+patch_timeout_seconds: 900
+protected_files:
+  - config/acceptance.yaml
+  - config/evaluator.yaml
+  - config/autonomy.yaml
+  - schemas/visual_evaluation.schema.json
+  - prompts/visual_review.md
