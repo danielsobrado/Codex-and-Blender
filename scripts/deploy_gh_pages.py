@@ -48,6 +48,7 @@ def stage(destination: Path) -> None:
     for folder in ('loaders', 'controls', 'utils'):
         (addons / folder).mkdir(parents=True, exist_ok=True)
     shutil.copy2(three_root / 'build' / 'three.module.js', destination / 'vendor' / 'three.module.js')
+    shutil.copy2(three_root / 'build' / 'three.core.js', destination / 'vendor' / 'three.core.js')
     jsm = three_root / 'examples' / 'jsm'
     shutil.copy2(jsm / 'loaders' / 'GLTFLoader.js', addons / 'loaders' / 'GLTFLoader.js')
     shutil.copy2(jsm / 'controls' / 'OrbitControls.js', addons / 'controls' / 'OrbitControls.js')
