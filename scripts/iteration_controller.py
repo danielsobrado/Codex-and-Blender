@@ -50,6 +50,13 @@ def resolve(value: str) -> Path:
     return path if path.is_absolute() else (ROOT / path).resolve()
 
 
+def display_path(path: Path) -> str:
+    try:
+        return str(path.relative_to(ROOT))
+    except ValueError:
+        return str(path)
+
+
 def run(command: list[str], timeout: int | None = None) -> subprocess.CompletedProcess[str]:
     LOGGER.info("Running: %s", " ".join(command[:4]))
     try:
@@ -108,7 +115,7 @@ def restore_protected(snapshot: dict[Path, tuple[str, bytes | None]]) -> list[st
     for path, (digest, data) in snapshot.items():
         if file_digest(path) == digest:
             continue
-        changed.append(str(path.relative_to(ROOT)))
+        changed.append(display_path(path))
         if data is None:
             path.unlink(missing_ok=True)
         else:
@@ -159,7 +166,24 @@ def snapshot_iteration(
     return target
 
 
-def promote_best(workflow: dict[str, Any], snapshot: Path, score: int) -> None:
+def snapshot_failure(
+    workflow: dict[str, Any], iteration: int, stage: str, error: str
+) -> Path:
+    target = resolve(workflow["paths"]["iteration_dir"]) / f"{iteration:03d}-failed"
+    target.mkdir(parents=True, exist_ok=True)
+    (target / "failure.json").write_text(
+        json.dumps({"stage": stage, "error": error}, indent=2), encoding="utf-8"
+    )
+    (target / "source.diff").write_text(
+        git_output("diff", "--binary"), encoding="utf-8"
+    )
+    (target / "source.status").write_text(worktree_status(), encoding="utf-8")
+    return target
+
+
+def promote_best(
+    workflow: dict[str, Any], snapshot: Path, score: int | None
+) -> None:
     best_dir = resolve(workflow["paths"]["best_dir"])
     if best_dir.exists():
         shutil.rmtree(best_dir)
@@ -170,16 +194,16 @@ def promote_best(workflow: dict[str, Any], snapshot: Path, score: int) -> None:
     )
 
 
-def build_patch_prompt(evaluation_path: Path) -> str:
+def build_patch_prompt(evaluation_path: Path, protected: list[Path]) -> str:
+    protected_list = "\n".join(f"- {display_path(path)}" for path in protected)
     return f"""You are the correction worker inside a bounded Blender visual-quality loop.
 
-Read AGENTS.md, the durable scene source, and {evaluation_path.relative_to(ROOT)}.
+Read AGENTS.md, the durable scene source, and {display_path(evaluation_path)}.
 Implement the smallest source-controlled correction that addresses the highest-severity supported visual issues.
 
 Rules:
-- Edit durable source only: config/workflow.yaml and code/assets intentionally owned by this repository.
-- Do not edit generated files under output/.
-- Do not weaken or edit acceptance/evaluator/autonomy policy, the visual evaluation schema, or its review prompt.
+- Edit durable scene source only. Do not edit generated files under output/.
+- Do not modify these protected quality-gate files:\n{protected_list}
 - Do not commit, push, or invoke scripts/iteration_controller.py.
 - Do not make unrelated cleanup changes.
 - Prefer exact Blender state over guessing dimensions from pixels.
@@ -194,13 +218,14 @@ def run_correction_worker(
     autonomy: dict[str, Any],
     evaluation_path: Path,
     summary_path: Path,
+    protected: list[Path],
 ) -> None:
     if shutil.which(CODEX_EXECUTABLE) is None:
         raise ControllerError("Codex CLI was not found on PATH.")
 
     evaluator = load_yaml(resolve(workflow["paths"]["evaluator_file"]))
     model = evaluator.get("model_review", {})
-    prompt = build_patch_prompt(evaluation_path)
+    prompt = build_patch_prompt(evaluation_path, protected)
     command = [
         CODEX_EXECUTABLE,
         "exec",
@@ -272,24 +297,53 @@ def execute_loop(
         "passed": False,
         "stop_reason": None,
     }
-    best_score = -1
+    best_score: int | None = None
 
     for iteration in range(1, max_iterations + 1):
         LOGGER.info("Iteration %d/%d", iteration, max_iterations)
         try:
-            run([sys.executable, str(ROOT / "scripts" / "blender_runner.py"), "all", "--config", str(workflow_path)])
+            run(
+                [
+                    sys.executable,
+                    str(ROOT / "scripts" / "blender_runner.py"),
+                    "all",
+                    "--config",
+                    str(workflow_path),
+                ]
+            )
         except ControllerError as exc:
+            failure = snapshot_failure(workflow, iteration, "build", str(exc))
             report["stop_reason"] = "build_or_structural_validation_failed"
-            report["iterations"].append({"iteration": iteration, "error": str(exc)})
+            report["iterations"].append(
+                {
+                    "iteration": iteration,
+                    "error": str(exc),
+                    "snapshot": display_path(failure),
+                }
+            )
             break
 
         try:
-            run([sys.executable, str(ROOT / "scripts" / "visual_evaluator.py"), "--config", str(workflow_path)])
+            run(
+                [
+                    sys.executable,
+                    str(ROOT / "scripts" / "visual_evaluator.py"),
+                    "--config",
+                    str(workflow_path),
+                ]
+            )
             evaluation_path = resolve(paths["evaluation_file"])
             evaluation = load_json(evaluation_path)
         except ControllerError as exc:
+            failure = snapshot_failure(workflow, iteration, "evaluation", str(exc))
             report["stop_reason"] = "visual_evaluator_failed"
-            report["iterations"].append({"iteration": iteration, "error": str(exc)})
+            report["iterations"].append(
+                {
+                    "iteration": iteration,
+                    "error": str(exc),
+                    "snapshot": display_path(failure),
+                }
+            )
             break
 
         snapshot = snapshot_iteration(
@@ -298,8 +352,8 @@ def execute_loop(
             bool(autonomy.get("retain_blend_in_snapshots", False)),
         )
         score_value = evaluation.get("score")
-        score = int(score_value) if isinstance(score_value, int) else -1
-        if score > best_score:
+        score = int(score_value) if isinstance(score_value, int) else None
+        if best_score is None or (score is not None and score > best_score):
             promote_best(workflow, snapshot, score)
             best_score = score
 
@@ -307,7 +361,7 @@ def execute_loop(
             "iteration": iteration,
             "passed": bool(evaluation.get("passed", False)),
             "score": score_value,
-            "snapshot": str(snapshot.relative_to(ROOT)),
+            "snapshot": display_path(snapshot),
         }
         report["iterations"].append(iteration_result)
 
@@ -325,7 +379,11 @@ def execute_loop(
         summary_path = snapshot / "codex_correction.txt"
         try:
             run_correction_worker(
-                workflow, autonomy, evaluation_path, summary_path
+                workflow,
+                autonomy,
+                evaluation_path,
+                summary_path,
+                protected,
             )
         except ControllerError as exc:
             report["stop_reason"] = "correction_worker_failed"
@@ -344,7 +402,7 @@ def execute_loop(
             break
 
     report["finished_at"] = datetime.now(UTC).isoformat()
-    report["best_score"] = None if best_score < 0 else best_score
+    report["best_score"] = best_score
     write_report(workflow, report)
     return report
 
@@ -368,7 +426,9 @@ def main() -> int:
         LOGGER.error("%s", exc)
         return 2
 
-    LOGGER.info("Autonomous loop passed=%s stop=%s", report["passed"], report["stop_reason"])
+    LOGGER.info(
+        "Autonomous loop passed=%s stop=%s", report["passed"], report["stop_reason"]
+    )
     return 0 if report["passed"] else 1
 
 
