@@ -48,57 +48,6 @@ The control hierarchy is:
 5. **Blender MCP** — live summaries, screenshots, navigation and experiments.
 6. **GUI/computer use** — exceptional UI-only work.
 
-## What is proven today
-
-The repository has a real GitHub Actions Blender smoke pipeline, not only Python/config tests.
-
-`config/toolchain.yaml` pins **Blender 5.2.1 LTS**. CI downloads the official Blender archive, verifies the official SHA-256 checksum, launches Blender on Ubuntu 24.04, builds the scene from factory startup, renders the hero/front/side views with Eevee, validates exact scene state, runs deterministic image checks, and uploads the generated `.blend`, PNG and JSON evidence.
-
-## Repository layout
-
-```text
-.
-├── AGENTS.md
-├── README.md
-├── .codex/
-│   └── config.toml.example
-├── .github/workflows/
-│   ├── host-tests.yml
-│   └── blender-smoke.yml
-├── config/
-│   ├── workflow.yaml
-│   ├── acceptance.yaml
-│   ├── evaluator.yaml
-│   ├── autonomy.yaml
-│   ├── reproducibility.yaml
-│   └── toolchain.yaml
-├── schemas/
-│   └── visual_evaluation.schema.json
-├── docs/
-│   ├── RESEARCH.md
-│   ├── ARCHITECTURE.md
-│   ├── AUTONOMOUS_LOOP.md
-│   ├── MCP.md
-│   ├── SECURITY.md
-│   ├── SETUP.md
-│   └── ROADMAP.md
-├── prompts/
-│   └── visual_review.md
-├── scripts/
-│   ├── blender_runner.py
-│   ├── visual_evaluator.py
-│   ├── iteration_controller.py
-│   ├── reproducibility_check.py
-│   ├── toolchain_env.py
-│   └── check_environment.py
-├── blender/
-│   ├── entrypoint.py
-│   ├── core/
-│   └── jobs/
-├── tests/
-└── output/
-```
-
 ## Requirements
 
 - Blender available through `BLENDER_BIN` or `PATH` for local runs.
