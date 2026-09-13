@@ -42,7 +42,7 @@ function loadForest(url){
 try {
  const gltf=await loadForest(assetUrl('coastal_jungle'));model=gltf.scene;
  model.traverse(o=>{if(!o.isMesh)return;o.receiveShadow=true;o.castShadow=true;const materials=Array.isArray(o.material)?o.material:[o.material];for(const m of materials){if(m.map){m.map.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());}if(m.name.includes('atlas')){m.alphaTest=.4;m.transparent=false;m.side=THREE.DoubleSide;m.depthWrite=true;}if(m.name.includes('grass')){o.castShadow=false;}if(m.name.includes('atlas')&&!m.userData.wind){m.userData.wind=true;m.onBeforeCompile=shader=>{shader.uniforms.forestTime=time;shader.uniforms.windStrength=wind;shader.vertexShader='uniform float forestTime; uniform float windStrength;\n'+shader.vertexShader;shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nvec3 wp=position;\n#ifdef USE_INSTANCING\nwp=(instanceMatrix*vec4(position,1.0)).xyz;\n#endif\ntransformed.x+=sin(forestTime*1.4+wp.x*.7+wp.z*.6)*0.035*windStrength*min(abs(position.y),1.0);');};}}});
- const response=await fetch('/assets/world_config.json');if(!response.ok)throw Error('World configuration missing');
+ const response=await fetch(new URL('assets/world_config.json',import.meta.url));if(!response.ok)throw Error('World configuration missing');
  const config=await response.json();world=await createForestWorld(gltf,config);
  scene.fog.density=config.fog_density;scene.add(world.root);world.update(camera,true);
  renderer.shadowMap.needsUpdate=true;window.forestReady=true;window.forestWorld=world;window.forestCamera=camera;window.forestLoadMs=performance.now();hideLoader();

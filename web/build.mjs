@@ -61,8 +61,8 @@ for(const name of (await readdir(path.join(root,'output/textures'))).filter(n=>n
 await copyFile(path.join(forest,'world_config.json'),path.join(out,'assets/world_config.json'));
 await copyFile(path.join(forest,'objects/manifest.json'),path.join(out,'objects/manifest.json'));
 await build({entryPoints:[path.join(root,'web/main.js')],outfile:path.join(out,'app.js'),bundle:true,minify:true,format:'esm',target:'es2022',legalComments:'eof',define:{FOREST_OPTIMIZED:'true'}});
-const html=(await readFile(path.join(root,'web/index.html'),'utf8')).replace(/<script type="importmap">[\s\S]*?<\/script>/,'').replace('src="/main.js"','src="/app.js"');
-await writeFile(path.join(out,'index.html'),html);
+const html=(await readFile(path.join(root,'web/index.html'),'utf8')).replace(/<script type="importmap">[\s\S]*?<\/script>/,'').replace('src="/main.js"','src="app.js"');
+await writeFile(path.join(out,'index.html'),html.replace('src="/app.js"','src="app.js"'));
 await copyFile(path.join(root,'web/serve-build.mjs'),path.join(out,'serve.mjs'));
 for(const dir of [out,path.join(out,'assets'),path.join(out,'assets/objects'),path.join(out,'textures')])for(const name of await readdir(dir)) {
   if(!/\.(js|html|json|gltf|bin)$/.test(name))continue;
