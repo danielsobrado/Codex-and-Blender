@@ -22,8 +22,8 @@ button:hover{background:#426246}
 @media(max-width:650px){#help{display:none}#status{bottom:85px;left:32px;right:auto}}
 </style>
 <script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script></head><body>
-<header><small>VEGETATION STUDY / 02</small><h1>Coastal Jungle</h1></header><div id="help">Drag to look around · Scroll to explore</div>
-<nav><button id="reset">Reference view</button><button id="alternate">Forest interior</button><button id="wind">Wind: on</button></nav>
+<header><small>VEGETATION STUDY / 03</small><h1>Coastal Jungle</h1></header><div id="help">Drag · Scroll · WASD to travel · Shift to move faster</div>
+<nav><button id="reset">Reference view</button><button id="alternate">Forest interior</button><button id="overview">Forest overview</button><button id="wind">Wind: on</button></nav>
 <div id="status">Loading forest…</div>
 <div id="loader"><div class="loader-card"><p>Loading forest…</p><div class="bar"><div id="loader-fill"></div></div><div id="loader-pct">0%</div></div></div>
 <script>window.addEventListener('error',e=>{const n=document.querySelector('#loader-pct');if(n)n.textContent='Load failed';const s=document.querySelector('#status');if(s)s.textContent=e.message||'Load failed';});</script>

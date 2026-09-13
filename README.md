@@ -54,15 +54,6 @@ The repository has a real GitHub Actions Blender smoke pipeline, not only Python
 
 `config/toolchain.yaml` pins **Blender 5.2.1 LTS**. CI downloads the official Blender archive, verifies the official SHA-256 checksum, launches Blender on Ubuntu 24.04, builds the scene from factory startup, renders the hero/front/side views with Eevee, validates exact scene state, runs deterministic image checks, and uploads the generated `.blend`, PNG and JSON evidence.
 
-The CI work exposed and fixed two real runtime issues:
-
-- Blender 5.2 uses the `BLENDER_EEVEE` engine identifier rather than the older `BLENDER_EEVEE_NEXT` value.
-- Ubuntu headless Eevee needs the EGL/OpenGL runtime libraries used by the official Blender binary.
-
-CI also runs a **two-clean-build reproducibility regression**. It compares normalized machine-readable scene manifests with the tolerance in `config/reproducibility.yaml`; it deliberately does not require byte-identical `.blend` files or PNGs.
-
-The authenticated GPT-6 Astra correction loop and a live Blender MCP bridge are implemented/documented but are not exercised in public GitHub CI because they require an authenticated Codex session and, for MCP, a running Blender bridge.
-
 ## Repository layout
 
 ```text
@@ -176,12 +167,6 @@ Local preview (after `cd web`, `npm ci`, `npm run dev`):
 
 http://127.0.0.1:4173
 
-Publish only the demo files (viewer HTML/JS, sky, and the combined GLB) to `gh-pages`:
-
-```powershell
-python scripts/deploy_gh_pages.py
-```
-
 ## ChatGPT-generated textures
 
 Plant meshes are procedural Blender Python. Surface color comes from ChatGPT image generation (12 September 2026): flat orthographic albedo scans, not photos and not calibrated PBR maps. There are no generated normal or roughness maps.
@@ -247,21 +232,7 @@ codex mcp list
 
 Copy `.codex/config.toml.example` to `.codex/config.toml` for project-local configuration. MCP remains optional: deterministic scene construction, CI and render evaluation do not depend on a live MCP session.
 
-## Research basis
 
-Primary references:
+## License
 
-- OpenAI — Architectural visualization with Astra: https://developers.openai.com/blog/architectural-visualization-with-astra
-- OpenAI — GPT-6 Astra: https://developers.openai.com/api/docs/models/gpt-6-astra
-- OpenAI — Codex commands/non-interactive execution: https://learn.chatgpt.com/codex/developer-commands
-- OpenAI — Codex MCP: https://developers.openai.com/codex/extend/mcp
-- Blender — MCP Server: https://www.blender.org/lab/mcp-server/
-- Blender — releases: https://download.blender.org/release/
-- Blender Lab MCP source mirror: https://github.com/bpype/blender_mcp
-- MCP specification: https://modelcontextprotocol.io/specification/2026-07-28/
-
-Community implementation used as secondary evidence:
-
-- https://github.com/ahujasid/blender-mcp
-
-See `docs/RESEARCH.md`, `docs/ARCHITECTURE.md`, `docs/AUTONOMOUS_LOOP.md`, `docs/SETUP.md`, `docs/SECURITY.md`, `docs/MCP.md`, and `docs/ROADMAP.md`.
+This project is licensed under the [MIT License](LICENSE).

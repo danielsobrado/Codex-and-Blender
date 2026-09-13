@@ -104,7 +104,7 @@ render:
   render_review_cameras: true
 forest:
   seed: 941
-  extent: 22
+  extent: 128
   path_width: 0.38
   soil_color:
   - 0.1
@@ -184,7 +184,7 @@ forest:
       - 1.4
     tree:
       count: 78
-      variants: 3
+      variants: 6
       height: 11
       radius: 0.3
       crown_radius: 4.2
@@ -203,6 +203,23 @@ forest:
       vine_length:
       - 2.3
       - 5.2
+      profiles:
+      - {}
+      - height: 13
+        crown_radius: 3.2
+        branches: 8
+      - height: 9
+        crown_radius: 5
+        branches: 12
+      - height: 15
+        crown_radius: 4
+        branches: 9
+      - height: 10
+        crown_radius: 4.8
+        branches: 11
+      - height: 12
+        crown_radius: 3.6
+        branches: 10
     shrub:
       count: 190
       variants: 2
@@ -234,22 +251,22 @@ forest:
       - 0.9
       - 1.1
     background_tree:
-      count: 100
-      variants: 1
+      count: 2100
+      variants: 3
       height: 12
       radius: 0.23
       crown_radius: 4.1
       branches: 7
       twigs: 3
-      scale:
+      scale: &id001
       - 0.72
       - 1.25
       x_range:
-      - -40
-      - 40
+      - -124
+      - 124
       y_range:
-      - 23
-      - 50
+      - -124
+      - 124
       sprays: 6
       spray_radius: 0.7
       spray_size:
@@ -257,9 +274,15 @@ forest:
       - 2
       spacing: 3.5
       hanging_vines: 3
-      vine_length:
+      vine_length: &id002
       - 2
       - 4
+      profiles:
+      - {}
+      - height: 14
+        crown_radius: 3.5
+      - height: 10
+        crown_radius: 5
     split_leaf:
       count: 80
       variants: 2
@@ -267,6 +290,35 @@ forest:
       scale:
       - 0.7
       - 1.4
+    tree_lod:
+      count: 0
+      variants: 3
+      height: 12
+      radius: 0.23
+      crown_radius: 4.1
+      branches: 5
+      twigs: 3
+      scale: *id001
+      x_range:
+      - -40
+      - 40
+      y_range:
+      - 23
+      - 50
+      sprays: 5
+      spray_radius: 0.7
+      spray_size:
+      - 1.8
+      - 2.3
+      spacing: 3.5
+      hanging_vines: 0
+      vine_length: *id002
+      profiles:
+      - {}
+      - height: 13
+        crown_radius: 3.2
+      - height: 9
+        crown_radius: 5
   surface_textures:
     grass: jungle_grass_reference_atlas
     ground: jungle_ground_basecolor
@@ -274,6 +326,7 @@ forest:
     tile_meters: 2
     path_step: 0.25
     path_half_width: 1.6
+    canopy: canopy_branch_atlas_new
   hero_plants:
   - kind: broadleaf
     location:
@@ -383,17 +436,30 @@ forest:
     half_width: 2
     end_y: 21
   distant_understory:
-    count: 460
+    count: 4200
     terrain_x:
     - -50
     - 50
-    terrain_end_y: 66
+    terrain_end_y: 128
     x_range:
-    - -44
-    - 44
+    - -124
+    - 124
     y_range:
-    - 20
-    - 60
+    - -124
+    - 124
     scale:
     - 1.6
     - 3.4
+  plant_extent: 22
+  web_world:
+    chunk_size: 16
+    grass_per_chunk: 540
+    groundcover_per_chunk: 100
+    undergrowth_per_chunk: 7
+    grass_distance: 34
+    groundcover_distance: 28
+    undergrowth_distance: 72
+    tree_distance: 180
+    tree_lod_distance: 48
+    max_instances_per_asset: 4500
+    fog_density: 0.006

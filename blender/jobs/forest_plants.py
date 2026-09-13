@@ -5,7 +5,7 @@ from mathutils import Vector
 
 def populate(m,kind,rng,p):
     tau=math.tau
-    if kind=='background_tree':
+    if kind in ('background_tree','tree_lod'):
         kind='tree'
     if kind=='grass':
         for i in range(p['blades']):
@@ -101,3 +101,5 @@ def populate(m,kind,rng,p):
             m.split_leaf(at,a,rng.uniform(.9,1.3),rng.uniform(.65,.9),rng.randrange(4))
     else:
         raise ValueError(f'Unknown forest asset: {kind}')
+    if kind in ('tree','shrub','vine'):
+        m.indices=[7 if index==4 else index for index in m.indices]

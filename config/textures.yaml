@@ -3,6 +3,8 @@ delivery_dir: output/textures
 size: 1024
 webp_quality: 88
 textures:
+  - {input: 'ChatGPT Image Sep 12, 2026, 09_01_50 PM.png', upload_dir: assets/textures, name: canopy_branch_atlas_new, alpha: true}
+  - {input: 'ChatGPT Image Sep 12, 2026, 09_03_08 PM.png', upload_dir: assets/textures, name: tropical_bark_basecolor, alpha: false}
   - {input: 'ChatGPT Image Sep 12, 2026, 02_59_15 PM.png', name: dry_grass_atlas, alpha: true}
   - {input: 'ChatGPT Image Sep 12, 2026, 03_00_17 PM.png', name: shrub_leaf_atlas, alpha: true}
   - {input: 'ChatGPT Image Sep 12, 2026, 03_02_11 PM.png', name: cactus_skin_basecolor, alpha: false}

@@ -1,0 +1,156 @@
+{
+  "glb_sha256": "8f0200f54be645e9befbe0e5da1122826244dacf004f79913f38efbc07091b33",
+  "glb_bytes": 11873064,
+  "assets": 32,
+  "browser": {
+    "passed": true,
+    "errors": [],
+    "stats": {
+      "fps": 0,
+      "calls": 69,
+      "triangles": 2370916,
+      "sourceInstances": 176423,
+      "totalChunks": 256,
+      "visibleInstances": 5065,
+      "visibleChunks": 118,
+      "lodInstances": 435,
+      "capacityDrops": 0,
+      "byKind": {
+        "broadleaf": 181,
+        "fern": 157,
+        "grass": 2205,
+        "groundcover": 1340,
+        "shrub": 363,
+        "split_leaf": 54,
+        "climber": 53,
+        "palm": 162,
+        "tree": 22,
+        "vine": 73,
+        "palm.001": 1,
+        "palm.002": 1,
+        "background_tree": 452,
+        "palm.003": 1
+      },
+      "cameraPosition": [
+        0,
+        2.4999999999999987,
+        12
+      ],
+      "revision": 10
+    },
+    "referenceStats": {
+      "fps": 0,
+      "calls": 69,
+      "triangles": 2399460,
+      "sourceInstances": 176423,
+      "totalChunks": 256,
+      "visibleInstances": 5065,
+      "visibleChunks": 118,
+      "lodInstances": 419,
+      "capacityDrops": 0,
+      "byKind": {
+        "broadleaf": 181,
+        "fern": 157,
+        "grass": 2205,
+        "groundcover": 1340,
+        "shrub": 363,
+        "split_leaf": 54,
+        "climber": 53,
+        "palm": 162,
+        "tree": 22,
+        "vine": 73,
+        "palm.001": 1,
+        "palm.002": 1,
+        "background_tree": 452,
+        "palm.003": 1
+      },
+      "cameraPosition": [
+        0,
+        2.4999999999999987,
+        12
+      ],
+      "revision": 1
+    },
+    "interiorStats": {
+      "fps": 0,
+      "calls": 69,
+      "triangles": 2165672,
+      "sourceInstances": 176423,
+      "totalChunks": 256,
+      "visibleInstances": 4716,
+      "visibleChunks": 106,
+      "lodInstances": 358,
+      "capacityDrops": 0,
+      "byKind": {
+        "broadleaf": 137,
+        "fern": 129,
+        "grass": 2134,
+        "groundcover": 1253,
+        "shrub": 346,
+        "split_leaf": 43,
+        "climber": 49,
+        "palm": 149,
+        "tree": 18,
+        "vine": 65,
+        "palm.001": 1,
+        "palm.002": 1,
+        "background_tree": 390,
+        "palm.003": 1
+      },
+      "cameraPosition": [
+        2,
+        2.3000000000000003,
+        5
+      ],
+      "revision": 2
+    },
+    "overviewStats": {
+      "fps": 1,
+      "calls": 40,
+      "triangles": 1316652,
+      "sourceInstances": 176423,
+      "totalChunks": 256,
+      "visibleInstances": 1084,
+      "visibleChunks": 151,
+      "lodInstances": 610,
+      "capacityDrops": 0,
+      "byKind": {
+        "background_tree": 602,
+        "shrub": 201,
+        "palm": 215,
+        "fern": 10,
+        "broadleaf": 31,
+        "tree": 22,
+        "palm.001": 1,
+        "palm.002": 1,
+        "palm.003": 1
+      },
+      "cameraPosition": [
+        65,
+        35.99999999999999,
+        75
+      ],
+      "revision": 3
+    },
+    "offscreenStats": {
+      "sourceInstances": 176423,
+      "totalChunks": 256,
+      "visibleInstances": 0,
+      "visibleChunks": 0,
+      "lodInstances": 0,
+      "capacityDrops": 0,
+      "byKind": {},
+      "cameraPosition": [
+        0,
+        60,
+        280
+      ],
+      "revision": 4
+    },
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+  },
+  "extensions": [
+    "EXT_texture_webp",
+    "EXT_mesh_gpu_instancing"
+  ]
+}

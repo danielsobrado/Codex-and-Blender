@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 
 export function createSky() {
-  return new THREE.Mesh(new THREE.SphereGeometry(110, 32, 16), new THREE.ShaderMaterial({
+  return new THREE.Mesh(new THREE.SphereGeometry(300, 32, 16), new THREE.ShaderMaterial({
     side: THREE.BackSide,
     depthWrite: false,
     vertexShader: `varying vec3 direction;

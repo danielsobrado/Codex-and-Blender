@@ -1,5 +1,31 @@
 [
   {
+    "name": "canopy_branch_atlas_new",
+    "original": "ChatGPT Image Sep 12, 2026, 09_01_50 PM.png",
+    "source": "assets\\textures\\canopy_branch_atlas_new.png",
+    "sha256": "f366742566ad25e73086a73b078e144e5301ad9e901aecca2ad842667ce4c41c",
+    "size": [
+      1024,
+      1024
+    ],
+    "alpha": true,
+    "png_bytes": 1350230,
+    "webp_bytes": 401246
+  },
+  {
+    "name": "tropical_bark_basecolor",
+    "original": "ChatGPT Image Sep 12, 2026, 09_03_08 PM.png",
+    "source": "assets\\textures\\tropical_bark_basecolor.png",
+    "sha256": "57072a6df09aa219c2e4b2e09fdfbc7edcc1e07dcb010ec704492c7a69eb7dc1",
+    "size": [
+      1024,
+      1024
+    ],
+    "alpha": false,
+    "png_bytes": 2397443,
+    "webp_bytes": 449702
+  },
+  {
     "name": "dry_grass_atlas",
     "original": "ChatGPT Image Sep 12, 2026, 02_59_15 PM.png",
     "source": "assets\\textures\\dry_grass_atlas.png",

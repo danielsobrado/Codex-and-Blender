@@ -2,10 +2,23 @@
 import json
 import math
 import random
+import os
+import uuid
 from pathlib import Path
 import bpy
 from mathutils import Vector
 from jobs.vegetation import Mesh
+
+
+def export_glb(destination, **settings):
+    # Publish complete files so readers never observe a partially written GLB.
+    temporary=destination.with_name(f'.{destination.stem}.{uuid.uuid4().hex}.glb')
+    try:
+        bpy.ops.export_scene.gltf(filepath=str(temporary),export_format='GLB',**settings)
+        os.replace(temporary,destination)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
 
 
 class Surface(Mesh):
@@ -147,21 +160,20 @@ def build_forest(context,collection):
     root=Path(context.config['_root'])
     spec=context.section('forest')
     rng=random.Random(spec['seed'])
-    from jobs.forest_atlas import bake_canopy_atlas
-    bake_canopy_atlas(root,spec['canopy_atlas'])
     mats=[material(root,n,alpha,spec['bark_tint'] if n=='palm_bark_basecolor' else None) for n,alpha in [(spec['surface_textures']['grass'],True),('tropical_leaf_atlas',True),('palm_fern_atlas',True),('shrub_leaf_atlas',True),('palm_bark_basecolor',False)]]
     stems=bpy.data.materials.new('Living_stems')
     stems.use_nodes=True
     stems.node_tree.nodes.get('Principled BSDF').inputs['Base Color'].default_value=(*spec['stem_color'],1)
     stems.node_tree.nodes.get('Principled BSDF').inputs['Roughness'].default_value=.85
     mats.append(stems)
-    mats.append(material(root,'canopy_branch_atlas',True))
+    mats.append(material(root,spec['surface_textures']['canopy'],True))
+    mats.append(material(root,'tropical_bark_basecolor',False))
     soil=material(root,spec['surface_textures']['ground'],False)
     terrain=Surface([soil])
     size=spec['extent']
-    for x in range(-size,size):
-        for y in range(-size,size):
-            coords=[(x,y),(x+1,y),(x+1,y+1),(x,y+1)]
+    for x in range(-size,size,2):
+        for y in range(-size,size,2):
+            coords=[(x,y),(x+2,y),(x+2,y+2),(x,y+2)]
             tile=spec['surface_textures']['tile_meters']
             terrain.polygon([(a,b,elevation(a,b)) for a,b in coords],[(a/tile,b/tile) for a,b in coords],0)
     backdrop=spec['distant_understory']
@@ -192,22 +204,27 @@ def build_forest(context,collection):
             asset_name=f'{kind}_{variant+1:02}'
             group=bpy.data.objects.new(f'{asset_name}_instances',None)
             collection.objects.link(group)
-            proto=prototype(kind,mats,collection,random.Random(spec['seed']+len(assets)*37),dict(params,variant=variant))
+            profile=params.get('profiles',[{}]*params['variants'])[variant]
+            proto=prototype(kind,mats,collection,random.Random(spec['seed']+len(assets)*37),dict(params,variant=variant,**profile))
             proto.name=asset_name
+            proto.data.name=asset_name
             bpy.context.view_layer.update()
             bpy.ops.object.select_all(action='DESELECT')
             proto.select_set(True)
             bpy.context.view_layer.objects.active=proto
             proto.asset_mark()
             filename=asset_name+'.glb'
-            bpy.ops.export_scene.gltf(filepath=str(asset_dir/filename),export_format='GLB',use_selection=True,export_yup=True,export_image_format='WEBP',export_image_quality=88)
+            export_glb(asset_dir/filename,use_selection=True,export_yup=True,export_image_format='WEBP',export_image_quality=88)
             assets.append({'name':asset_name,'file':filename,'dimensions_m':list(proto.dimensions),'triangles':sum(len(p.vertices)-2 for p in proto.data.polygons)})
             variants.append((proto,group))
         prototypes[kind]=variants
         for i in range(params['count']):
-            x,y=rng.uniform(-size+1,size-1),rng.uniform(-size+1,size-1)
+            local_size=spec['plant_extent']
+            x,y=rng.uniform(-local_size+1,local_size-1),rng.uniform(-local_size+1,local_size-1)
             if kind=='background_tree':
                 x,y=rng.uniform(*params['x_range']),rng.uniform(*params['y_range'])
+                if abs(x)<local_size and abs(y)<local_size:
+                    continue
             path=1.8*math.sin(y*.11)
             center=spec['clearing']['center']
             clear=math.hypot(x-center[0],y-center[1])<spec['clearing']['radius']
@@ -253,16 +270,20 @@ def build_forest(context,collection):
         x,y=hero['location']
         obj.location=(x,y,elevation(x,y))
         obj.scale=(hero['scale'],)*3
+    counts['distant_understory']=0
     for i in range(backdrop['count']):
         proto,group=rng.choice(prototypes['shrub'])
         obj=bpy.data.objects.new(f'DistantUnderstory_{i:03}',proto.data)
         collection.objects.link(obj)
         obj.parent=group
         x,y=rng.uniform(*backdrop['x_range']),rng.uniform(*backdrop['y_range'])
+        if abs(x)<spec['plant_extent'] and abs(y)<spec['plant_extent']:
+            bpy.data.objects.remove(obj,do_unlink=True)
+            continue
         obj.location=(x,y,elevation(x,y))
         obj.scale=(rng.uniform(*backdrop['scale']),)*3
         obj.rotation_euler.z=rng.uniform(0,math.tau)
-    counts['distant_understory']=backdrop['count']
+        counts['distant_understory']+=1
     for variants in prototypes.values():
         for proto,group in variants:
             bpy.data.objects.remove(proto,do_unlink=True)
@@ -278,8 +299,7 @@ def build_forest(context,collection):
         if obj.type in ('MESH','EMPTY'): obj.select_set(True)
     destination=context.path('output_dir')/'coastal_jungle.glb'
     destination.parent.mkdir(parents=True,exist_ok=True)
-    bpy.ops.export_scene.gltf(filepath=str(destination),export_format='GLB',use_selection=True,export_gpu_instances=True,export_yup=True,export_image_format='WEBP',export_image_quality=88)
-    from jobs.forest_atlas import export_baked_texture
-    export_baked_texture(destination,root,spec['canopy_atlas'])
+    export_glb(destination,use_selection=True,export_gpu_instances=True,export_yup=True,export_image_format='WEBP',export_image_quality=88)
+    (destination.parent/'world_config.json').write_text(json.dumps(dict(spec['web_world'],extent=size,seed=spec['seed'],plant_extent=spec['plant_extent']),indent=2))
     textures=[m.name for m in mats if any(n.type=='TEX_IMAGE' for n in m.node_tree.nodes)]+[soil.name,path_material.name]
     (destination.parent/'forest_manifest.json').write_text(json.dumps({'seed':spec['seed'],'instances':counts,'glb_bytes':destination.stat().st_size,'textures':textures,'units':'meters'},indent=2))

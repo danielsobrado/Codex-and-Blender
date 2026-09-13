@@ -10,18 +10,19 @@
     "shrub": 119,
     "vine": 83,
     "climber": 64,
-    "background_tree": 50,
-    "split_leaf": 80,
-    "distant_understory": 460
+    "background_tree": 1225,
+    "split_leaf": 78,
+    "distant_understory": 4068
   },
-  "glb_bytes": 6825736,
+  "glb_bytes": 11873064,
   "textures": [
     "jungle_grass_reference_atlas",
     "tropical_leaf_atlas",
     "palm_fern_atlas",
     "shrub_leaf_atlas",
     "palm_bark_basecolor",
-    "canopy_branch_atlas",
+    "canopy_branch_atlas_new",
+    "tropical_bark_basecolor",
     "jungle_ground_basecolor",
     "jungle_path_basecolor_edge"
   ],
