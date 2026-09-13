@@ -121,9 +121,28 @@ Local preview (after `cd web`, `npm ci`, `npm run dev`):
 
 http://127.0.0.1:4173
 
+A separate reusable plant kit covers dry-hillside grass, shrubs, yucca, cactus and sage:
+
+<p align="center">
+  <img src="docs/images/sampleAssets.jpg" width="82%" alt="Labeled dry-hillside plant kit: grass, bushes, yucca and cactus" />
+</p>
+
 ## Generated textures
 
 Plant meshes are procedural Blender Python. Surface color comes from ChatGPT image generation (12 September 2026): flat orthographic albedo scans, not photos and not calibrated PBR maps. There are no generated normal or roughness maps.
+
+<p align="center">
+  <img src="docs/images/textures/grass.jpg" width="30%" alt="Jungle grass atlas" />
+  <img src="docs/images/textures/tropical-leaf.jpg" width="30%" alt="Tropical leaf atlas" />
+  <img src="docs/images/textures/palm-fern.jpg" width="30%" alt="Palm and fern atlas" />
+</p>
+<p align="center">
+  <img src="docs/images/textures/tropical-bark.jpg" width="30%" alt="Mossy tropical bark" />
+  <img src="docs/images/textures/palm-bark.jpg" width="30%" alt="Palm bark" />
+  <img src="docs/images/textures/ground.jpg" width="30%" alt="Forest floor" />
+</p>
+
+Grass · tropical leaves · palm/fern · mossy bark · palm bark · forest floor.
 
 See `docs/COASTAL_JUNGLE.md` for the forest kit and `docs/TROPICAL_KIT.md` for the ChatGPT prompts used to request these albedo scans.
 
