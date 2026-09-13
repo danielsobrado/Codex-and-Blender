@@ -172,32 +172,9 @@ Local preview (after `cd web`, `npm ci`, `npm run dev`):
 
 http://127.0.0.1:4173
 
-## ChatGPT-generated textures
+## Generated textures
 
 Plant meshes are procedural Blender Python. Surface color comes from ChatGPT image generation (12 September 2026): flat orthographic albedo scans, not photos and not calibrated PBR maps. There are no generated normal or roughness maps.
-
-`config/textures.yaml` is the name map. `scripts/prepare_textures.py` keeps a byte-for-byte copy under `assets/textures/<name>.png` and writes 1024 px PNG plus WebP to `output/textures/`. The agave leaf stays 512 x 1024 to keep its aspect ratio. `jungle_path_basecolor_edge` is derived from the path texture (feathered alpha). `canopy_branch_atlas` is a Blender bake from `shrub_leaf_atlas`, not a ChatGPT image.
-
-| Name | ChatGPT download | Use |
-| --- | --- | --- |
-| `dry_grass_atlas` | `ChatGPT Image Sep 12, 2026, 02_59_15 PM.png` | Dry hillside grass. Not used in the coastal jungle. |
-| `shrub_leaf_atlas` | `ChatGPT Image Sep 12, 2026, 03_00_17 PM.png` | Shrub leaves and the canopy-branch bake. |
-| `cactus_skin_basecolor` | `ChatGPT Image Sep 12, 2026, 03_02_11 PM.png` | Dry hillside cactus. Not used in the coastal jungle. |
-| `agave_leaf` | `ChatGPT Image Sep 12, 2026, 03_06_43 PM.png` | Dry hillside agave. Not used in the coastal jungle. |
-| `jungle_grass_atlas` | `ChatGPT Image Sep 12, 2026, 03_07_30 PM.png` | Original jungle grass atlas. |
-| `palm_fern_atlas` | `ChatGPT Image Sep 12, 2026, 03_08_56 PM.png` | Palm and fern fronds. |
-| `tropical_leaf_atlas` | `ChatGPT Image Sep 12, 2026, 03_17_15 PM.png` | Broad tropical leaves. |
-| `palm_bark_basecolor` | `ChatGPT Image Sep 12, 2026, 03_19_10 PM.png` | Palm trunk bark. |
-| `jungle_path_basecolor` | `ChatGPT Image Sep 12, 2026, 03_39_14 PM.png` | Forest path soil; `_edge` is the feathered runtime map. |
-| `jungle_grass_reference_atlas` | `ChatGPT Image Sep 12, 2026, 03_39_19 PM.png` | Grass atlas used by the coastal jungle scene. |
-| `jungle_ground_basecolor` | `ChatGPT Image Sep 12, 2026, 03_39_32 PM.png` | Forest floor. |
-
-The coastal jungle tiles ground and path at two metres. Rebuild textures, then the forest scene:
-
-```powershell
-python scripts/prepare_textures.py
-python scripts/blender_runner.py all --config config/forest_workflow.yaml
-```
 
 See `docs/COASTAL_JUNGLE.md` for the forest kit and `docs/TROPICAL_KIT.md` for the ChatGPT prompts used to request these albedo scans.
 
