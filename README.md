@@ -161,6 +161,11 @@ This produces `output/reproducibility.json` and per-run snapshots under `output/
 
 GPT-6 Astra generated this coastal jungle on a ChatGPT Plus account in two rounds: procedural plant meshes, ChatGPT albedo textures, scene composition, and the Three.js viewer. The durable source is still YAML plus Blender Python.
 
+<p align="center">
+  <img src="docs/images/referenceView.jpg" width="48%" alt="Coastal jungle reference view" />
+  <img src="docs/images/forestInterior.jpg" width="48%" alt="Coastal jungle forest interior" />
+</p>
+
 Online demo: https://danielsobrado.github.io/Codex-and-Blender/
 
 Local preview (after `cd web`, `npm ci`, `npm run dev`):
